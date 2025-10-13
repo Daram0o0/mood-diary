@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/nextjs-vite';
 import { useState } from 'react';
-import Pagination, { type PaginationProps } from './index';
+import Pagination from './index';
 
 const meta = {
   title: 'Commons/Components/Pagination',
@@ -47,27 +47,12 @@ const meta = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-// Interactive Wrapper Component
-const PaginationWrapper = (args: Partial<PaginationProps>) => {
-  const [currentPage, setCurrentPage] = useState(args.currentPage || 1);
-  
-  return (
-    <Pagination
-      {...args}
-      currentPage={currentPage}
-      totalPages={args.totalPages || 10}
-      onPageChange={setCurrentPage}
-    />
-  );
-};
-
 // 기본 스토리
 export const Default: Story = {
-  render: (args) => <PaginationWrapper {...args} />,
   args: {
     currentPage: 1,
     totalPages: 10,
-    onPageChange: () => {},
+    onPageChange: (page: number) => console.log('Page changed to:', page),
     variant: 'primary',
     size: 'medium',
     theme: 'light',
@@ -76,11 +61,10 @@ export const Default: Story = {
 
 // Primary Variants
 export const PrimaryLight: Story = {
-  render: (args) => <PaginationWrapper {...args} />,
   args: {
     currentPage: 1,
     totalPages: 10,
-    onPageChange: () => {},
+    onPageChange: (page: number) => console.log('Page changed to:', page),
     variant: 'primary',
     size: 'medium',
     theme: 'light',
@@ -88,11 +72,10 @@ export const PrimaryLight: Story = {
 };
 
 export const PrimaryDark: Story = {
-  render: (args) => <PaginationWrapper {...args} />,
   args: {
     currentPage: 1,
     totalPages: 10,
-    onPageChange: () => {},
+    onPageChange: (page: number) => console.log('Page changed to:', page),
     variant: 'primary',
     size: 'medium',
     theme: 'dark',
@@ -104,11 +87,10 @@ export const PrimaryDark: Story = {
 
 // Secondary Variants
 export const SecondaryLight: Story = {
-  render: (args) => <PaginationWrapper {...args} />,
   args: {
     currentPage: 1,
     totalPages: 10,
-    onPageChange: () => {},
+    onPageChange: (page: number) => console.log('Page changed to:', page),
     variant: 'secondary',
     size: 'medium',
     theme: 'light',
@@ -116,11 +98,10 @@ export const SecondaryLight: Story = {
 };
 
 export const SecondaryDark: Story = {
-  render: (args) => <PaginationWrapper {...args} />,
   args: {
     currentPage: 1,
     totalPages: 10,
-    onPageChange: () => {},
+    onPageChange: (page: number) => console.log('Page changed to:', page),
     variant: 'secondary',
     size: 'medium',
     theme: 'dark',
@@ -132,11 +113,10 @@ export const SecondaryDark: Story = {
 
 // Tertiary Variants
 export const TertiaryLight: Story = {
-  render: (args) => <PaginationWrapper {...args} />,
   args: {
     currentPage: 1,
     totalPages: 10,
-    onPageChange: () => {},
+    onPageChange: (page: number) => console.log('Page changed to:', page),
     variant: 'tertiary',
     size: 'medium',
     theme: 'light',
@@ -144,11 +124,10 @@ export const TertiaryLight: Story = {
 };
 
 export const TertiaryDark: Story = {
-  render: (args) => <PaginationWrapper {...args} />,
   args: {
     currentPage: 1,
     totalPages: 10,
-    onPageChange: () => {},
+    onPageChange: (page: number) => console.log('Page changed to:', page),
     variant: 'tertiary',
     size: 'medium',
     theme: 'dark',
@@ -160,11 +139,10 @@ export const TertiaryDark: Story = {
 
 // Size Variants
 export const Small: Story = {
-  render: (args) => <PaginationWrapper {...args} />,
   args: {
     currentPage: 1,
     totalPages: 10,
-    onPageChange: () => {},
+    onPageChange: (page: number) => console.log('Page changed to:', page),
     variant: 'primary',
     size: 'small',
     theme: 'light',
@@ -172,11 +150,10 @@ export const Small: Story = {
 };
 
 export const Medium: Story = {
-  render: (args) => <PaginationWrapper {...args} />,
   args: {
     currentPage: 1,
     totalPages: 10,
-    onPageChange: () => {},
+    onPageChange: (page: number) => console.log('Page changed to:', page),
     variant: 'primary',
     size: 'medium',
     theme: 'light',
@@ -184,11 +161,10 @@ export const Medium: Story = {
 };
 
 export const Large: Story = {
-  render: (args) => <PaginationWrapper {...args} />,
   args: {
     currentPage: 1,
     totalPages: 10,
-    onPageChange: () => {},
+    onPageChange: (page: number) => console.log('Page changed to:', page),
     variant: 'primary',
     size: 'large',
     theme: 'light',
@@ -197,11 +173,10 @@ export const Large: Story = {
 
 // Without Arrows
 export const WithoutArrows: Story = {
-  render: (args) => <PaginationWrapper {...args} />,
   args: {
     currentPage: 1,
     totalPages: 10,
-    onPageChange: () => {},
+    onPageChange: (page: number) => console.log('Page changed to:', page),
     variant: 'primary',
     size: 'medium',
     theme: 'light',
@@ -211,11 +186,10 @@ export const WithoutArrows: Story = {
 
 // Different Visible Pages
 export const ThreeVisiblePages: Story = {
-  render: (args) => <PaginationWrapper {...args} />,
   args: {
     currentPage: 5,
     totalPages: 20,
-    onPageChange: () => {},
+    onPageChange: (page: number) => console.log('Page changed to:', page),
     variant: 'primary',
     size: 'medium',
     theme: 'light',
@@ -224,11 +198,10 @@ export const ThreeVisiblePages: Story = {
 };
 
 export const SevenVisiblePages: Story = {
-  render: (args) => <PaginationWrapper {...args} />,
   args: {
     currentPage: 5,
     totalPages: 20,
-    onPageChange: () => {},
+    onPageChange: (page: number) => console.log('Page changed to:', page),
     variant: 'primary',
     size: 'medium',
     theme: 'light',
@@ -238,11 +211,10 @@ export const SevenVisiblePages: Story = {
 
 // Edge Cases
 export const FirstPage: Story = {
-  render: (args) => <PaginationWrapper {...args} />,
   args: {
     currentPage: 1,
     totalPages: 10,
-    onPageChange: () => {},
+    onPageChange: (page: number) => console.log('Page changed to:', page),
     variant: 'primary',
     size: 'medium',
     theme: 'light',
@@ -250,11 +222,10 @@ export const FirstPage: Story = {
 };
 
 export const MiddlePage: Story = {
-  render: (args) => <PaginationWrapper {...args} />,
   args: {
     currentPage: 5,
     totalPages: 10,
-    onPageChange: () => {},
+    onPageChange: (page: number) => console.log('Page changed to:', page),
     variant: 'primary',
     size: 'medium',
     theme: 'light',
@@ -262,11 +233,10 @@ export const MiddlePage: Story = {
 };
 
 export const LastPage: Story = {
-  render: (args) => <PaginationWrapper {...args} />,
   args: {
     currentPage: 10,
     totalPages: 10,
-    onPageChange: () => {},
+    onPageChange: (page: number) => console.log('Page changed to:', page),
     variant: 'primary',
     size: 'medium',
     theme: 'light',
@@ -274,11 +244,10 @@ export const LastPage: Story = {
 };
 
 export const FewPages: Story = {
-  render: (args) => <PaginationWrapper {...args} />,
   args: {
     currentPage: 1,
     totalPages: 3,
-    onPageChange: () => {},
+    onPageChange: (page: number) => console.log('Page changed to:', page),
     variant: 'primary',
     size: 'medium',
     theme: 'light',
@@ -286,11 +255,10 @@ export const FewPages: Story = {
 };
 
 export const ManyPages: Story = {
-  render: (args) => <PaginationWrapper {...args} />,
   args: {
     currentPage: 15,
     totalPages: 50,
-    onPageChange: () => {},
+    onPageChange: (page: number) => console.log('Page changed to:', page),
     variant: 'primary',
     size: 'medium',
     theme: 'light',
@@ -302,7 +270,7 @@ export const AllSizes: Story = {
   args: {
     currentPage: 1,
     totalPages: 10,
-    onPageChange: () => {},
+    onPageChange: (page: number) => console.log('Page changed to:', page),
     variant: 'primary',
     size: 'medium',
     theme: 'light',
@@ -348,7 +316,7 @@ export const AllVariantsLight: Story = {
   args: {
     currentPage: 1,
     totalPages: 10,
-    onPageChange: () => {},
+    onPageChange: (page: number) => console.log('Page changed to:', page),
     variant: 'primary',
     size: 'medium',
     theme: 'light',
@@ -394,7 +362,7 @@ export const AllVariantsDark: Story = {
   args: {
     currentPage: 1,
     totalPages: 10,
-    onPageChange: () => {},
+    onPageChange: (page: number) => console.log('Page changed to:', page),
     variant: 'primary',
     size: 'medium',
     theme: 'dark',
