@@ -255,8 +255,8 @@ export default function Selectbox({
           <Image
             src="/icons/arrow_drop_down.svg"
             alt="dropdown arrow"
-            width={24}
-            height={24}
+            width={size === 'small' ? 16 : size === 'medium' ? 20 : 24}
+            height={size === 'small' ? 16 : size === 'medium' ? 20 : 24}
           />
         </span>
       </div>
