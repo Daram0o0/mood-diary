@@ -2,94 +2,278 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
+/* CSS Module 방식으로 구현된 글로벌 스타일 */
+/* 규칙: :root, :global, important 키워드 사용 금지 */
+/* Figma Foundation 기반 색상 시스템 (Node ID: 3459:1130) */
+/* Figma Foundation 기반 타이포그래피 시스템 (Node ID: 3459:1422) */
+
+/* Light Mode 기본 스타일 */
+body {
+  color: #000000;
+  background: #ffffff;
+  font-family: Pretendard, -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+/* Light Mode 색상 클래스들 */
+.light-mode {
   /* Legacy variables */
   --background: #ffffff;
-  --foreground: #171717;
+  --foreground: #000000;
   
-  /* Color Token System - Light Mode */
-  /* Primary Colors */
-  --color-primary-main: #3B82F6;
-  --color-primary-light: #60A5FA;
-  --color-primary-dark: #2563EB;
+  /* Color Token System - Light Mode (Figma 기반) */
+  /* Primary Colors (Blue) */
+  --color-primary-main: #3A5CF3;
+  --color-primary-light: #6DA5FA;
+  --color-primary-dark: #274AE1;
   --color-primary-contrast: #FFFFFF;
   
-  /* Secondary Colors */
-  --color-secondary-main: #8B5CF6;
-  --color-secondary-light: #A78BFA;
-  --color-secondary-dark: #7C3AED;
+  /* Secondary Colors (Cool Gray) */
+  --color-secondary-main: #C7C9D5;
+  --color-secondary-light: #D2D4DD;
+  --color-secondary-dark: #BBBECD;
   --color-secondary-contrast: #FFFFFF;
   
   /* Background Colors */
   --color-background-default: #FFFFFF;
-  --color-background-paper: #F9FAFB;
+  --color-background-paper: #F2F2F2;
   --color-background-elevated: #FFFFFF;
   
   /* Text Colors */
-  --color-text-primary: #171717;
-  --color-text-secondary: #525252;
-  --color-text-disabled: #A3A3A3;
-  --color-text-hint: #737373;
+  --color-text-primary: #000000;
+  --color-text-secondary: #777777;
+  --color-text-disabled: #ABABAB;
+  --color-text-hint: #919191;
   
   /* Border Colors */
-  --color-border-default: #E5E5E5;
-  --color-border-light: #F5F5F5;
-  --color-border-dark: #D4D4D4;
+  --color-border-default: #E4E4E4;
+  --color-border-light: #F2F2F2;
+  --color-border-dark: #D4D3D3;
   
   /* Status Colors */
-  --color-status-success: #10B981;
-  --color-status-warning: #F59E0B;
-  --color-status-error: #EF4444;
-  --color-status-info: #3B82F6;
+  --color-status-success: #12B75F;
+  --color-status-warning: #FFB300;
+  --color-status-error: #F03851;
+  --color-status-info: #3A5CF3;
+  
+  /* Typography Token System - Font Families */
+  --font-family-korean: Pretendard, -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-family-english: 'SUIT Variable', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-family-mono: monospace;
+  
+  /* Typography Token System - Font Weights */
+  --font-weight-regular: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+  --font-weight-extrabold: 800;
+  
+  /* Web Headline (Desktop) */
+  --typo-web-headline01-font-size: 48px;
+  --typo-web-headline01-line-height: 60px;
+  --typo-web-headline01-font-weight: 600;
+  --typo-web-headline02-font-size: 36px;
+  --typo-web-headline02-line-height: 48px;
+  --typo-web-headline02-font-weight: 600;
+  --typo-web-headline03-font-size: 28px;
+  --typo-web-headline03-line-height: 36px;
+  --typo-web-headline03-font-weight: 600;
+  
+  /* Headline (Mobile) */
+  --typo-headline01-font-size: 24px;
+  --typo-headline01-line-height: 32px;
+  --typo-headline01-font-weight: 700;
+  --typo-headline02-font-size: 22px;
+  --typo-headline02-line-height: 30px;
+  --typo-headline02-font-weight: 800;
+  --typo-headline03-font-size: 20px;
+  --typo-headline03-line-height: 28px;
+  --typo-headline03-font-weight: 700;
+  
+  /* Title */
+  --typo-title01-font-size: 18px;
+  --typo-title01-line-height: 24px;
+  --typo-title01-font-weight: 700;
+  --typo-title02-font-size: 16px;
+  --typo-title02-line-height: 22px;
+  --typo-title02-font-weight: 700;
+  --typo-title03-font-size: 14px;
+  --typo-title03-line-height: 20px;
+  --typo-title03-font-weight: 700;
+  --typo-subtitle01-font-size: 14px;
+  --typo-subtitle01-line-height: 22px;
+  --typo-subtitle01-font-weight: 600;
+  --typo-subtitle02-font-size: 12px;
+  --typo-subtitle02-line-height: 18px;
+  --typo-subtitle02-font-weight: 600;
+  
+  /* Body */
+  --typo-body01-font-size: 16px;
+  --typo-body01-line-height: 24px;
+  --typo-body01-font-weight: 500;
+  --typo-body02-m-font-size: 14px;
+  --typo-body02-m-line-height: 22px;
+  --typo-body02-m-font-weight: 500;
+  --typo-body03-font-size: 12px;
+  --typo-body03-line-height: 18px;
+  --typo-body03-font-weight: 500;
+  --typo-body01-regular-font-size: 16px;
+  --typo-body01-regular-line-height: 22px;
+  --typo-body01-regular-font-weight: 400;
+  --typo-body02-s-font-size: 14px;
+  --typo-body02-s-line-height: 20px;
+  --typo-body02-s-font-weight: 400;
+  --typo-body03-regular-font-size: 12px;
+  --typo-body03-regular-line-height: 16px;
+  --typo-body03-regular-font-weight: 400;
+  
+  /* Caption */
+  --typo-caption01-font-size: 12px;
+  --typo-caption01-line-height: 14px;
+  --typo-caption01-font-weight: 600;
+  --typo-caption02-m-font-size: 10px;
+  --typo-caption02-m-line-height: 12px;
+  --typo-caption02-m-font-weight: 600;
+  --typo-caption02-s-font-size: 10px;
+  --typo-caption02-s-line-height: 12px;
+  --typo-caption02-s-font-weight: 500;
+  --typo-caption03-font-size: 8px;
+  --typo-caption03-line-height: 10px;
+  --typo-caption03-font-weight: 600;
 }
 
+/* Dark Mode 색상 클래스들 */
+.dark-mode {
+  /* Legacy variables */
+  --background: #000000;
+  --foreground: #ffffff;
+  
+  /* Color Token System - Dark Mode (Figma 기반) */
+  /* Primary Colors (Blue) */
+  --color-primary-main: #6DA5FA;
+  --color-primary-light: #93BEFF;
+  --color-primary-dark: #497CFF;
+  --color-primary-contrast: #000000;
+  
+  /* Secondary Colors (Cool Gray) */
+  --color-secondary-main: #D2D4DD;
+  --color-secondary-light: #DDDFE5;
+  --color-secondary-dark: #C7C9D5;
+  --color-secondary-contrast: #000000;
+  
+  /* Background Colors */
+  --color-background-default: #000000;
+  --color-background-paper: #1C1C1C;
+  --color-background-elevated: #333333;
+  
+  /* Text Colors */
+  --color-text-primary: #FFFFFF;
+  --color-text-secondary: #ABABAB;
+  --color-text-disabled: #777777;
+  --color-text-hint: #919191;
+  
+  /* Border Colors */
+  --color-border-default: #5F5F5F;
+  --color-border-light: #333333;
+  --color-border-dark: #777777;
+  
+  /* Status Colors */
+  --color-status-success: #15D66F;
+  --color-status-warning: #FFC933;
+  --color-status-error: #F4677A;
+  --color-status-info: #6DA5FA;
+  
+  /* Typography Token System - Font Families */
+  --font-family-korean: Pretendard, -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-family-english: 'SUIT Variable', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-family-mono: monospace;
+  
+  /* Typography Token System - Font Weights */
+  --font-weight-regular: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+  --font-weight-extrabold: 800;
+  
+  /* Web Headline (Desktop) */
+  --typo-web-headline01-font-size: 48px;
+  --typo-web-headline01-line-height: 60px;
+  --typo-web-headline01-font-weight: 600;
+  --typo-web-headline02-font-size: 36px;
+  --typo-web-headline02-line-height: 48px;
+  --typo-web-headline02-font-weight: 600;
+  --typo-web-headline03-font-size: 28px;
+  --typo-web-headline03-line-height: 36px;
+  --typo-web-headline03-font-weight: 600;
+  
+  /* Headline (Mobile) */
+  --typo-headline01-font-size: 24px;
+  --typo-headline01-line-height: 32px;
+  --typo-headline01-font-weight: 700;
+  --typo-headline02-font-size: 22px;
+  --typo-headline02-line-height: 30px;
+  --typo-headline02-font-weight: 800;
+  --typo-headline03-font-size: 20px;
+  --typo-headline03-line-height: 28px;
+  --typo-headline03-font-weight: 700;
+  
+  /* Title */
+  --typo-title01-font-size: 18px;
+  --typo-title01-line-height: 24px;
+  --typo-title01-font-weight: 700;
+  --typo-title02-font-size: 16px;
+  --typo-title02-line-height: 22px;
+  --typo-title02-font-weight: 700;
+  --typo-title03-font-size: 14px;
+  --typo-title03-line-height: 20px;
+  --typo-title03-font-weight: 700;
+  --typo-subtitle01-font-size: 14px;
+  --typo-subtitle01-line-height: 22px;
+  --typo-subtitle01-font-weight: 600;
+  --typo-subtitle02-font-size: 12px;
+  --typo-subtitle02-line-height: 18px;
+  --typo-subtitle02-font-weight: 600;
+  
+  /* Body */
+  --typo-body01-font-size: 16px;
+  --typo-body01-line-height: 24px;
+  --typo-body01-font-weight: 500;
+  --typo-body02-m-font-size: 14px;
+  --typo-body02-m-line-height: 22px;
+  --typo-body02-m-font-weight: 500;
+  --typo-body03-font-size: 12px;
+  --typo-body03-line-height: 18px;
+  --typo-body03-font-weight: 500;
+  --typo-body01-regular-font-size: 16px;
+  --typo-body01-regular-line-height: 22px;
+  --typo-body01-regular-font-weight: 400;
+  --typo-body02-s-font-size: 14px;
+  --typo-body02-s-line-height: 20px;
+  --typo-body02-s-font-weight: 400;
+  --typo-body03-regular-font-size: 12px;
+  --typo-body03-regular-line-height: 16px;
+  --typo-body03-regular-font-weight: 400;
+  
+  /* Caption */
+  --typo-caption01-font-size: 12px;
+  --typo-caption01-line-height: 14px;
+  --typo-caption01-font-weight: 600;
+  --typo-caption02-m-font-size: 10px;
+  --typo-caption02-m-line-height: 12px;
+  --typo-caption02-m-font-weight: 600;
+  --typo-caption02-s-font-size: 10px;
+  --typo-caption02-s-line-height: 12px;
+  --typo-caption02-s-font-weight: 500;
+  --typo-caption03-font-size: 8px;
+  --typo-caption03-line-height: 10px;
+  --typo-caption03-font-weight: 600;
+}
+
+/* 시스템 다크모드 감지 */
 @media (prefers-color-scheme: dark) {
-  :root {
-    /* Legacy variables */
-    --background: #0a0a0a;
-    --foreground: #ededed;
-    
-    /* Color Token System - Dark Mode */
-    /* Primary Colors */
-    --color-primary-main: #60A5FA;
-    --color-primary-light: #93C5FD;
-    --color-primary-dark: #3B82F6;
-    --color-primary-contrast: #0A0A0A;
-    
-    /* Secondary Colors */
-    --color-secondary-main: #A78BFA;
-    --color-secondary-light: #C4B5FD;
-    --color-secondary-dark: #8B5CF6;
-    --color-secondary-contrast: #0A0A0A;
-    
-    /* Background Colors */
-    --color-background-default: #0A0A0A;
-    --color-background-paper: #171717;
-    --color-background-elevated: #262626;
-    
-    /* Text Colors */
-    --color-text-primary: #EDEDED;
-    --color-text-secondary: #A3A3A3;
-    --color-text-disabled: #525252;
-    --color-text-hint: #737373;
-    
-    /* Border Colors */
-    --color-border-default: #404040;
-    --color-border-light: #262626;
-    --color-border-dark: #525252;
-    
-    /* Status Colors */
-    --color-status-success: #34D399;
-    --color-status-warning: #FBBF24;
-    --color-status-error: #F87171;
-    --color-status-info: #60A5FA;
+  body {
+    color: #ffffff;
+    background: #000000;
   }
-}
-
-body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
 }
 
 @layer utilities {
