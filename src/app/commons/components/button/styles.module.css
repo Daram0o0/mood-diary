@@ -1,0 +1,226 @@
+/* Button Base Styles */
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+  font-family: 'Pretendard Variable', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  white-space: nowrap;
+  box-sizing: border-box;
+}
+
+.button:focus {
+  outline: none;
+}
+
+.button:focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: 2px;
+}
+
+/* Full Width */
+.fullWidth {
+  width: 100%;
+}
+
+/* Disabled State */
+.disabled {
+  cursor: not-allowed;
+  opacity: 0.4;
+}
+
+/* Icon Styles */
+.iconLeft,
+.iconRight {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.content {
+  display: inline-flex;
+  align-items: center;
+}
+
+/* ============================================== */
+/* Size Variants */
+/* ============================================== */
+
+/* Small Size */
+.size-small {
+  height: 32px;
+  padding: 6px 12px;
+  font-size: 14px;
+  line-height: 20px;
+  gap: 4px;
+}
+
+.size-small .iconLeft,
+.size-small .iconRight {
+  width: 16px;
+  height: 16px;
+}
+
+/* Medium Size (Based on Figma: 48px height) */
+.size-medium {
+  height: 48px;
+  padding: 12px 16px;
+  font-size: 18px;
+  line-height: 24px;
+  gap: 4px;
+}
+
+.size-medium .iconLeft,
+.size-medium .iconRight {
+  width: 24px;
+  height: 24px;
+}
+
+/* Large Size */
+.size-large {
+  height: 56px;
+  padding: 16px 24px;
+  font-size: 20px;
+  line-height: 24px;
+  gap: 6px;
+}
+
+.size-large .iconLeft,
+.size-large .iconRight {
+  width: 28px;
+  height: 28px;
+}
+
+/* ============================================== */
+/* Primary Variant */
+/* ============================================== */
+
+/* Primary + Light Theme */
+.variant-primary.theme-light {
+  background-color: #000000;
+  color: #ffffff;
+}
+
+.variant-primary.theme-light:hover:not(.disabled) {
+  background-color: #333333;
+}
+
+.variant-primary.theme-light:active:not(.disabled) {
+  background-color: #1C1C1C;
+}
+
+/* Primary + Dark Theme */
+.variant-primary.theme-dark {
+  background-color: #ffffff;
+  color: #000000;
+}
+
+.variant-primary.theme-dark:hover:not(.disabled) {
+  background-color: #E4E4E4;
+}
+
+.variant-primary.theme-dark:active:not(.disabled) {
+  background-color: #F2F2F2;
+}
+
+/* ============================================== */
+/* Secondary Variant */
+/* ============================================== */
+
+/* Secondary + Light Theme */
+.variant-secondary.theme-light {
+  background-color: #F2F2F2;
+  color: #000000;
+}
+
+.variant-secondary.theme-light:hover:not(.disabled) {
+  background-color: #E4E4E4;
+}
+
+.variant-secondary.theme-light:active:not(.disabled) {
+  background-color: #D4D3D3;
+}
+
+/* Secondary + Dark Theme */
+.variant-secondary.theme-dark {
+  background-color: #333333;
+  color: #ffffff;
+}
+
+.variant-secondary.theme-dark:hover:not(.disabled) {
+  background-color: #5F5F5F;
+}
+
+.variant-secondary.theme-dark:active:not(.disabled) {
+  background-color: #777777;
+}
+
+/* ============================================== */
+/* Tertiary Variant */
+/* ============================================== */
+
+/* Tertiary + Light Theme */
+.variant-tertiary.theme-light {
+  background-color: transparent;
+  color: #000000;
+  border: 1px solid #E4E4E4;
+}
+
+.variant-tertiary.theme-light:hover:not(.disabled) {
+  background-color: #F2F2F2;
+  border-color: #D4D3D3;
+}
+
+.variant-tertiary.theme-light:active:not(.disabled) {
+  background-color: #E4E4E4;
+  border-color: #C7C7C7;
+}
+
+/* Tertiary + Dark Theme */
+.variant-tertiary.theme-dark {
+  background-color: transparent;
+  color: #ffffff;
+  border: 1px solid #5F5F5F;
+}
+
+.variant-tertiary.theme-dark:hover:not(.disabled) {
+  background-color: #333333;
+  border-color: #777777;
+}
+
+.variant-tertiary.theme-dark:active:not(.disabled) {
+  background-color: #5F5F5F;
+  border-color: #919191;
+}
+
+/* ============================================== */
+/* Responsive Design */
+/* ============================================== */
+
+@media (max-width: 768px) {
+  .size-large {
+    height: 48px;
+    padding: 12px 20px;
+    font-size: 18px;
+  }
+  
+  .size-medium {
+    height: 44px;
+    padding: 10px 14px;
+    font-size: 16px;
+  }
+  
+  .size-small {
+    height: 32px;
+    padding: 6px 10px;
+    font-size: 14px;
+  }
+}
+
