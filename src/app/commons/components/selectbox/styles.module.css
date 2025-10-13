@@ -1,0 +1,494 @@
+/* 
+ * Selectbox Component Styles
+ * Figma 디자인 기반 스타일
+ * Node ID: 3:1561
+ */
+
+/* ============================================
+ * Wrapper & Container
+ * ============================================ */
+
+.wrapper {
+  display: inline-flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.wrapper.fullWidth {
+  width: 100%;
+}
+
+/* ============================================
+ * Label
+ * ============================================ */
+
+.label {
+  font-family: Pretendard Variable, -apple-system, BlinkMacSystemFont, sans-serif;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 20px;
+  letter-spacing: 0;
+}
+
+.label.theme-light {
+  color: #1c1c1c;
+}
+
+.label.theme-dark {
+  color: #ffffff;
+}
+
+/* ============================================
+ * Selectbox Base
+ * ============================================ */
+
+.selectbox {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 10px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+  box-sizing: border-box;
+  outline: none;
+}
+
+.selectbox:focus-visible {
+  outline: 2px solid #3a5cf3;
+  outline-offset: 2px;
+}
+
+.selectbox.disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
+/* ============================================
+ * Display Text
+ * ============================================ */
+
+.displayText {
+  flex: 1;
+  font-family: Pretendard Variable, -apple-system, BlinkMacSystemFont, sans-serif;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 24px;
+  letter-spacing: -0.16px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.displayText.placeholder {
+  opacity: 0.5;
+}
+
+/* ============================================
+ * Arrow Icon
+ * ============================================ */
+
+.arrow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  transition: transform 0.2s ease-in-out;
+  flex-shrink: 0;
+}
+
+.arrow.arrowOpen {
+  transform: rotate(180deg);
+}
+
+/* ============================================
+ * Size Variants
+ * ============================================ */
+
+/* Small: 32px height */
+.selectbox.size-small {
+  height: 32px;
+  padding: 0 8px;
+}
+
+.selectbox.size-small .displayText {
+  font-size: 12px;
+  line-height: 18px;
+  letter-spacing: 0;
+}
+
+.selectbox.size-small .arrow {
+  width: 20px;
+  height: 20px;
+}
+
+/* Medium: 40px height */
+.selectbox.size-medium {
+  height: 40px;
+  padding: 0 10px;
+}
+
+.selectbox.size-medium .displayText {
+  font-size: 14px;
+  line-height: 22px;
+  letter-spacing: 0;
+}
+
+/* Large: 48px height (Figma 기본) */
+.selectbox.size-large {
+  height: 48px;
+  padding: 0 10px;
+}
+
+.selectbox.size-large .displayText {
+  font-size: 16px;
+  line-height: 24px;
+  letter-spacing: -0.16px;
+}
+
+/* ============================================
+ * Variant & Theme Combinations - Light Mode
+ * ============================================ */
+
+/* Primary - Light */
+.selectbox.variant-primary.theme-light {
+  background-color: #ffffff;
+  border: 1px solid #c7c7c7;
+}
+
+.selectbox.variant-primary.theme-light .displayText {
+  color: #1c1c1c;
+}
+
+.selectbox.variant-primary.theme-light:hover:not(.disabled) {
+  border-color: #3a5cf3;
+}
+
+.selectbox.variant-primary.theme-light.open {
+  border-color: #3a5cf3;
+}
+
+.selectbox.variant-primary.theme-light.error {
+  border-color: #f03851;
+}
+
+/* Secondary - Light */
+.selectbox.variant-secondary.theme-light {
+  background-color: #f2f2f2;
+  border: 1px solid #e4e4e4;
+}
+
+.selectbox.variant-secondary.theme-light .displayText {
+  color: #1c1c1c;
+}
+
+.selectbox.variant-secondary.theme-light:hover:not(.disabled) {
+  border-color: #c7c7c7;
+}
+
+.selectbox.variant-secondary.theme-light.open {
+  border-color: #3a5cf3;
+}
+
+.selectbox.variant-secondary.theme-light.error {
+  border-color: #f03851;
+}
+
+/* Tertiary - Light */
+.selectbox.variant-tertiary.theme-light {
+  background-color: transparent;
+  border: 1px solid #e4e4e4;
+}
+
+.selectbox.variant-tertiary.theme-light .displayText {
+  color: #1c1c1c;
+}
+
+.selectbox.variant-tertiary.theme-light:hover:not(.disabled) {
+  background-color: #f2f2f2;
+  border-color: #c7c7c7;
+}
+
+.selectbox.variant-tertiary.theme-light.open {
+  background-color: #f2f2f2;
+  border-color: #3a5cf3;
+}
+
+.selectbox.variant-tertiary.theme-light.error {
+  border-color: #f03851;
+}
+
+/* ============================================
+ * Variant & Theme Combinations - Dark Mode
+ * ============================================ */
+
+/* Primary - Dark */
+.selectbox.variant-primary.theme-dark {
+  background-color: #1c1c1c;
+  border: 1px solid #5f5f5f;
+}
+
+.selectbox.variant-primary.theme-dark .displayText {
+  color: #ffffff;
+}
+
+.selectbox.variant-primary.theme-dark:hover:not(.disabled) {
+  border-color: #6da5fa;
+}
+
+.selectbox.variant-primary.theme-dark.open {
+  border-color: #6da5fa;
+}
+
+.selectbox.variant-primary.theme-dark.error {
+  border-color: #f4677a;
+}
+
+/* Secondary - Dark */
+.selectbox.variant-secondary.theme-dark {
+  background-color: #333333;
+  border: 1px solid #5f5f5f;
+}
+
+.selectbox.variant-secondary.theme-dark .displayText {
+  color: #ffffff;
+}
+
+.selectbox.variant-secondary.theme-dark:hover:not(.disabled) {
+  border-color: #777777;
+}
+
+.selectbox.variant-secondary.theme-dark.open {
+  border-color: #6da5fa;
+}
+
+.selectbox.variant-secondary.theme-dark.error {
+  border-color: #f4677a;
+}
+
+/* Tertiary - Dark */
+.selectbox.variant-tertiary.theme-dark {
+  background-color: transparent;
+  border: 1px solid #5f5f5f;
+}
+
+.selectbox.variant-tertiary.theme-dark .displayText {
+  color: #ffffff;
+}
+
+.selectbox.variant-tertiary.theme-dark:hover:not(.disabled) {
+  background-color: #333333;
+  border-color: #777777;
+}
+
+.selectbox.variant-tertiary.theme-dark.open {
+  background-color: #333333;
+  border-color: #6da5fa;
+}
+
+.selectbox.variant-tertiary.theme-dark.error {
+  border-color: #f4677a;
+}
+
+/* ============================================
+ * Dropdown Menu
+ * ============================================ */
+
+.dropdown {
+  display: flex;
+  flex-direction: column;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  max-height: 240px;
+  overflow-y: auto;
+  list-style: none;
+  margin: 0;
+  padding: 4px 0;
+  box-sizing: border-box;
+}
+
+.dropdown.variant-primary.theme-light,
+.dropdown.variant-secondary.theme-light,
+.dropdown.variant-tertiary.theme-light {
+  background-color: #ffffff;
+  border: 1px solid #e4e4e4;
+}
+
+.dropdown.variant-primary.theme-dark,
+.dropdown.variant-secondary.theme-dark,
+.dropdown.variant-tertiary.theme-dark {
+  background-color: #1c1c1c;
+  border: 1px solid #5f5f5f;
+}
+
+/* ============================================
+ * Dropdown Options
+ * ============================================ */
+
+.option {
+  padding: 8px 12px;
+  cursor: pointer;
+  transition: background-color 0.15s ease-in-out;
+  font-family: Pretendard Variable, -apple-system, BlinkMacSystemFont, sans-serif;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 22px;
+  letter-spacing: 0;
+}
+
+/* Light Mode Options */
+.dropdown.theme-light .option {
+  color: #1c1c1c;
+}
+
+.dropdown.theme-light .option:hover:not(.optionDisabled) {
+  background-color: #f2f2f2;
+}
+
+.dropdown.theme-light .option.selected {
+  background-color: #dbeeff;
+  color: #3a5cf3;
+}
+
+.dropdown.theme-light .option.optionDisabled {
+  color: #ababab;
+  cursor: not-allowed;
+}
+
+/* Dark Mode Options */
+.dropdown.theme-dark .option {
+  color: #ffffff;
+}
+
+.dropdown.theme-dark .option:hover:not(.optionDisabled) {
+  background-color: #333333;
+}
+
+.dropdown.theme-dark .option.selected {
+  background-color: #274ae1;
+  color: #ffffff;
+}
+
+.dropdown.theme-dark .option.optionDisabled {
+  color: #777777;
+  cursor: not-allowed;
+}
+
+/* Size-specific option styles */
+.dropdown.size-small .option {
+  padding: 6px 10px;
+  font-size: 12px;
+  line-height: 18px;
+}
+
+.dropdown.size-medium .option {
+  padding: 8px 12px;
+  font-size: 14px;
+  line-height: 22px;
+}
+
+.dropdown.size-large .option {
+  padding: 10px 12px;
+  font-size: 16px;
+  line-height: 24px;
+}
+
+/* ============================================
+ * Error Message
+ * ============================================ */
+
+.errorMessage {
+  font-family: Pretendard Variable, -apple-system, BlinkMacSystemFont, sans-serif;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 16px;
+  letter-spacing: 0;
+}
+
+.errorMessage.theme-light {
+  color: #f03851;
+}
+
+.errorMessage.theme-dark {
+  color: #f4677a;
+}
+
+/* ============================================
+ * Scrollbar Styling
+ * ============================================ */
+
+.dropdown::-webkit-scrollbar {
+  width: 6px;
+}
+
+.dropdown::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.dropdown.theme-light::-webkit-scrollbar-thumb {
+  background-color: #d4d3d3;
+  border-radius: 3px;
+}
+
+.dropdown.theme-dark::-webkit-scrollbar-thumb {
+  background-color: #5f5f5f;
+  border-radius: 3px;
+}
+
+.dropdown::-webkit-scrollbar-thumb:hover {
+  background-color: #ababab;
+}
+
+/* ============================================
+ * Animation
+ * ============================================ */
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.dropdown.open {
+  animation: fadeIn 0.15s ease-out;
+}
+
+/* ============================================
+ * Accessibility
+ * ============================================ */
+
+.selectbox:focus-visible {
+  outline: 2px solid #3a5cf3;
+  outline-offset: 2px;
+}
+
+.selectbox.theme-dark:focus-visible {
+  outline-color: #6da5fa;
+}
+
+/* 고대비 모드 지원 */
+@media (prefers-contrast: high) {
+  .selectbox {
+    border-width: 2px;
+  }
+  
+  .dropdown {
+    border-width: 2px;
+  }
+}
+
+/* 모션 감소 설정 지원 */
+@media (prefers-reduced-motion: reduce) {
+  .selectbox,
+  .arrow,
+  .option,
+  .dropdown {
+    transition: none;
+    animation: none;
+  }
+}
+
