@@ -52,6 +52,7 @@
   transition: all 0.2s ease-in-out;
   box-sizing: border-box;
   outline: none;
+  width: 120px;
 }
 
 .selectbox:focus-visible {
@@ -99,6 +100,41 @@
 
 .arrow.arrowOpen {
   transform: rotate(180deg);
+}
+
+.arrowIcon {
+  object-fit: contain;
+}
+
+/* Size-specific arrow styles */
+.selectbox.size-small .arrow {
+  width: 20px;
+  height: 20px;
+}
+
+.selectbox.size-small .arrowIcon {
+  width: 7.17px;
+  height: 3.92px;
+}
+
+.selectbox.size-medium .arrow {
+  width: 24px;
+  height: 24px;
+}
+
+.selectbox.size-medium .arrowIcon {
+  width: 8.6px;
+  height: 4.7px;
+}
+
+.selectbox.size-large .arrow {
+  width: 28px;
+  height: 28px;
+}
+
+.selectbox.size-large .arrowIcon {
+  width: 10.03px;
+  height: 5.48px;
 }
 
 /* ============================================
@@ -305,7 +341,7 @@
 .dropdown.variant-secondary.theme-light,
 .dropdown.variant-tertiary.theme-light {
   background-color: #ffffff;
-  border: 1px solid #e4e4e4;
+  border: 1px solid #c7c7c7;
 }
 
 .dropdown.variant-primary.theme-dark,
@@ -331,6 +367,16 @@
   height: 48px;
   display: flex;
   align-items: center;
+  justify-content: space-between;
+}
+
+.optionLabel {
+  flex: 1;
+}
+
+.checkIcon {
+  flex-shrink: 0;
+  margin-left: 8px;
 }
 
 /* Light Mode Options */

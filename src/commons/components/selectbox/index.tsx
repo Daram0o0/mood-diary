@@ -255,8 +255,9 @@ export default function Selectbox({
           <Image
             src="/icons/arrow_drop_down.svg"
             alt="dropdown arrow"
-            width={size === 'small' ? 16 : size === 'medium' ? 20 : 24}
-            height={size === 'small' ? 16 : size === 'medium' ? 20 : 24}
+            width={0}
+            height={0}
+            className={styles.arrowIcon}
           />
         </span>
       </div>
@@ -274,7 +275,16 @@ export default function Selectbox({
               aria-selected={option.value === selectedValue}
               aria-disabled={option.disabled}
             >
-              {option.label}
+              <span className={styles.optionLabel}>{option.label}</span>
+              {option.value === selectedValue && (
+                <Image
+                  src="/icons/check_outline_light_xs.svg"
+                  alt="selected"
+                  width={16}
+                  height={16}
+                  className={styles.checkIcon}
+                />
+              )}
             </li>
           ))}
         </ul>
