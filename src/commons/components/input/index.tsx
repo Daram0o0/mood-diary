@@ -1,6 +1,6 @@
 'use client';
 
-import { InputHTMLAttributes, ReactNode } from 'react';
+import { InputHTMLAttributes } from 'react';
 import { useTheme } from 'next-themes';
 import styles from './styles.module.css';
 
@@ -43,16 +43,6 @@ export interface InputProps extends Omit<InputHTMLAttributes<HTMLInputElement>, 
   label?: string;
   
   /**
-   * 아이콘 (선택사항)
-   */
-  icon?: ReactNode;
-  
-  /**
-   * 아이콘 위치
-   */
-  iconPosition?: 'left' | 'right';
-  
-  /**
    * 전체 너비 사용 여부
    */
   fullWidth?: boolean;
@@ -85,8 +75,6 @@ export default function Input({
   error = false,
   errorMessage,
   label,
-  icon,
-  iconPosition = 'left',
   fullWidth = false,
   disabled = false,
   className = '',
@@ -112,8 +100,6 @@ export default function Input({
     styles[`theme-${currentTheme}`],
     error && styles.error,
     disabled && styles.disabled,
-    icon && iconPosition === 'left' && styles.hasIconLeft,
-    icon && iconPosition === 'right' && styles.hasIconRight,
     className,
   ]
     .filter(Boolean)
@@ -126,19 +112,11 @@ export default function Input({
           {label}
         </label>
       )}
-      <div className={styles.inputContainer}>
-        {icon && iconPosition === 'left' && (
-          <span className={styles.iconLeft}>{icon}</span>
-        )}
-        <input
-          className={inputClasses}
-          disabled={disabled}
-          {...props}
-        />
-        {icon && iconPosition === 'right' && (
-          <span className={styles.iconRight}>{icon}</span>
-        )}
-      </div>
+      <input
+        className={inputClasses}
+        disabled={disabled}
+        {...props}
+      />
       {error && errorMessage && (
         <span className={`${styles.errorMessage} ${styles[`theme-${currentTheme}`]}`}>
           {errorMessage}
