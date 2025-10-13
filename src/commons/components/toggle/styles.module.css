@@ -7,10 +7,7 @@
   flex-shrink: 0;
 }
 
-.toggle:focus-within .track {
-  outline: 2px solid currentColor;
-  outline-offset: 2px;
-}
+/* Focus outline removed to prevent border on active state */
 
 /* Hidden Input - Without position absolute */
 .input {
@@ -304,34 +301,8 @@
 /* Accessibility & Focus States */
 /* ============================================== */
 
-.toggle:focus-within .track {
-  outline: 2px solid transparent;
-  outline-offset: 2px;
-}
-
-.variant-primary.theme-light:focus-within .track {
-  outline-color: #3ad84a;
-}
-
-.variant-primary.theme-dark:focus-within .track {
-  outline-color: #3ad84a;
-}
-
-.variant-secondary.theme-light:focus-within .track {
-  outline-color: #3A5CF3;
-}
-
-.variant-secondary.theme-dark:focus-within .track {
-  outline-color: #6DA5FA;
-}
-
-.variant-tertiary.theme-light:focus-within .track {
-  outline-color: #919191;
-}
-
-.variant-tertiary.theme-dark:focus-within .track {
-  outline-color: #C7C7C7;
-}
+/* Focus outline removed to prevent border on active state */
+/* Accessibility is maintained through other visual indicators */
 
 /* ============================================== */
 /* Animation & Transition */
