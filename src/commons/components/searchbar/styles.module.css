@@ -42,8 +42,7 @@
 }
 
 .searchbarContainer:focus-within {
-  outline: 2px solid currentColor;
-  outline-offset: -2px;
+  outline: none;
 }
 
 /* Disabled State */
@@ -141,7 +140,7 @@
 }
 
 .searchbarContainer.variant-primary.theme-light:focus-within:not(.disabled) {
-  border-color: #777777;
+  border-color: #5A5A5A;
 }
 
 /* Primary + Dark Theme */
@@ -163,7 +162,7 @@
 }
 
 .searchbarContainer.variant-primary.theme-dark:focus-within:not(.disabled) {
-  border-color: #919191;
+  border-color: #A0A0A0;
 }
 
 /* ============================================== */
@@ -191,7 +190,7 @@
 
 .searchbarContainer.variant-secondary.theme-light:focus-within:not(.disabled) {
   background-color: #ffffff;
-  border-color: #C7C7C7;
+  border-color: #5A5A5A;
 }
 
 /* Secondary + Dark Theme */
@@ -215,7 +214,7 @@
 
 .searchbarContainer.variant-secondary.theme-dark:focus-within:not(.disabled) {
   background-color: #1C1C1C;
-  border-color: #5F5F5F;
+  border-color: #A0A0A0;
 }
 
 /* ============================================== */
@@ -243,7 +242,7 @@
 
 .searchbarContainer.variant-tertiary.theme-light:focus-within:not(.disabled) {
   background-color: #ffffff;
-  border-color: #C7C7C7;
+  border-color: #5A5A5A;
 }
 
 /* Tertiary + Dark Theme */
@@ -267,7 +266,7 @@
 
 .searchbarContainer.variant-tertiary.theme-dark:focus-within:not(.disabled) {
   background-color: #1C1C1C;
-  border-color: #919191;
+  border-color: #A0A0A0;
 }
 
 /* ============================================== */
