@@ -1,0 +1,342 @@
+/* Pagination Base Styles */
+.pagination {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: 'Pretendard Variable', -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+/* Page Numbers Container */
+.pageNumbers {
+  display: inline-flex;
+  align-items: center;
+  gap: 16px;
+}
+
+/* Page Button Base */
+.pageButton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+  box-sizing: border-box;
+}
+
+.pageButton:focus {
+  outline: none;
+}
+
+.pageButton:focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: 2px;
+}
+
+/* Arrow Button Base */
+.arrowButton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+  padding: 0;
+}
+
+.arrowButton:focus {
+  outline: none;
+}
+
+.arrowButton:focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: 2px;
+}
+
+.arrowButton.disabled {
+  cursor: not-allowed;
+  opacity: 0.4;
+}
+
+.arrowButton:not(.disabled):hover {
+  opacity: 0.7;
+}
+
+/* ============================================== */
+/* Size Variants */
+/* ============================================== */
+
+/* Small Size */
+.size-small .pageButton {
+  width: 24px;
+  height: 24px;
+  border-radius: 6px;
+  font-size: 14px;
+  line-height: 20px;
+  font-weight: 400;
+  letter-spacing: -0.14px;
+}
+
+.size-small .pageButton.active {
+  font-weight: 500;
+}
+
+.size-small .arrowButton {
+  width: 20px;
+  height: 20px;
+}
+
+.size-small .pageNumbers {
+  gap: 12px;
+}
+
+/* Medium Size (Based on Figma: 32px) */
+.size-medium .pageButton {
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  font-size: 16px;
+  line-height: 24px;
+  font-weight: 400;
+  letter-spacing: -0.16px;
+}
+
+.size-medium .pageButton.active {
+  font-weight: 500;
+}
+
+.size-medium .arrowButton {
+  width: 24px;
+  height: 24px;
+}
+
+.size-medium .pageNumbers {
+  gap: 16px;
+}
+
+/* Large Size */
+.size-large .pageButton {
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  font-size: 18px;
+  line-height: 26px;
+  font-weight: 400;
+  letter-spacing: -0.18px;
+}
+
+.size-large .pageButton.active {
+  font-weight: 500;
+}
+
+.size-large .arrowButton {
+  width: 28px;
+  height: 28px;
+}
+
+.size-large .pageNumbers {
+  gap: 20px;
+}
+
+/* ============================================== */
+/* Primary Variant */
+/* ============================================== */
+
+/* Primary + Light Theme */
+.variant-primary.theme-light .pageButton {
+  background-color: #ffffff;
+  color: #777777;
+}
+
+.variant-primary.theme-light .pageButton.active {
+  background-color: #f2f2f2;
+  color: #000000;
+}
+
+.variant-primary.theme-light .pageButton:hover:not(.active) {
+  background-color: #f2f2f2;
+  color: #000000;
+}
+
+.variant-primary.theme-light .pageButton:active:not(.active) {
+  background-color: #e4e4e4;
+  color: #000000;
+}
+
+/* Primary + Dark Theme */
+.variant-primary.theme-dark .pageButton {
+  background-color: #333333;
+  color: #919191;
+}
+
+.variant-primary.theme-dark .pageButton.active {
+  background-color: #5f5f5f;
+  color: #ffffff;
+}
+
+.variant-primary.theme-dark .pageButton:hover:not(.active) {
+  background-color: #5f5f5f;
+  color: #ffffff;
+}
+
+.variant-primary.theme-dark .pageButton:active:not(.active) {
+  background-color: #777777;
+  color: #ffffff;
+}
+
+/* ============================================== */
+/* Secondary Variant */
+/* ============================================== */
+
+/* Secondary + Light Theme */
+.variant-secondary.theme-light .pageButton {
+  background-color: #f2f2f2;
+  color: #777777;
+}
+
+.variant-secondary.theme-light .pageButton.active {
+  background-color: #000000;
+  color: #ffffff;
+}
+
+.variant-secondary.theme-light .pageButton:hover:not(.active) {
+  background-color: #e4e4e4;
+  color: #000000;
+}
+
+.variant-secondary.theme-light .pageButton:active:not(.active) {
+  background-color: #d4d3d3;
+  color: #000000;
+}
+
+/* Secondary + Dark Theme */
+.variant-secondary.theme-dark .pageButton {
+  background-color: #5f5f5f;
+  color: #919191;
+}
+
+.variant-secondary.theme-dark .pageButton.active {
+  background-color: #ffffff;
+  color: #000000;
+}
+
+.variant-secondary.theme-dark .pageButton:hover:not(.active) {
+  background-color: #777777;
+  color: #ffffff;
+}
+
+.variant-secondary.theme-dark .pageButton:active:not(.active) {
+  background-color: #919191;
+  color: #ffffff;
+}
+
+/* ============================================== */
+/* Tertiary Variant */
+/* ============================================== */
+
+/* Tertiary + Light Theme */
+.variant-tertiary.theme-light .pageButton {
+  background-color: transparent;
+  color: #777777;
+  border: 1px solid #e4e4e4;
+}
+
+.variant-tertiary.theme-light .pageButton.active {
+  background-color: #f2f2f2;
+  color: #000000;
+  border-color: #f2f2f2;
+}
+
+.variant-tertiary.theme-light .pageButton:hover:not(.active) {
+  background-color: #f2f2f2;
+  color: #000000;
+  border-color: #d4d3d3;
+}
+
+.variant-tertiary.theme-light .pageButton:active:not(.active) {
+  background-color: #e4e4e4;
+  color: #000000;
+  border-color: #c7c7c7;
+}
+
+/* Tertiary + Dark Theme */
+.variant-tertiary.theme-dark .pageButton {
+  background-color: transparent;
+  color: #919191;
+  border: 1px solid #5f5f5f;
+}
+
+.variant-tertiary.theme-dark .pageButton.active {
+  background-color: #5f5f5f;
+  color: #ffffff;
+  border-color: #5f5f5f;
+}
+
+.variant-tertiary.theme-dark .pageButton:hover:not(.active) {
+  background-color: #333333;
+  color: #ffffff;
+  border-color: #777777;
+}
+
+.variant-tertiary.theme-dark .pageButton:active:not(.active) {
+  background-color: #5f5f5f;
+  color: #ffffff;
+  border-color: #919191;
+}
+
+/* ============================================== */
+/* Responsive Design */
+/* ============================================== */
+
+@media (max-width: 768px) {
+  .pagination {
+    gap: 6px;
+  }
+  
+  .size-large .pageButton {
+    width: 36px;
+    height: 36px;
+    font-size: 16px;
+  }
+  
+  .size-large .arrowButton {
+    width: 24px;
+    height: 24px;
+  }
+  
+  .size-large .pageNumbers {
+    gap: 16px;
+  }
+  
+  .size-medium .pageButton {
+    width: 28px;
+    height: 28px;
+    font-size: 14px;
+  }
+  
+  .size-medium .arrowButton {
+    width: 20px;
+    height: 20px;
+  }
+  
+  .size-medium .pageNumbers {
+    gap: 12px;
+  }
+  
+  .size-small .pageButton {
+    width: 20px;
+    height: 20px;
+    font-size: 12px;
+  }
+  
+  .size-small .arrowButton {
+    width: 16px;
+    height: 16px;
+  }
+  
+  .size-small .pageNumbers {
+    gap: 8px;
+  }
+}
+

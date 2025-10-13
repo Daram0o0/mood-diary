@@ -1,0 +1,311 @@
+/* Searchbar Base Styles */
+.wrapper {
+  display: inline-flex;
+  flex-direction: column;
+}
+
+.fullWidth {
+  width: 100%;
+}
+
+/* Container acts as the visual border/background */
+.searchbarContainer {
+  display: flex;
+  align-items: center;
+  box-sizing: border-box;
+  transition: all 0.2s ease-in-out;
+}
+
+/* Search Icon */
+.searchIcon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+/* Input takes remaining space */
+.searchbar {
+  flex: 1;
+  border: none;
+  outline: none;
+  background: transparent;
+  font-family: 'Pretendard Variable', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  box-sizing: border-box;
+  min-width: 0;
+}
+
+.searchbar:focus {
+  outline: none;
+}
+
+.searchbarContainer:focus-within {
+  outline: 2px solid currentColor;
+  outline-offset: -2px;
+}
+
+/* Disabled State */
+.disabled {
+  cursor: not-allowed;
+  opacity: 0.4;
+}
+
+/* Remove default search input styles */
+.searchbar::-webkit-search-decoration,
+.searchbar::-webkit-search-cancel-button,
+.searchbar::-webkit-search-results-button,
+.searchbar::-webkit-search-results-decoration {
+  display: none;
+}
+
+/* ============================================== */
+/* Size Variants */
+/* ============================================== */
+
+/* Small Size */
+.searchbarContainer.size-small {
+  height: 36px;
+  padding: 8px 12px;
+  border-radius: 18px;
+  gap: 8px;
+}
+
+.searchbarContainer.size-small .searchIcon {
+  width: 20px;
+  height: 20px;
+}
+
+.searchbarContainer.size-small .searchbar {
+  font-size: 14px;
+  line-height: 20px;
+}
+
+/* Medium Size (Based on Figma: 320x48) */
+.searchbarContainer.size-medium {
+  height: 48px;
+  padding: 12px 16px;
+  border-radius: 100px;
+  gap: 8px;
+}
+
+.searchbarContainer.size-medium .searchIcon {
+  width: 24px;
+  height: 24px;
+}
+
+.searchbarContainer.size-medium .searchbar {
+  font-size: 16px;
+  line-height: 24px;
+}
+
+/* Large Size */
+.searchbarContainer.size-large {
+  height: 56px;
+  padding: 16px 20px;
+  border-radius: 28px;
+  gap: 8px;
+}
+
+.searchbarContainer.size-large .searchIcon {
+  width: 28px;
+  height: 28px;
+}
+
+.searchbarContainer.size-large .searchbar {
+  font-size: 18px;
+  line-height: 26px;
+}
+
+/* ============================================== */
+/* Primary Variant */
+/* ============================================== */
+
+/* Primary + Light Theme (Based on Figma) */
+.searchbarContainer.variant-primary.theme-light {
+  background-color: #ffffff;
+  border: 1px solid #C7C7C7;
+}
+
+.searchbarContainer.variant-primary.theme-light .searchbar {
+  color: #000000;
+}
+
+.searchbarContainer.variant-primary.theme-light .searchbar::placeholder {
+  color: #ABABAB;
+}
+
+.searchbarContainer.variant-primary.theme-light:hover:not(.disabled) {
+  border-color: #919191;
+}
+
+.searchbarContainer.variant-primary.theme-light:focus-within:not(.disabled) {
+  border-color: #777777;
+}
+
+/* Primary + Dark Theme */
+.searchbarContainer.variant-primary.theme-dark {
+  background-color: #1C1C1C;
+  border: 1px solid #5F5F5F;
+}
+
+.searchbarContainer.variant-primary.theme-dark .searchbar {
+  color: #ffffff;
+}
+
+.searchbarContainer.variant-primary.theme-dark .searchbar::placeholder {
+  color: #777777;
+}
+
+.searchbarContainer.variant-primary.theme-dark:hover:not(.disabled) {
+  border-color: #777777;
+}
+
+.searchbarContainer.variant-primary.theme-dark:focus-within:not(.disabled) {
+  border-color: #919191;
+}
+
+/* ============================================== */
+/* Secondary Variant */
+/* ============================================== */
+
+/* Secondary + Light Theme */
+.searchbarContainer.variant-secondary.theme-light {
+  background-color: #F2F2F2;
+  border: 1px solid #F2F2F2;
+}
+
+.searchbarContainer.variant-secondary.theme-light .searchbar {
+  color: #000000;
+}
+
+.searchbarContainer.variant-secondary.theme-light .searchbar::placeholder {
+  color: #ABABAB;
+}
+
+.searchbarContainer.variant-secondary.theme-light:hover:not(.disabled) {
+  background-color: #E4E4E4;
+  border-color: #E4E4E4;
+}
+
+.searchbarContainer.variant-secondary.theme-light:focus-within:not(.disabled) {
+  background-color: #ffffff;
+  border-color: #C7C7C7;
+}
+
+/* Secondary + Dark Theme */
+.searchbarContainer.variant-secondary.theme-dark {
+  background-color: #333333;
+  border: 1px solid #333333;
+}
+
+.searchbarContainer.variant-secondary.theme-dark .searchbar {
+  color: #ffffff;
+}
+
+.searchbarContainer.variant-secondary.theme-dark .searchbar::placeholder {
+  color: #777777;
+}
+
+.searchbarContainer.variant-secondary.theme-dark:hover:not(.disabled) {
+  background-color: #5F5F5F;
+  border-color: #5F5F5F;
+}
+
+.searchbarContainer.variant-secondary.theme-dark:focus-within:not(.disabled) {
+  background-color: #1C1C1C;
+  border-color: #5F5F5F;
+}
+
+/* ============================================== */
+/* Tertiary Variant */
+/* ============================================== */
+
+/* Tertiary + Light Theme */
+.searchbarContainer.variant-tertiary.theme-light {
+  background-color: transparent;
+  border: 1px solid #E4E4E4;
+}
+
+.searchbarContainer.variant-tertiary.theme-light .searchbar {
+  color: #000000;
+}
+
+.searchbarContainer.variant-tertiary.theme-light .searchbar::placeholder {
+  color: #ABABAB;
+}
+
+.searchbarContainer.variant-tertiary.theme-light:hover:not(.disabled) {
+  background-color: #F2F2F2;
+  border-color: #D4D3D3;
+}
+
+.searchbarContainer.variant-tertiary.theme-light:focus-within:not(.disabled) {
+  background-color: #ffffff;
+  border-color: #C7C7C7;
+}
+
+/* Tertiary + Dark Theme */
+.searchbarContainer.variant-tertiary.theme-dark {
+  background-color: transparent;
+  border: 1px solid #5F5F5F;
+}
+
+.searchbarContainer.variant-tertiary.theme-dark .searchbar {
+  color: #ffffff;
+}
+
+.searchbarContainer.variant-tertiary.theme-dark .searchbar::placeholder {
+  color: #777777;
+}
+
+.searchbarContainer.variant-tertiary.theme-dark:hover:not(.disabled) {
+  background-color: #333333;
+  border-color: #777777;
+}
+
+.searchbarContainer.variant-tertiary.theme-dark:focus-within:not(.disabled) {
+  background-color: #1C1C1C;
+  border-color: #919191;
+}
+
+/* ============================================== */
+/* Responsive Design */
+/* ============================================== */
+
+@media (max-width: 768px) {
+  .searchbarContainer.size-large {
+    height: 48px;
+    padding: 12px 18px;
+  }
+  
+  .searchbarContainer.size-large .searchbar {
+    font-size: 16px;
+  }
+  
+  .searchbarContainer.size-medium {
+    height: 44px;
+    padding: 10px 14px;
+  }
+  
+  .searchbarContainer.size-medium .searchbar {
+    font-size: 15px;
+  }
+  
+  .searchbarContainer.size-small {
+    height: 36px;
+    padding: 8px 12px;
+  }
+  
+  .searchbarContainer.size-small .searchbar {
+    font-size: 14px;
+  }
+}
+
+
+
+
+
+
+

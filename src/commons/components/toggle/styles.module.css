@@ -1,0 +1,401 @@
+/* Toggle Base Styles */
+.toggle {
+  display: inline-flex;
+  align-items: center;
+  cursor: pointer;
+  user-select: none;
+  flex-shrink: 0;
+}
+
+.toggle:focus-within .track {
+  outline: 2px solid currentColor;
+  outline-offset: 2px;
+}
+
+/* Hidden Input - Without position absolute */
+.input {
+  width: 0;
+  height: 0;
+  margin: 0;
+  padding: 0;
+  opacity: 0;
+  pointer-events: none;
+  overflow: hidden;
+  border: 0;
+}
+
+/* Track (Background) - Flexbox Container */
+.track {
+  display: flex;
+  align-items: center;
+  border-radius: 100px;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-sizing: border-box;
+  overflow: hidden;
+}
+
+/* Spacer for Flexbox Layout */
+.spacer {
+  flex-shrink: 0;
+  flex-grow: 0;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Thumb (Handle) - Pure Flexbox */
+.thumb {
+  flex-shrink: 0;
+  flex-grow: 0;
+  background-color: #ffffff;
+  border-radius: 50%;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Disabled State */
+.disabled {
+  cursor: not-allowed;
+  opacity: 0.4;
+}
+
+/* Label Wrapper */
+.labelWrapper {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+}
+
+.labelWrapper.label-left {
+  flex-direction: row-reverse;
+}
+
+.labelText {
+  font-family: 'Pretendard Variable', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  transition: color 0.2s ease-in-out;
+}
+
+.labelDisabled .labelText {
+  opacity: 0.4;
+}
+
+/* ============================================== */
+/* Size Variants - Based on Figma Design */
+/* ============================================== */
+
+/* Small Size (48x26) */
+.size-small .track {
+  width: 48px;
+  height: 26px;
+  padding: 3px;
+  gap: 0;
+}
+
+.size-small .thumb {
+  width: 20px;
+  height: 20px;
+}
+
+.size-small .spacer {
+  width: 0px;
+}
+
+.size-small.checked .spacer {
+  width: 22px;
+}
+
+.size-small .labelText {
+  font-size: 14px;
+  line-height: 20px;
+}
+
+/* Medium Size - Figma Default (58x32) */
+.size-medium .track {
+  width: 58px;
+  height: 32px;
+  padding: 4px;
+  gap: 0;
+}
+
+.size-medium .thumb {
+  width: 24px;
+  height: 24px;
+}
+
+.size-medium .spacer {
+  width: 0px;
+}
+
+.size-medium.checked .spacer {
+  width: 26px;
+}
+
+.size-medium .labelText {
+  font-size: 16px;
+  line-height: 24px;
+}
+
+/* Large Size (68x38) */
+.size-large .track {
+  width: 68px;
+  height: 38px;
+  padding: 5px;
+  gap: 0;
+}
+
+.size-large .thumb {
+  width: 28px;
+  height: 28px;
+}
+
+.size-large .spacer {
+  width: 0px;
+}
+
+.size-large.checked .spacer {
+  width: 30px;
+}
+
+.size-large .labelText {
+  font-size: 18px;
+  line-height: 26px;
+}
+
+/* ============================================== */
+/* Primary Variant - Based on Figma (Green) */
+/* ============================================== */
+
+/* Primary + Light Theme */
+.variant-primary.theme-light .track {
+  background-color: #E4E4E4;
+}
+
+.variant-primary.theme-light.checked .track {
+  background-color: #3ad84a;
+}
+
+.variant-primary.theme-light:hover:not(.disabled) .track {
+  background-color: #D4D3D3;
+}
+
+.variant-primary.theme-light.checked:hover:not(.disabled) .track {
+  background-color: #2fc73d;
+}
+
+.variant-primary.theme-light .labelText {
+  color: #000000;
+}
+
+/* Primary + Dark Theme */
+.variant-primary.theme-dark .track {
+  background-color: #5F5F5F;
+}
+
+.variant-primary.theme-dark.checked .track {
+  background-color: #3ad84a;
+}
+
+.variant-primary.theme-dark:hover:not(.disabled) .track {
+  background-color: #777777;
+}
+
+.variant-primary.theme-dark.checked:hover:not(.disabled) .track {
+  background-color: #2fc73d;
+}
+
+.variant-primary.theme-dark .labelText {
+  color: #ffffff;
+}
+
+/* ============================================== */
+/* Secondary Variant - Blue */
+/* ============================================== */
+
+/* Secondary + Light Theme */
+.variant-secondary.theme-light .track {
+  background-color: #E4E4E4;
+}
+
+.variant-secondary.theme-light.checked .track {
+  background-color: #3A5CF3;
+}
+
+.variant-secondary.theme-light:hover:not(.disabled) .track {
+  background-color: #D4D3D3;
+}
+
+.variant-secondary.theme-light.checked:hover:not(.disabled) .track {
+  background-color: #274AE1;
+}
+
+.variant-secondary.theme-light .labelText {
+  color: #000000;
+}
+
+/* Secondary + Dark Theme */
+.variant-secondary.theme-dark .track {
+  background-color: #5F5F5F;
+}
+
+.variant-secondary.theme-dark.checked .track {
+  background-color: #6DA5FA;
+}
+
+.variant-secondary.theme-dark:hover:not(.disabled) .track {
+  background-color: #777777;
+}
+
+.variant-secondary.theme-dark.checked:hover:not(.disabled) .track {
+  background-color: #93BEFF;
+}
+
+.variant-secondary.theme-dark .labelText {
+  color: #ffffff;
+}
+
+/* ============================================== */
+/* Tertiary Variant - Gray */
+/* ============================================== */
+
+/* Tertiary + Light Theme */
+.variant-tertiary.theme-light .track {
+  background-color: #E4E4E4;
+}
+
+.variant-tertiary.theme-light.checked .track {
+  background-color: #919191;
+}
+
+.variant-tertiary.theme-light:hover:not(.disabled) .track {
+  background-color: #D4D3D3;
+}
+
+.variant-tertiary.theme-light.checked:hover:not(.disabled) .track {
+  background-color: #777777;
+}
+
+.variant-tertiary.theme-light .labelText {
+  color: #000000;
+}
+
+/* Tertiary + Dark Theme */
+.variant-tertiary.theme-dark .track {
+  background-color: #5F5F5F;
+}
+
+.variant-tertiary.theme-dark.checked .track {
+  background-color: #C7C7C7;
+}
+
+.variant-tertiary.theme-dark:hover:not(.disabled) .track {
+  background-color: #777777;
+}
+
+.variant-tertiary.theme-dark.checked:hover:not(.disabled) .track {
+  background-color: #D4D3D3;
+}
+
+.variant-tertiary.theme-dark .labelText {
+  color: #ffffff;
+}
+
+/* ============================================== */
+/* Accessibility & Focus States */
+/* ============================================== */
+
+.toggle:focus-within .track {
+  outline: 2px solid transparent;
+  outline-offset: 2px;
+}
+
+.variant-primary.theme-light:focus-within .track {
+  outline-color: #3ad84a;
+}
+
+.variant-primary.theme-dark:focus-within .track {
+  outline-color: #3ad84a;
+}
+
+.variant-secondary.theme-light:focus-within .track {
+  outline-color: #3A5CF3;
+}
+
+.variant-secondary.theme-dark:focus-within .track {
+  outline-color: #6DA5FA;
+}
+
+.variant-tertiary.theme-light:focus-within .track {
+  outline-color: #919191;
+}
+
+.variant-tertiary.theme-dark:focus-within .track {
+  outline-color: #C7C7C7;
+}
+
+/* ============================================== */
+/* Animation & Transition */
+/* ============================================== */
+
+@media (prefers-reduced-motion: reduce) {
+  .track,
+  .thumb,
+  .spacer,
+  .labelText {
+    transition: none;
+  }
+}
+
+/* ============================================== */
+/* Responsive Design */
+/* ============================================== */
+
+@media (max-width: 768px) {
+  .size-large .track {
+    width: 58px;
+    height: 32px;
+    padding: 4px;
+  }
+  
+  .size-large .thumb {
+    width: 24px;
+    height: 24px;
+  }
+  
+  .size-large .spacer {
+    width: 0px;
+  }
+  
+  .size-large.checked .spacer {
+    width: 26px;
+  }
+  
+  .size-large .labelText {
+    font-size: 16px;
+    line-height: 24px;
+  }
+  
+  .size-medium .track {
+    width: 48px;
+    height: 26px;
+    padding: 3px;
+  }
+  
+  .size-medium .thumb {
+    width: 20px;
+    height: 20px;
+  }
+  
+  .size-medium .spacer {
+    width: 0px;
+  }
+  
+  .size-medium.checked .spacer {
+    width: 22px;
+  }
+  
+  .size-medium .labelText {
+    font-size: 14px;
+    line-height: 20px;
+  }
+}
