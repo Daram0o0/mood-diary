@@ -39,15 +39,17 @@
 .buttonWidth { width: 110px; }
 
 .main {
-  background-color: var(--color-background-paper);
-  border: 1px solid var(--color-border-default);
+  /* 요구사항: background-color, border 제거 */
 }
 
-.cardGrid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
+.cardFlex {
+  display: flex;
+  flex-wrap: wrap;
   gap: 16px;
   padding: 0;
+  justify-content: flex-start;
+  /* 피그마 디자인과 동일한 4열 배치를 위한 최대 너비 설정 */
+  max-width: 1200px;
 }
 
 .diaryCard {

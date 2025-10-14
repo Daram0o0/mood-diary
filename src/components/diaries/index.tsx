@@ -147,7 +147,7 @@ const Diaries: React.FC = () => {
       <div className={styles.gap}></div>
       
       <div className={styles.main}>
-        <div className={styles.cardGrid}>
+        <div className={styles.cardFlex}>
           {mockDiaries.map((diary) => {
             const imageSrc = getEmotionImage(diary.emotion, 'm');
             const emotionLabel = getEmotionLabel(diary.emotion);
