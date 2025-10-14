@@ -27,7 +27,7 @@ export const emotions = {
       m: '/images/emotion-happy-m.png',
       s: '/images/emotion-happy-s.png',
     },
-    color: colorPalette.red[60],
+    color: '#EA5757',
   },
   Sad: {
     label: '슬퍼요',
@@ -35,7 +35,7 @@ export const emotions = {
       m: '/images/emotion-sad-m.png',
       s: '/images/emotion-sad-s.png',
     },
-    color: colorPalette.blue[60],
+    color: '#28B4E1',
   },
   Angry: {
     label: '화나요',
@@ -43,7 +43,7 @@ export const emotions = {
       m: '/images/emotion-angry-m.png',
       s: '/images/emotion-angry-s.png',
     },
-    color: colorPalette.gray[60],
+    color: '#777777',
   },
   Surprise: {
     label: '놀랐어요',
@@ -51,7 +51,7 @@ export const emotions = {
       m: '/images/emotion-surprise-m.png',
       s: '/images/emotion-surprise-s.png',
     },
-    color: colorPalette.yellow[60],
+    color: '#D59029',
   },
   Etc: {
     label: '기타',
@@ -59,7 +59,7 @@ export const emotions = {
       m: '/images/emotion-etc-m.png',
       s: '/images/emotion-etc-s.png',
     },
-    color: colorPalette.green[60],
+    color: '#A229ED',
   },
 } as const;
 
