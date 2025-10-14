@@ -7,10 +7,38 @@
 }
 
 .header {
+  display: flex;
+  align-items: center;
   width: 100%;
   height: 60px;
-  background-color: #f0f0f0;
-  border: 1px solid #ddd;
+  padding: 0;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+}
+
+.logoText {
+  font-family: var(--font-family-korean);
+  font-weight: var(--font-weight-bold);
+  font-size: var(--typo-title01-font-size);
+  line-height: var(--typo-title01-line-height);
+  letter-spacing: -0.18px;
+  color: var(--color-text-primary);
+}
+
+.banner {
+  width: 100%;
+  height: 240px;
+  border-radius: 24px;
+  overflow: hidden;
+}
+
+.bannerImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
 .gap {
@@ -18,30 +46,98 @@
   height: 24px;
 }
 
-.banner {
-  width: 100%;
-  height: 240px;
-  background-color: #e0e0e0;
-  border: 1px solid #ddd;
-}
-
 .navigation {
   width: 100%;
   height: 48px;
-  background-color: #f5f5f5;
-  border: 1px solid #ddd;
+}
+
+.navContainer {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  gap: 16px;
+}
+
+.navTab {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 119px;
+  height: 48px;
+  border-bottom: 2px solid var(--color-text-primary);
+}
+
+.navTabInactive {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 119px;
+  height: 48px;
+}
+
+.navTabText {
+  font-family: var(--font-family-korean);
+  font-weight: var(--font-weight-bold);
+  font-size: var(--typo-headline01-font-size);
+  line-height: var(--typo-headline01-line-height);
+  letter-spacing: -0.24px;
+  color: var(--color-text-primary);
+}
+
+.navTabTextInactive {
+  font-family: var(--font-family-korean);
+  font-weight: var(--font-weight-medium);
+  font-size: var(--typo-headline01-font-size);
+  line-height: var(--typo-headline01-line-height);
+  letter-spacing: -0.24px;
+  color: var(--color-text-disabled);
 }
 
 .main {
   width: 100%;
   min-height: auto;
-  background-color: #ffffff;
-  border: 1px solid #ddd;
+  background-color: var(--color-background-default);
 }
 
 .footer {
   width: 100%;
   height: 160px;
-  background-color: #f0f0f0;
-  border: 1px solid #ddd;
+  background-color: var(--color-background-paper);
+  padding: 0;
+}
+
+.footerContent {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  max-width: 1168px;
+  margin: 0 auto;
+  padding: 24px;
+}
+
+.footerTitle {
+  font-family: var(--font-family-korean);
+  font-weight: var(--font-weight-bold);
+  font-size: var(--typo-title01-font-size);
+  line-height: var(--typo-title01-line-height);
+  letter-spacing: -0.2px;
+  color: var(--color-text-primary);
+}
+
+.footerInfo {
+  font-family: var(--font-family-korean);
+  font-weight: var(--font-weight-regular);
+  font-size: var(--typo-body02-s-font-size);
+  line-height: var(--typo-body02-s-line-height);
+  letter-spacing: -0.14px;
+  color: var(--color-text-secondary);
+}
+
+.footerCopyright {
+  font-family: var(--font-family-korean);
+  font-weight: 300;
+  font-size: var(--typo-body02-s-font-size);
+  line-height: var(--typo-body02-s-line-height);
+  letter-spacing: -0.14px;
+  color: var(--color-text-hint);
 }
