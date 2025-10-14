@@ -1,36 +1,135 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Mood Diary - Component Library
 
-## Getting Started
+Mood Diary는 Next.js와 Storybook을 활용한 재사용 가능한 컴포넌트 라이브러리 프로젝트입니다.
 
-First, run the development server:
+## 🚀 기술 스택
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+- **Frontend Framework**: Next.js 14.2.32
+- **Language**: TypeScript
+- **Styling**: Tailwind CSS
+- **Component Development**: Storybook
+- **State Management**: React Query (@tanstack/react-query)
+- **Theme**: next-themes
+- **Testing**: Vitest, Playwright
+
+## 📦 주요 컴포넌트
+
+- **Button**: 다양한 스타일의 버튼 컴포넌트
+- **Input**: 폼 입력을 위한 인풋 컴포넌트
+- **Pagination**: 페이지네이션 컴포넌트
+- **Searchbar**: 검색 기능을 위한 서치바 컴포넌트
+- **Toggle**: 토글 스위치 컴포넌트
+- **Selectbox**: 선택 박스 컴포넌트
+
+## 🎨 디자인 시스템
+
+### 색상 팔레트
+- **Primary**: Blue 계열 (50-900)
+- **Neutral**: Gray 계열 (0-950)
+- **Error**: Red 계열 (50-600)
+- **Success**: Green 계열 (50-600)
+- **Warning**: Yellow 계열 (50-600)
+- **Cool Gray**: Cool Gray 계열 (10-600)
+
+### 폰트
+- **Primary**: Geist Sans (Variable Font)
+- **Monospace**: Geist Mono (Variable Font)
+
+## 🛠️ 개발 환경 설정
+
+### 필수 요구사항
+- Node.js 18.x 이상
+- npm 또는 yarn
+
+### 설치 및 실행
+
+1. **의존성 설치**
+   ```bash
+   npm install
+   ```
+
+2. **개발 서버 실행**
+   ```bash
+   npm run dev
+   ```
+   브라우저에서 [http://localhost:3000](http://localhost:3000)을 열어 확인하세요.
+
+3. **Storybook 실행**
+   ```bash
+   npm run storybook
+   ```
+   브라우저에서 [http://localhost:6006](http://localhost:6006)을 열어 컴포넌트를 확인하세요.
+
+## 📝 사용 가능한 스크립트
+
+- `npm run dev`: 개발 서버 실행
+- `npm run build`: 프로덕션 빌드
+- `npm run start`: 프로덕션 서버 실행
+- `npm run lint`: ESLint 실행
+- `npm run storybook`: Storybook 개발 서버 실행
+- `npm run build-storybook`: Storybook 빌드
+
+## 📁 프로젝트 구조
+
+```
+src/
+├── app/                    # Next.js App Router
+│   ├── layout.tsx         # 루트 레이아웃
+│   ├── page.tsx           # 메인 페이지
+│   └── globals.css        # 전역 스타일
+├── commons/               # 공통 컴포넌트 및 유틸리티
+│   ├── components/        # 재사용 가능한 컴포넌트
+│   │   ├── button/        # 버튼 컴포넌트
+│   │   ├── input/         # 인풋 컴포넌트
+│   │   ├── pagination/    # 페이지네이션 컴포넌트
+│   │   ├── searchbar/     # 서치바 컴포넌트
+│   │   ├── selectbox/     # 셀렉트박스 컴포넌트
+│   │   └── toggle/        # 토글 컴포넌트
+│   ├── constants/         # 상수 정의
+│   └── providers/         # Context Provider들
+│       ├── modal/         # 모달 Provider
+│       ├── next-themes/   # 테마 Provider
+│       └── react-query/   # React Query Provider
+└── public/                # 정적 파일
+    ├── icons/             # 아이콘 파일들
+    └── images/            # 이미지 파일들
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## 🎯 컴포넌트 개발 가이드
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+각 컴포넌트는 다음 구조를 따릅니다:
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```
+component-name/
+├── index.tsx              # 컴포넌트 구현
+├── index.stories.tsx      # Storybook 스토리
+├── styles.module.css      # 컴포넌트 스타일
+└── prompts/               # AI 프롬프트 파일들
+    ├── prompt.101.ui.txt  # UI 프롬프트
+    └── prompt.201.stories.txt # 스토리 프롬프트
+```
 
-## Learn More
+## 🧪 테스팅
 
-To learn more about Next.js, take a look at the following resources:
+- **Unit Testing**: Vitest
+- **E2E Testing**: Playwright
+- **Visual Testing**: Storybook + Chromatic
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## 📚 추가 리소스
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+- [Next.js 공식 문서](https://nextjs.org/docs)
+- [Storybook 공식 문서](https://storybook.js.org/docs)
+- [Tailwind CSS 공식 문서](https://tailwindcss.com/docs)
+- [React Query 공식 문서](https://tanstack.com/query/latest)
 
-## Deploy on Vercel
+## 🤝 기여하기
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+1. 이 저장소를 포크합니다
+2. 새로운 기능 브랜치를 생성합니다 (`git checkout -b feature/amazing-feature`)
+3. 변경사항을 커밋합니다 (`git commit -m 'Add some amazing feature'`)
+4. 브랜치에 푸시합니다 (`git push origin feature/amazing-feature`)
+5. Pull Request를 생성합니다
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## 📄 라이선스
+
+이 프로젝트는 MIT 라이선스 하에 있습니다.
