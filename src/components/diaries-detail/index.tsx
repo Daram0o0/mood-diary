@@ -3,6 +3,7 @@
 import React from 'react';
 import Image from 'next/image';
 import Button from '@/commons/components/button';
+import Input from '@/commons/components/input';
 import { EmotionType, getEmotionImage, getEmotionLabel, getEmotionColor } from '@/commons/constants/enum';
 import styles from './styles.module.css';
 
@@ -141,19 +142,16 @@ const DiariesDetail: React.FC = () => {
       
       {/* retrospect-input: 1168 * 85 */}
       <div className={styles.retrospectInput}>
-        <div className={styles.retrospectInputHeader}>
-          <h2 className={styles.retrospectInputLabel}>회고</h2>
-        </div>
-        
-        <div className={styles.retrospectInputBody}>
-          <textarea 
-            className={styles.retrospectTextarea}
-            placeholder="회고를 남겨보세요."
-            rows={1}
-          />
-        </div>
-        
-        <div className={styles.retrospectInputActions}>
+        <div className={styles.retrospectInputLabel}>회고</div>
+        <div className={styles.retrospectInputWrapper}>
+          <div className={styles.retrospectInputField}>
+            <Input 
+              variant="primary"
+              size="medium"
+              theme="light"
+              placeholder="회고를 남겨보세요."
+            />
+          </div>
           <Button 
             variant="primary" 
             size="medium" 
@@ -170,32 +168,20 @@ const DiariesDetail: React.FC = () => {
       
       {/* retrospect-list: 1168 * 72 */}
       <div className={styles.retrospectList}>
-        <div className={styles.retrospectListHeader}>
-          <h3 className={styles.retrospectListLabel}>회고 목록</h3>
+        <div className={styles.retrospectItem}>
+          <p className={styles.retrospectItemText}>
+            3년이 지나고 다시 보니 이때가 그립다.
+          </p>
+          <span className={styles.retrospectItemDateText}>[2024. 09. 24]</span>
         </div>
         
-        <div className={styles.retrospectListBody}>
-          <div className={styles.retrospectItem}>
-            <div className={styles.retrospectItemContent}>
-              <p className={styles.retrospectItemText}>
-                3년이 지나고 다시 보니 이때가 그립다.
-              </p>
-            </div>
-            <div className={styles.retrospectItemDate}>
-              <span className={styles.retrospectItemDateText}>[2024. 09. 24]</span>
-            </div>
-          </div>
-          
-          <div className={styles.retrospectItem}>
-            <div className={styles.retrospectItemContent}>
-              <p className={styles.retrospectItemText}>
-                3년이 지나고 다시 보니 이때가 그립다.
-              </p>
-            </div>
-            <div className={styles.retrospectItemDate}>
-              <span className={styles.retrospectItemDateText}>[2024. 09. 24]</span>
-            </div>
-          </div>
+        <div className={styles.retrospectLine}></div>
+        
+        <div className={styles.retrospectItem}>
+          <p className={styles.retrospectItemText}>
+            3년이 지나고 다시 보니 이때가 그립다.
+          </p>
+          <span className={styles.retrospectItemDateText}>[2024. 09. 24]</span>
         </div>
       </div>
     </div>
