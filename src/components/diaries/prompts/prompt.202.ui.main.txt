@@ -48,13 +48,17 @@
 
 기존히스토리-참고만) imageSrc를 불러올때 's'가 아닌 'm'을 default로 가져와줘
 
+기존히스토리-참고만) styles_cardGrid 패딩 모두 0으로 설정
+
+기존히스토리-참고만) styles_main background-color, border 없앨 것.
+
+기존히스토리-참고만) styles_cardGrid를 grid가 아닌, flex로 설정하여 className도 직관적으로 고칠 것.
+
+기존히스토리-참고만) grid -> flex로 고친 부분에 대해서 내부 일기카드 배치를 피그마와 동일 시 할 것.
+        - 참고 노드ID:3:1309
+
 ==============================================
 
-핵심요구사항) styles_cardGrid 패딩 모두 0으로 설정
+핵심요구사항) styles_cardFlex의 {gap}은 24px일 것.
 
-핵심요구사항) styles_main background-color, border 없앨 것.
-
-핵심요구사항) styles_cardGrid를 grid가 아닌, flex로 설정하여 className도 직관적으로 고칠 것.
-
-핵심요구사항) grid -> flex로 고친 부분에 대해서 내부 일기카드 배치를 피그마와 동일 시 할 것.
-        - 참고 노드ID:3:1309
+핵심요구사항) 일기카드의 border을 없앨 것.

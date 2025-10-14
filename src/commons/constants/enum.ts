@@ -4,7 +4,6 @@
  * 규칙: :root, :global, important 키워드 사용 금지
  */
 
-import { colorPalette } from './color';
 
 // 이미지 사이즈 타입
 export type ImageSize = 'm' | 's';
