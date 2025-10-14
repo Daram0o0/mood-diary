@@ -1,0 +1,374 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 1168px;
+  margin: 0 auto;
+  padding: 0;
+}
+
+/* gap: width 1168px, height 64px */
+.gap64 {
+  width: 1168px;
+  height: 64px;
+}
+
+/* gap: width 1168px, height 24px */
+.gap24 {
+  width: 1168px;
+  height: 24px;
+}
+
+/* gap: width 1168px, height 16px */
+.gap16 {
+  width: 1168px;
+  height: 16px;
+}
+
+/* detail-title: width 1168px, height 84px */
+.titleSection {
+  width: 1168px;
+  height: 84px;
+  display: flex;
+  flex-direction: column;
+  align-self: stretch;
+  justify-content: space-between;
+}
+
+.titleHeader {
+  width: 100%;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  border-bottom: 2px solid #000000;
+}
+
+.titleText {
+  margin: 0;
+  font-family: var(--font-family-korean);
+  font-size: var(--typo-headline02-font-size);
+  font-weight: var(--typo-headline02-font-weight);
+  line-height: var(--typo-headline02-line-height);
+  color: var(--color-text-primary);
+  letter-spacing: -0.22px;
+}
+
+.emotionDateSection {
+  width: 100%;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0;
+}
+
+.emotionSection {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  height: 32px;
+}
+
+.emotionIcon {
+  width: 32px;
+  height: 32px;
+}
+
+.emotionText {
+  font-family: var(--font-family-korean);
+  font-size: var(--typo-headline03-font-size);
+  font-weight: var(--typo-headline03-font-weight);
+  line-height: var(--typo-headline03-line-height);
+  letter-spacing: -0.2px;
+}
+
+.emotionHappy {
+  color: #EA5757;
+}
+
+.emotionSad {
+  color: #28B4E1;
+}
+
+.emotionAngry {
+  color: #777777;
+}
+
+.emotionSurprise {
+  color: #D59029;
+}
+
+.emotionEtc {
+  color: #A229ED;
+}
+
+.dateSection {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  height: 20px;
+}
+
+.dateText {
+  font-family: var(--font-family-korean);
+  font-size: var(--typo-body02-s-font-size);
+  font-weight: var(--typo-body02-s-font-weight);
+  line-height: var(--typo-body02-s-line-height);
+  color: var(--color-text-hint);
+  letter-spacing: -0.14px;
+}
+
+.dateLabel {
+  font-family: var(--font-family-korean);
+  font-size: var(--typo-body02-s-font-size);
+  font-weight: var(--typo-body02-s-font-weight);
+  line-height: var(--typo-body02-s-line-height);
+  color: var(--color-text-hint);
+  letter-spacing: -0.14px;
+}
+
+/* detail-content: width 1168px, height auto */
+.contentSection {
+  width: 1168px;
+  display: flex;
+  flex-direction: column;
+  align-self: stretch;
+}
+
+.contentHeader {
+  width: 100%;
+  height: 20px;
+  margin-bottom: 13px;
+}
+
+.contentLabel {
+  margin: 0;
+  font-family: var(--font-family-korean);
+  font-size: var(--typo-title02-font-size);
+  font-weight: var(--typo-title02-font-weight);
+  line-height: var(--typo-title02-line-height);
+  color: var(--color-text-primary);
+  letter-spacing: -0.16px;
+}
+
+.contentBody {
+  width: 100%;
+  margin-bottom: 10px;
+}
+
+.contentText {
+  margin: 0;
+  font-family: var(--font-family-korean);
+  font-size: var(--typo-body01-font-size);
+  font-weight: var(--typo-body01-font-weight);
+  line-height: var(--typo-body01-line-height);
+  color: #333333;
+  letter-spacing: -0.16px;
+}
+
+.contentActions {
+  width: 100%;
+  height: 24px;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.copyButton {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  height: 24px;
+}
+
+.copyIcon {
+  width: 24px;
+  height: 24px;
+}
+
+.copyText {
+  font-family: var(--font-family-korean);
+  font-size: var(--typo-body01-font-size);
+  font-weight: var(--typo-body01-regular-font-weight);
+  line-height: var(--typo-body01-font-size);
+  color: #1c1c1c;
+  letter-spacing: -0.16px;
+}
+
+/* detail-footer: width 1168px, height 56px */
+.detailFooter {
+  width: 1168px;
+  height: 56px;
+  display: flex;
+  flex-direction: column;
+  border-bottom: 1px solid #000000;
+}
+
+.footerActions {
+  display: flex;
+  gap: 16px;
+  align-self: flex-end;
+}
+
+.editButton {
+  width: 51px;
+  height: 40px;
+}
+
+.deleteButton {
+  width: 51px;
+  height: 40px;
+}
+
+/* retrospect-input: width 1168px, height auto */
+.retrospectInput {
+  width: 1168px;
+  display: flex;
+  flex-direction: column;
+  border-radius: 16px;
+  padding: 16px;
+  background: var(--color-background-paper);
+}
+
+.retrospectInputHeader {
+  width: 100%;
+  height: 24px;
+  margin-bottom: 8px;
+}
+
+.retrospectInputLabel {
+  margin: 0;
+  font-family: var(--font-family-korean);
+  font-size: var(--typo-title01-font-size);
+  font-weight: var(--typo-title01-font-weight);
+  line-height: var(--typo-title01-line-height);
+  color: var(--color-text-primary);
+  letter-spacing: -0.18px;
+}
+
+.retrospectInputBody {
+  width: 100%;
+  height: 48px;
+  margin-bottom: 8px;
+}
+
+.retrospectTextarea {
+  width: 100%;
+  height: 100%;
+  border: 1px solid var(--color-border-dark);
+  border-radius: 8px;
+  padding: 12px 16px;
+  font-family: var(--font-family-korean);
+  font-size: var(--typo-body01-font-size);
+  font-weight: var(--typo-body01-font-weight);
+  line-height: var(--typo-body01-line-height);
+  color: var(--color-text-primary);
+  letter-spacing: -0.16px;
+  resize: none;
+  outline: none;
+  background: var(--color-background-default);
+}
+
+.retrospectTextarea::placeholder {
+  color: var(--color-text-disabled);
+}
+
+.retrospectInputActions {
+  width: 100%;
+  height: 48px;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.saveRetrospectButton {
+  width: 51px;
+  height: 48px;
+}
+
+/* retrospect-list: width 1168px, height auto */
+.retrospectList {
+  width: 1168px;
+  display: flex;
+  flex-direction: column;
+  border-radius: 16px;
+  padding: 16px;
+  background: var(--color-background-paper);
+}
+
+.retrospectListHeader {
+  width: 100%;
+  height: 24px;
+  margin-bottom: 8px;
+}
+
+.retrospectListLabel {
+  margin: 0;
+  font-family: var(--font-family-korean);
+  font-size: var(--typo-title01-font-size);
+  font-weight: var(--typo-title01-font-weight);
+  line-height: var(--typo-title01-line-height);
+  color: var(--color-text-primary);
+  letter-spacing: -0.18px;
+}
+
+.retrospectListBody {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.retrospectItem {
+  width: 100%;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0;
+  flex-shrink: 0;
+  border-bottom: 1px solid var(--color-border-default);
+  padding-bottom: 12px;
+}
+
+.retrospectItemContent {
+  flex: 1;
+  height: 24px;
+  display: flex;
+  align-items: center;
+}
+
+.retrospectItemText {
+  margin: 0;
+  font-family: var(--font-family-korean);
+  font-size: var(--typo-body01-font-size);
+  font-weight: var(--typo-body01-font-weight);
+  line-height: var(--typo-body01-line-height);
+  color: var(--color-text-primary);
+  letter-spacing: -0.16px;
+}
+
+.retrospectItemDate {
+  width: 101px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.retrospectItemDateText {
+  font-family: var(--font-family-korean);
+  font-size: var(--typo-body01-font-size);
+  font-weight: var(--typo-body01-regular-font-weight);
+  line-height: var(--typo-body01-line-height);
+  color: var(--color-text-secondary);
+  letter-spacing: -0.16px;
+}
+
+.retrospectItem:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+}
