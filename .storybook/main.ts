@@ -2,8 +2,7 @@ import type { StorybookConfig } from "@storybook/nextjs-vite";
 
 const config: StorybookConfig = {
   "stories": [
-    "../src/**/*.mdx",
-    "../src/**/*.stories.@(js|jsx|mjs|ts|tsx)"
+    "../src/commons/components/**/*.stories.@(js|jsx|mjs|ts|tsx)"
   ],
   "addons": [
     "@chromatic-com/storybook",
@@ -17,6 +16,16 @@ const config: StorybookConfig = {
   },
   "staticDirs": [
     "../public"
-  ]
+  ],
+  "viteFinal": async (config) => {
+    // CSS 모듈 처리 설정
+    if (config.css) {
+      config.css.modules = {
+        ...config.css.modules,
+        localsConvention: 'camelCase',
+      };
+    }
+    return config;
+  },
 };
 export default config;

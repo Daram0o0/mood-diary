@@ -1,5 +1,6 @@
 import type { Preview } from '@storybook/nextjs-vite'
 import '../src/app/globals.css'
+import NextThemesProvider from '../src/commons/providers/next-themes/next-themes.provider'
 
 const preview: Preview = {
   parameters: {
@@ -31,6 +32,13 @@ const preview: Preview = {
       ],
     },
   },
+  decorators: [
+    (Story) => (
+      <NextThemesProvider>
+        <Story />
+      </NextThemesProvider>
+    ),
+  ],
 };
 
 export default preview;
