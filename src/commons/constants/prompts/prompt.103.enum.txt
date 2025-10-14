@@ -15,26 +15,26 @@
 핵심요구사항) 해당 프로젝트에서 감정(emotion) 이란 enum 데이터를 사용 가능하도록 셋팅할 것.
             - Happy:
                 1) "행복해요" 라는 단어로 화면에서 보여질 것.
-                2) 이미지는 emotion-happy-m.svg, emotion-happy-s.svg 로 화면에서 보여질 것.
-                3) 색상은 red60 으로 화면에서 보여질 것.
+                2) 이미지는 emotion-happy-m.png, emotion-happy-s.png 로 화면에서 보여질 것.
+                3) 색상은 "EA5757" 으로 화면에서 보여질 것.
             
             - Sad:
                 1) "슬퍼요" 라는 단어로 화면에서 보여질 것.
-                2) 이미지는 emotion-sad-m.svg, emotion-sad-s.svg 로 화면에서 보여질 것.
-                3) 색상은 blue60 으로 화면에서 보여질 것.
+                2) 이미지는 emotion-sad-m.png, emotion-sad-s.png 로 화면에서 보여질 것.
+                3) 색상은 "28B4E1" 으로 화면에서 보여질 것.
             
             - Angry:
                 1) "화나요" 라는 단어로 화면에서 보여질 것.
-                2) 이미지는 emotion-angry-m.svg, emotion-angry-s.svg 로 화면에서 보여질 것.
-                3) 색상은 gray60 으로 화면에서 보여질 것.
+                2) 이미지는 emotion-angry-m.png, emotion-angry-s.png 로 화면에서 보여질 것.
+                3) 색상은 "777777" 으로 화면에서 보여질 것.
 
             - Surprise:
                 1) "놀랐어요" 라는 단어로 화면에서 보여질 것.
-                2) 이미지는 emotion-surprise-m.svg, emotion-surprise-s.svg 로 화면에서 보여질 것.
-                3) 색상은 yellow60 으로 화면에서 보여질 것.
+                2) 이미지는 emotion-surprise-m.png, emotion-surprise-s.png 로 화면에서 보여질 것.
+                3) 색상은 "D59029" 으로 화면에서 보여질 것.
 
             - Etc:
                 1) "기타" 라는 단어로 화면에서 보여질 것.
-                2) 이미지는 emotion-etc-m.svg, emotion-etc-s.svg 로 화면에서 보여질 것.
-                3) 색상은 green60 으로 화면에서 보여질 것.
+                2) 이미지는 emotion-etc-m.png, emotion-etc-s.png 로 화면에서 보여질 것.
+                3) 색상은 "A229ED" 으로 화면에서 보여질 것.
 
