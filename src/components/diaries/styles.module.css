@@ -22,9 +22,21 @@
 
 .search {
   height: 48px;
-  background-color: #f5f5f5;
-  border: 1px solid #ddd;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
+
+.searchLeft {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+/* width만 className로 제어 */
+.selectWidth { width: 120px; }
+.searchWidth { width: 320px; }
+.buttonWidth { width: 110px; }
 
 .main {
   height: 936px;
