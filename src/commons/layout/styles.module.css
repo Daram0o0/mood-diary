@@ -4,6 +4,7 @@
   width: 100%;
   max-width: 1168px;
   margin: 0 auto;
+  min-height: 100vh;
 }
 
 .header {
@@ -73,6 +74,7 @@
   justify-content: center;
   width: 119px;
   height: 48px;
+  border-bottom: none;
 }
 
 .navTabText {
@@ -100,10 +102,12 @@
 }
 
 .footer {
-  width: 100%;
+  width: 100vw;
   height: 160px;
   background-color: var(--color-background-paper);
   padding: 0;
+  margin-left: calc(-50vw + 50%);
+  margin-right: calc(-50vw + 50%);
 }
 
 .footerContent {
@@ -113,13 +117,15 @@
   max-width: 1168px;
   margin: 0 auto;
   padding: 24px 0;
+  padding-left: 0;
+  padding-right: 0;
 }
 
 .footerTitle {
   font-family: var(--font-family-korean);
   font-weight: var(--font-weight-bold);
-  font-size: var(--typo-title01-font-size);
-  line-height: var(--typo-title01-line-height);
+  font-size: var(--typo-headline03-font-size);
+  line-height: var(--typo-headline03-line-height);
   letter-spacing: -0.2px;
   color: var(--color-text-primary);
 }
