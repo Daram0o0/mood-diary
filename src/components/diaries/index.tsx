@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import styles from './styles.module.css';
 import Selectbox from '@/commons/components/selectbox';
 import Searchbar from '@/commons/components/searchbar';

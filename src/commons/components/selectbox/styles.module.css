@@ -12,6 +12,7 @@
   display: inline-flex;
   flex-direction: column;
   gap: 8px;
+  position: relative;
 }
 
 .wrapper.fullWidth {
@@ -332,7 +333,13 @@
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
   overflow-y: auto;
   list-style: none;
-  margin: 4px 0 0 0;
+  /* 레이아웃 밀림 방지: 셀렉트박스 기준 절대배치 */
+  position: absolute;
+  top: calc(100% + 4px);
+  left: 0;
+  z-index: 10;
+  /* 트리거 너비를 기본으로 따르되, 컨텐츠가 더 넓으면 확장 */
+  min-width: 100%;
   padding: 0;
   box-sizing: border-box;
 }

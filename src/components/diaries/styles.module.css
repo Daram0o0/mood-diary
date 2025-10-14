@@ -40,12 +40,12 @@
 
 .main {
   height: 936px;
-  background-color: #f9f9f9;
-  border: 1px solid #ddd;
+  background-color: var(--color-background-paper);
+  border: 1px solid var(--color-border-default);
 }
 
 .pagination {
   height: 32px;
-  background-color: #f5f5f5;
-  border: 1px solid #ddd;
+  background-color: var(--color-background-paper);
+  border: 1px solid var(--color-border-default);
 }
