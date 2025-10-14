@@ -40,7 +40,7 @@ const Diaries: React.FC = () => {
         <Button
           variant="primary"
           theme="light"
-          size="large"
+          size="medium"
           className={styles.buttonWidth}
           icon={
             <Image
