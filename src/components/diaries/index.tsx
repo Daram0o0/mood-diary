@@ -1,8 +1,9 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styles from './styles.module.css';
 import Selectbox from '@/commons/components/selectbox';
 import Searchbar from '@/commons/components/searchbar';
 import Button from '@/commons/components/button';
+import Pagination from '@/commons/components/pagination';
 import Image from 'next/image';
 import {
   EmotionType,
@@ -94,6 +95,15 @@ const mockDiaries: DiaryItem[] = [
 ];
 
 const Diaries: React.FC = () => {
+  // 페이지네이션 상태 관리
+  const [currentPage, setCurrentPage] = useState(1);
+  const totalPages = 5; // 피그마 디자인에 맞춰 5페이지로 설정
+
+  // 페이지 변경 핸들러
+  const handlePageChange = (page: number) => {
+    setCurrentPage(page);
+  };
+
   return (
     <div className={styles.container}>
       <div className={styles.gap}></div>
@@ -192,7 +202,17 @@ const Diaries: React.FC = () => {
       <div className={styles.gap}></div>
       
       <div className={styles.pagination}>
-        {/* 페이지네이션 영역 */}
+        <Pagination
+          currentPage={currentPage}
+          totalPages={totalPages}
+          onPageChange={handlePageChange}
+          variant="primary"
+          theme="light"
+          size="medium"
+          showArrows={true}
+          visiblePages={5}
+          className={styles.paginationWidth}
+        />
       </div>
       
       <div className={styles.gap}></div>
