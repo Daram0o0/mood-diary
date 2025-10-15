@@ -17,6 +17,10 @@
 
 기존히스토리-참고만) modal-portal을 사용하여 기본적인 modal 셋팅을 구현할 것.
 
+기존히스토리-참고만) 모달 wrapper의 max-wd-md, w-full 제거할 것.
+
 ==============================================
 
-핵심요구사항) 모달 wrapper의 max-wd-md, w-full 제거할 것.
+핵심요구사항) 모달 padding을 제거할 것.
+
+핵심요구사항) 모달 border-radius를 1.5rem으로 설정할 것.

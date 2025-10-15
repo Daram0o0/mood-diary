@@ -10,7 +10,7 @@
 
 ==============================================
 
-조건-피그마) 활용할MCP: CursorTalkToFigmaMCP(채널명: amq12jls)
+조건-피그마) 활용할MCP: CursorTalkToFigmaMCP(채널명: 3cvn0rvz)
 조건-피그마) 참고할 공통컴포넌트 노드ID: 3:1153
 
 조건-파일경로) 구현될 TSX 파일경로: src/commons/components/input/index.tsx
@@ -27,6 +27,8 @@
 
 기존히스토리-참고만) 현재, 서치바 UI가 있기 때문에 아이콘을 가진 INPUT UI는 필요 없음.
 
+기존히스토리-참고만) input 태그에 focus시, border가 두겹이 생기는 현상이 발생하는데, focus시 해당 input이 border가 하나만 나오며, focus 기능도 유지가 되어야 함.
+
 ==============================================
 
-핵심요구사항) input 태그에 focus시, border가 두겹이 생기는 현상이 발생하는데, focus시 해당 input이 border가 하나만 나오며, focus 기능도 유지가 되어야 함.
+핵심요구사항) border가 들어가게 되면 지정된 높이보다 작아지는데, 이 문제를 해결할 것. 예시) border-box

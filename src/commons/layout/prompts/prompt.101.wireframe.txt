@@ -27,3 +27,6 @@
                 - navigation: 1168 * 48
                 - {children}: 1168 * auto
                 - footer: 1168 * 160
+
+핵심요구사항) footer 영역은 항상 가장 하단에 존재할 것. 그러나, {children}과 겹쳐짐이 발생하지 말 것.
+

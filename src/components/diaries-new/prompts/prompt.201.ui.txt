@@ -11,7 +11,7 @@
 
 ==============================================
 
-조건-피그마) 활용할MCP: CursorTalkToFigmaMCP(채널명: 3cvn0rvz)
+조건-피그마) 활용할MCP: CursorTalkToFigmaMCP(채널명: 2e3yohsi)
 조건-피그마) 구현될 컴포넌트 노드ID(wrapper(+ header 제목 포함) 영역): 3:837
 조건-피그마) 구현될 컴포넌트 노드ID(emotion-box 영역): 3:840
 조건-피그마) 구현될 컴포넌트 노드ID(input-title 영역): 3:849
@@ -52,6 +52,11 @@
 기존히스토리-참고만) footer부분에 position: absolute가 들어가 있는데, 기존 커서룰에는 absolute를 사용하지 말라고 함. 수정할 것.
 
 기존히스토리-참고만) styles_wrapper 컴포넌트 및 모든 하위항목에 대해서 height에 고정값을 주지 말 것.
+
+기존히스토리-참고만) constants/typography.ts와 color.ts를 참고하여 최대한 피그마와 유사한 스타일로 구현할 것.
+
+기존히스토리-참고만) styles_inputTitle과 styles_inputContent하나의 div로 묶여있으면 flex-col이고, {gap}은 24px일 것.
+
 ==============================================
 
 핵심요구사항) 일기등록은 아래의 조건으로 Enum 데이터를 만들어 적용할 것.
@@ -87,6 +92,6 @@
                     - 닫기버튼: <Button />
                     - 등록하기버튼: <Button />
 
-핵심요구사항) constants/typography.ts와 color.ts를 참고하여 최대한 피그마와 유사한 스타일로 구현할 것.
+핵심요구사항) styles_wrapper의 {gap}이 40px일 것.
 
-핵심요구사항) styles_inputTitle과 styles_inputContent하나의 div로 묶여있으면 flex-col이고, {gap}은 24px일 것.
+핵심요구사항) styles_wrapper의 border가 없을 것.

@@ -49,6 +49,7 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
 
   return (
     <div className={styles.layout}>
+      {/* Header 영역: 1168 * 60 */}
       {showHeader && (
         <header className={styles.header}>
           {showHeaderLogo && (
@@ -59,6 +60,10 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
         </header>
       )}
       
+      {/* Gap 영역: 1168 * 24 */}
+      {showBanner && <div className={styles.gap}></div>}
+      
+      {/* Banner 영역: 1168 * 240 */}
       {showBanner && (
         <div className={styles.banner}>
           <Image
@@ -71,8 +76,10 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
         </div>
       )}
       
+      {/* Gap 영역: 1168 * 24 */}
       {showBanner && <div className={styles.gap}></div>}
       
+      {/* Navigation 영역: 1168 * 48 */}
       {showNavigation && (
         <nav className={styles.navigation}>
           <div className={styles.navContainer}>
@@ -98,10 +105,12 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
         </nav>
       )}
       
+      {/* Main Content 영역: 1168 * auto */}
       <main className={styles.main}>
         {children}
       </main>
       
+      {/* Footer 영역: 1168 * 160 */}
       {showFooter && (
         <footer className={styles.footer}>
           <div className={styles.footerContent}>

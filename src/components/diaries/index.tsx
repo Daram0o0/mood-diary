@@ -13,6 +13,7 @@ import {
   getEmotionLabel,
   getEmotionColor,
 } from '@/commons/constants/enum';
+import { useDiaryModal } from './hooks/index.link.modal.hook';
 
 type DiaryItem = {
   id: string;
@@ -101,13 +102,21 @@ const Diaries: React.FC = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const totalPages = 5; // 피그마 디자인에 맞춰 5페이지로 설정
 
+  // 모달 연결 훅
+  const { openDiaryModal } = useDiaryModal();
+
   // 페이지 변경 핸들러
   const handlePageChange = (page: number) => {
     setCurrentPage(page);
   };
 
+  // 일기쓰기 버튼 클릭 핸들러
+  const handleDiaryWriteClick = () => {
+    openDiaryModal();
+  };
+
   return (
-    <div className={styles.container}>
+    <div className={styles.container} data-testid="diaries-page">
       <div className={styles.gap}></div>
       
       <div className={styles.search}>
@@ -142,6 +151,7 @@ const Diaries: React.FC = () => {
           theme="light"
           size="medium"
           className={styles.buttonWidth}
+          onClick={handleDiaryWriteClick}
           icon={
             <Image
               src="/icons/plus_outline_light_m.svg"

@@ -5,6 +5,7 @@ import styles from './styles.module.css';
 import Input from '@/commons/components/input';
 import Button from '@/commons/components/button';
 import { emotions, EmotionType, emotionKeys } from '@/commons/constants/enum';
+import { useModal } from '@/commons/providers/modal/modal.provider';
 
 /**
  * DiariesNew 컴포넌트
@@ -21,6 +22,9 @@ export default function DiariesNew() {
   const [selectedEmotion, setSelectedEmotion] = useState<EmotionType>('Happy');
   const [title, setTitle] = useState('');
   const [content, setContent] = useState('');
+  
+  // 모달 제어 훅
+  const { closeModal } = useModal();
 
   /**
    * 감정 선택 핸들러
@@ -42,8 +46,7 @@ export default function DiariesNew() {
    * 닫기 핸들러
    */
   const handleClose = () => {
-    // 닫기 로직
-    console.log('닫기');
+    closeModal();
   };
 
   return (

@@ -52,7 +52,8 @@ export default function ModalProvider({ children }: ModalProviderProps) {
             
             {/* Modal Content - max-w-md와 w-full 제거됨 */}
             <div
-              className="relative z-10 bg-white dark:bg-gray-800 rounded-lg shadow-xl p-6"
+              className="relative z-10 bg-white dark:bg-gray-800 shadow-xl"
+              style={{ borderRadius: '1.5rem' }}
               onClick={(e) => e.stopPropagation()}
             >
               {modalContent}
