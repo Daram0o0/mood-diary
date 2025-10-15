@@ -1,151 +1,220 @@
-/* Wrapper */
+/* DiariesNew 컴포넌트 스타일 */
+/* CSS 변수 활용, 하드코딩 금지 */
+
 .wrapper {
-  width: 640px;
-  height: 560px;
-  background: var(--color-background-default);
-  border: 1px solid var(--color-border-dark);
-  border-radius: 24px;
+  /* Wrapper 스타일 */
+  max-width: 600px;
+  margin: 0 auto;
   padding: 24px;
-  display: flex;
-  flex-direction: column;
-  gap: 40px;
-  position: relative;
+  background: var(--color-background-default);
+  border: 1px solid var(--color-border-default);
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
-/* Header */
 .header {
-  width: 100%;
-  height: 24px;
+  /* Header 스타일 */
+  margin-bottom: 32px;
+  text-align: center;
 }
 
 .title {
+  /* 일기쓰기 제목 */
   font-family: var(--font-family-korean);
-  font-size: var(--typo-headline01-font-size);
-  font-weight: var(--typo-headline01-font-weight);
-  line-height: var(--typo-headline01-line-height);
+  font-size: var(--typo-headline02-font-size);
+  font-weight: var(--typo-headline02-font-weight);
+  line-height: var(--typo-headline02-line-height);
   color: var(--color-text-primary);
   margin: 0;
 }
 
-/* Emotion Box */
 .emotionBox {
-  width: 100%;
-  height: 64px;
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
+  /* 감정 선택 박스 */
+  margin-bottom: 32px;
+  padding: 24px;
+  background: var(--color-background-paper);
+  border-radius: 8px;
+  border: 1px solid var(--color-border-light);
 }
 
 .emotionTitle {
+  /* 감정 선택 제목 */
   font-family: var(--font-family-korean);
-  font-size: var(--typo-headline03-font-size);
-  font-weight: var(--typo-headline03-font-weight);
-  line-height: var(--typo-headline03-line-height);
+  font-size: var(--typo-title02-font-size);
+  font-weight: var(--typo-title02-font-weight);
+  line-height: var(--typo-title02-line-height);
   color: var(--color-text-primary);
-  margin: 0;
+  margin: 0 0 20px 0;
 }
 
-.emotionOptions {
+.emotionList {
+  /* 감정 목록 */
   display: flex;
-  gap: 20px;
-  align-items: center;
+  flex-wrap: wrap;
+  gap: 16px;
 }
 
-.emotionOption {
+.emotionItem {
+  /* 감정 아이템 */
   display: flex;
   align-items: center;
-  gap: 8px;
   cursor: pointer;
+  padding: 8px 16px;
+  border-radius: 20px;
+  border: 1px solid var(--color-border-default);
+  background: var(--color-background-default);
+  transition: all 0.2s ease;
 }
 
-.radioInput {
-  width: 24px;
-  height: 24px;
-  margin: 0;
-  cursor: pointer;
-  accent-color: #000000;
+.emotionItem:hover {
+  border-color: var(--color-primary-main);
+  background: var(--color-primary-main);
+  color: var(--color-primary-contrast);
 }
 
-.radioLabel {
+.emotionItem:hover .emotionLabel {
+  color: var(--color-primary-contrast);
+}
+
+.emotionRadio {
+  /* 라디오 버튼 숨김 */
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.emotionLabel {
+  /* 감정 라벨 */
   font-family: var(--font-family-korean);
-  font-size: var(--typo-title01-font-size);
-  font-weight: var(--typo-title01-font-weight);
-  line-height: var(--typo-title01-line-height);
-  color: #333333;
-  cursor: pointer;
+  font-size: var(--typo-body02-m-font-size);
+  font-weight: var(--typo-body02-m-font-weight);
+  line-height: var(--typo-body02-m-line-height);
+  color: var(--color-text-primary);
+  transition: color 0.2s ease;
 }
 
-/* Input Title */
+/* 선택된 감정 스타일 */
+.emotionItem:has(.emotionRadio:checked) {
+  border-color: var(--color-text-primary);
+  background: var(--color-text-primary);
+}
+
+.emotionItem:has(.emotionRadio:checked) .emotionLabel {
+  color: var(--color-background-default);
+}
+
 .inputTitle {
-  width: 100%;
-  height: 76px;
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-}
-
-.inputLabel {
-  font-family: var(--font-family-korean);
-  font-size: var(--typo-subtitle01-font-size);
-  font-weight: var(--typo-subtitle01-font-weight);
-  line-height: var(--typo-subtitle01-line-height);
-  color: #333333;
+  /* 제목 입력 영역 */
+  margin-bottom: 24px;
 }
 
 .titleInput {
+  /* 제목 입력 필드 */
   width: 100%;
 }
 
-/* Input Content */
 .inputContent {
-  width: 100%;
-  height: 156px;
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
+  /* 내용 입력 영역 */
+  margin-bottom: 32px;
 }
 
 .contentTextarea {
+  /* 내용 입력 텍스트에어리어 */
   width: 100%;
-  height: 128px;
+  min-height: 200px;
   padding: 16px;
-  border: 1px solid var(--color-border-dark);
+  border: 1px solid var(--color-border-default);
   border-radius: 8px;
   background: var(--color-background-default);
   font-family: var(--font-family-korean);
-  font-size: var(--typo-body01-font-size);
-  font-weight: var(--typo-body01-font-weight);
-  line-height: var(--typo-body01-line-height);
+  font-size: var(--typo-body02-m-font-size);
+  font-weight: var(--typo-body02-m-font-weight);
+  line-height: var(--typo-body02-m-line-height);
   color: var(--color-text-primary);
-  resize: none;
-  outline: none;
-}
-
-.contentTextarea::placeholder {
-  color: #ABABAB;
+  resize: vertical;
+  transition: border-color 0.2s ease;
 }
 
 .contentTextarea:focus {
+  outline: none;
   border-color: var(--color-primary-main);
+  box-shadow: 0 0 0 2px rgba(58, 92, 243, 0.1);
 }
 
-/* Footer */
+.contentTextarea::placeholder {
+  color: var(--color-text-disabled);
+}
+
 .footer {
-  width: 100%;
-  height: 48px;
+  /* Footer 영역 - 중앙 배치 */
   display: flex;
-  gap: 16px;
   justify-content: center;
-  position: absolute;
-  bottom: 24px;
-  left: 24px;
-  right: 24px;
+  gap: 16px;
+  padding-top: 24px;
+  border-top: 1px solid var(--color-border-light);
 }
 
 .closeButton {
-  width: 104px;
+  /* 닫기 버튼 */
+  min-width: 100px;
 }
 
 .submitButton {
-  width: 104px;
+  /* 등록하기 버튼 */
+  min-width: 100px;
+}
+
+/* 반응형 디자인 */
+@media (max-width: 768px) {
+  .wrapper {
+    margin: 16px;
+    padding: 20px;
+  }
+
+  .emotionBox {
+    padding: 20px;
+  }
+
+  .emotionList {
+    gap: 12px;
+  }
+
+  .emotionItem {
+    padding: 6px 12px;
+  }
+
+  .footer {
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .closeButton,
+  .submitButton {
+    width: 100%;
+  }
+}
+
+/* 다크 모드 지원 */
+.dark-mode .wrapper {
+  background: var(--color-background-default);
+  border-color: var(--color-border-default);
+}
+
+.dark-mode .emotionBox {
+  background: var(--color-background-paper);
+  border-color: var(--color-border-light);
+}
+
+.dark-mode .contentTextarea {
+  background: var(--color-background-default);
+  border-color: var(--color-border-default);
+  color: var(--color-text-primary);
+}
+
+.dark-mode .contentTextarea::placeholder {
+  color: var(--color-text-disabled);
+}
+
+.dark-mode .footer {
+  border-top-color: var(--color-border-light);
 }

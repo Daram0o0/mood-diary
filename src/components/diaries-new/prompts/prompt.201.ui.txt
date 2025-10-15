@@ -45,6 +45,10 @@
 
 기존히스토리-참고만) emotion-box의 라디오 버튼은 파랑색이 아닌, 검정색으로 표시될 것.
 
+기존히스토리-참고만) input-content의 placeholder색상을 #ABABAB로 global.css나 color.ts에서 변수를 참고해 적용할 것.
+
+기존히스토리-참고만) inputLabel은 #333333로 global.css나 color.ts에서 변수를 참고해 적용할 것.
+
 ==============================================
 
 핵심요구사항) 일기등록은 아래의 조건으로 Enum 데이터를 만들어 적용할 것.
@@ -80,7 +84,4 @@
                     - 닫기버튼: <Button />
                     - 등록하기버튼: <Button />
 
-
-핵심요구사항) input-content의 placeholder색상을 #ABABAB로 global.css나 color.ts에서 변수를 참고해 적용할 것.
-
-핵심요구사항) inputLabel은 #333333로 global.css나 color.ts에서 변수를 참고해 적용할 것.
+핵심요구사항) footer부분에 position: absolute가 들어가 있는데, 기존 커서룰에는 absolute를 사용하지 말라고 함. 수정할 것.
