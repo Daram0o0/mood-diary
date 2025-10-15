@@ -127,7 +127,7 @@
 }
 
 .contentTextarea:focus {
-  border-color: var(--color-primary-main);
+  border-color: #5A5A5A;
 }
 
 /* Footer */

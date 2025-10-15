@@ -10,7 +10,7 @@
 
 ==============================================
 
-조건-피그마) 활용할MCP: CursorTalkToFigmaMCP(채널명: 3cvn0rvz)
+조건-피그마) 활용할MCP: CursorTalkToFigmaMCP(채널명: du0ezkhy)
 조건-피그마) 참고할 공통컴포넌트 노드ID: 3:1153
 
 조건-파일경로) 구현될 TSX 파일경로: src/commons/components/input/index.tsx
@@ -32,3 +32,5 @@
 ==============================================
 
 핵심요구사항) border가 들어가게 되면 지정된 높이보다 작아지는데, 이 문제를 해결할 것. 예시) border-box
+
+핵심요구사항) input 컴포넌트가 storybook에서 확인했을때 height 48px이 아닌 height45px로 나오는데, styles_input이 small, middle, large가 지정되어야 할 것.
