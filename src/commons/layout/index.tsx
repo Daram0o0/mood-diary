@@ -1,16 +1,27 @@
+'use client';
+
 import React from 'react';
 import Image from 'next/image';
 import styles from './styles.module.css';
+import { useLinkRouting } from './hooks/index.link.routing.hook';
 
 interface LayoutProps {
   children: React.ReactNode;
 }
 
 const Layout: React.FC<LayoutProps> = ({ children }) => {
+  const {
+    isDiariesActive,
+    isPicturesActive,
+    navigateToDiaries,
+    navigateToPictures,
+    navigateToHome,
+  } = useLinkRouting();
+
   return (
     <div className={styles.layout}>
       <header className={styles.header}>
-        <div className={styles.logo}>
+        <div className={styles.logo} onClick={navigateToHome} data-testid="header-logo">
           <span className={styles.logoText}>민지의 다이어리</span>
         </div>
       </header>
@@ -29,11 +40,23 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
       
       <nav className={styles.navigation}>
         <div className={styles.navContainer}>
-          <div className={styles.navTab}>
-            <span className={styles.navTabText}>일기보관함</span>
+          <div 
+            className={isDiariesActive ? styles.navTab : styles.navTabInactive}
+            onClick={navigateToDiaries}
+            data-testid="nav-diaries"
+          >
+            <span className={isDiariesActive ? styles.navTabText : styles.navTabTextInactive}>
+              일기보관함
+            </span>
           </div>
-          <div className={styles.navTabInactive}>
-            <span className={styles.navTabTextInactive}>사진보관함</span>
+          <div 
+            className={isPicturesActive ? styles.navTab : styles.navTabInactive}
+            onClick={navigateToPictures}
+            data-testid="nav-pictures"
+          >
+            <span className={isPicturesActive ? styles.navTabText : styles.navTabTextInactive}>
+              사진보관함
+            </span>
           </div>
         </div>
       </nav>

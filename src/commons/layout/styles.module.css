@@ -18,6 +18,7 @@
 .logo {
   display: flex;
   align-items: center;
+  cursor: pointer;
 }
 
 .logoText {
@@ -66,6 +67,7 @@
   width: 119px;
   height: 48px;
   border-bottom: 2px solid var(--color-text-primary);
+  cursor: pointer;
 }
 
 .navTabInactive {
@@ -75,6 +77,7 @@
   width: 119px;
   height: 48px;
   border-bottom: none;
+  cursor: pointer;
 }
 
 .navTabText {
