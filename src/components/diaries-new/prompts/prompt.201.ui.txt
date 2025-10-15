@@ -88,3 +88,5 @@
                     - 등록하기버튼: <Button />
 
 핵심요구사항) constants/typography.ts와 color.ts를 참고하여 최대한 피그마와 유사한 스타일로 구현할 것.
+
+핵심요구사항) styles_inputTitle과 styles_inputContent하나의 div로 묶여있으면 flex-col이고, {gap}은 24px일 것.

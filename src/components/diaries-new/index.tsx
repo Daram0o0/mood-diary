@@ -73,29 +73,32 @@ export default function DiariesNew() {
         </div>
       </div>
 
-      {/* Input Title */}
-      <div className={styles.inputTitle}>
-        <label className={styles.inputLabel}>제목</label>
-        <Input
-          variant="primary"
-          size="medium"
-          theme="light"
-          placeholder="제목을 입력합니다."
-          value={title}
-          onChange={(e) => setTitle(e.target.value)}
-          className={styles.titleInput}
-        />
-      </div>
+      {/* Input Title and Content */}
+      <div className={styles.inputContainer}>
+        {/* Input Title */}
+        <div className={styles.inputTitle}>
+          <label className={styles.inputLabel}>제목</label>
+          <Input
+            variant="primary"
+            size="medium"
+            theme="light"
+            placeholder="제목을 입력합니다."
+            value={title}
+            onChange={(e) => setTitle(e.target.value)}
+            className={styles.titleInput}
+          />
+        </div>
 
-      {/* Input Content */}
-      <div className={styles.inputContent}>
-        <label className={styles.inputLabel}>내용</label>
-        <textarea
-          className={styles.contentTextarea}
-          placeholder="내용을 입력합니다."
-          value={content}
-          onChange={(e) => setContent(e.target.value)}
-        />
+        {/* Input Content */}
+        <div className={styles.inputContent}>
+          <label className={styles.inputLabel}>내용</label>
+          <textarea
+            className={styles.contentTextarea}
+            placeholder="내용을 입력합니다."
+            value={content}
+            onChange={(e) => setContent(e.target.value)}
+          />
+        </div>
       </div>
 
       {/* Footer */}
