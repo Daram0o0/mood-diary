@@ -66,8 +66,8 @@ export const emotions = {
 export type EmotionType = keyof typeof emotions;
 export type EmotionDataType = typeof emotions[EmotionType];
 
-// Emotion 키 배열
-export const emotionKeys = Object.keys(emotions) as EmotionType[];
+// Emotion 키 배열 (피그마 디자인 순서: 행복해요, 슬퍼요, 놀랐어요, 화나요, 기타)
+export const emotionKeys: EmotionType[] = ['Happy', 'Sad', 'Surprise', 'Angry', 'Etc'];
 
 // Emotion 값 배열
 export const emotionValues = Object.values(emotions);
