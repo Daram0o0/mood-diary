@@ -4,6 +4,7 @@ import React from 'react';
 import Image from 'next/image';
 import styles from './styles.module.css';
 import { useLinkRouting } from './hooks/index.link.routing.hook';
+import { useAreaVisibility } from './hooks/index.area.hook';
 
 export interface LayoutProps {
   /**
@@ -38,60 +39,78 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
     navigateToHome,
   } = useLinkRouting();
 
+  const {
+    showHeader,
+    showHeaderLogo,
+    showBanner,
+    showNavigation,
+    showFooter,
+  } = useAreaVisibility();
+
   return (
     <div className={styles.layout}>
-      <header className={styles.header}>
-        <div className={styles.logo} onClick={navigateToHome} data-testid="header-logo">
-          <span className={styles.logoText}>민지의 다이어리</span>
+      {showHeader && (
+        <header className={styles.header}>
+          {showHeaderLogo && (
+            <div className={styles.logo} onClick={navigateToHome} data-testid="header-logo">
+              <span className={styles.logoText}>민지의 다이어리</span>
+            </div>
+          )}
+        </header>
+      )}
+      
+      {showBanner && (
+        <div className={styles.banner}>
+          <Image
+            src="/images/banner.png"
+            alt="배너 이미지"
+            width={1168}
+            height={240}
+            className={styles.bannerImage}
+          />
         </div>
-      </header>
+      )}
       
-      <div className={styles.banner}>
-        <Image
-          src="/images/banner.png"
-          alt="배너 이미지"
-          width={1168}
-          height={240}
-          className={styles.bannerImage}
-        />
-      </div>
+      {showBanner && <div className={styles.gap}></div>}
       
-      <div className={styles.gap}></div>
-      
-      <nav className={styles.navigation}>
-        <div className={styles.navContainer}>
-          <div 
-            className={isDiariesActive ? styles.navTab : styles.navTabInactive}
-            onClick={navigateToDiaries}
-            data-testid="nav-diaries"
-          >
-            <span className={isDiariesActive ? styles.navTabText : styles.navTabTextInactive}>
-              일기보관함
-            </span>
+      {showNavigation && (
+        <nav className={styles.navigation}>
+          <div className={styles.navContainer}>
+            <div 
+              className={isDiariesActive ? styles.navTab : styles.navTabInactive}
+              onClick={navigateToDiaries}
+              data-testid="nav-diaries"
+            >
+              <span className={isDiariesActive ? styles.navTabText : styles.navTabTextInactive}>
+                일기보관함
+              </span>
+            </div>
+            <div 
+              className={isPicturesActive ? styles.navTab : styles.navTabInactive}
+              onClick={navigateToPictures}
+              data-testid="nav-pictures"
+            >
+              <span className={isPicturesActive ? styles.navTabText : styles.navTabTextInactive}>
+                사진보관함
+              </span>
+            </div>
           </div>
-          <div 
-            className={isPicturesActive ? styles.navTab : styles.navTabInactive}
-            onClick={navigateToPictures}
-            data-testid="nav-pictures"
-          >
-            <span className={isPicturesActive ? styles.navTabText : styles.navTabTextInactive}>
-              사진보관함
-            </span>
-          </div>
-        </div>
-      </nav>
+        </nav>
+      )}
       
       <main className={styles.main}>
         {children}
       </main>
       
-      <footer className={styles.footer}>
-        <div className={styles.footerContent}>
-          <div className={styles.footerTitle}>민지의 다이어리</div>
-          <div className={styles.footerInfo}>대표 : 민지</div>
-          <div className={styles.footerCopyright}>Copyright © 2024. 민지 Co., Ltd.</div>
-        </div>
-      </footer>
+      {showFooter && (
+        <footer className={styles.footer}>
+          <div className={styles.footerContent}>
+            <div className={styles.footerTitle}>민지의 다이어리</div>
+            <div className={styles.footerInfo}>대표 : 민지</div>
+            <div className={styles.footerCopyright}>Copyright © 2024. 민지 Co., Ltd.</div>
+          </div>
+        </footer>
+      )}
     </div>
   );
 };
