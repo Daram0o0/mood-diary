@@ -11,7 +11,7 @@
 
 ==============================================
 
-조건-피그마) 활용할MCP: CursorTalkToFigmaMCP(채널명: yuver8p7)
+조건-피그마) 활용할MCP: CursorTalkToFigmaMCP(채널명: u2kpfciw)
 조건-피그마) 구현될 컴포넌트 노드ID(라이트모드: detail-title 영역): 3:1073
 조건-피그마) 구현될 컴포넌트 노드ID(라이트모드: detail-content 영역): 3:1083
 조건-피그마) 구현될 컴포넌트 노드ID(라이트모드: detail-footer 영역): 3:1092
@@ -91,6 +91,7 @@
 기존히스토리-참고만) styles_titleSection에 justify-content가 space-between이 되어야 할 것.
             - 참고 노드ID: 3:1073
 
+기존히스토리-참고만) styles_footerActions에서 margin-top이 없어져야 함.
 ==============================================
 
-핵심요구사항) styles_footerActions에서 margin-top이 없어져야 함.
+핵심요구사항) styles_titleText에 margin-bottom 12px를 더할 것.

@@ -44,7 +44,7 @@
 }
 
 .titleText {
-  margin: 0;
+  margin: 0 0 12px 0;
   font-family: var(--font-family-korean);
   font-size: var(--typo-headline02-font-size);
   font-weight: var(--typo-headline02-font-weight);
