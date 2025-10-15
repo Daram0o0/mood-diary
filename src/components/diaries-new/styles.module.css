@@ -1,0 +1,151 @@
+/* Wrapper */
+.wrapper {
+  width: 640px;
+  height: 560px;
+  background: var(--color-background-default);
+  border: 1px solid var(--color-border-dark);
+  border-radius: 24px;
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  position: relative;
+}
+
+/* Header */
+.header {
+  width: 100%;
+  height: 24px;
+}
+
+.title {
+  font-family: var(--font-family-korean);
+  font-size: var(--typo-headline01-font-size);
+  font-weight: var(--typo-headline01-font-weight);
+  line-height: var(--typo-headline01-line-height);
+  color: var(--color-text-primary);
+  margin: 0;
+}
+
+/* Emotion Box */
+.emotionBox {
+  width: 100%;
+  height: 64px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.emotionTitle {
+  font-family: var(--font-family-korean);
+  font-size: var(--typo-headline03-font-size);
+  font-weight: var(--typo-headline03-font-weight);
+  line-height: var(--typo-headline03-line-height);
+  color: var(--color-text-primary);
+  margin: 0;
+}
+
+.emotionOptions {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+}
+
+.emotionOption {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+}
+
+.radioInput {
+  width: 24px;
+  height: 24px;
+  margin: 0;
+  cursor: pointer;
+  accent-color: #000000;
+}
+
+.radioLabel {
+  font-family: var(--font-family-korean);
+  font-size: var(--typo-title01-font-size);
+  font-weight: var(--typo-title01-font-weight);
+  line-height: var(--typo-title01-line-height);
+  color: #333333;
+  cursor: pointer;
+}
+
+/* Input Title */
+.inputTitle {
+  width: 100%;
+  height: 76px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.inputLabel {
+  font-family: var(--font-family-korean);
+  font-size: var(--typo-subtitle01-font-size);
+  font-weight: var(--typo-subtitle01-font-weight);
+  line-height: var(--typo-subtitle01-line-height);
+  color: #333333;
+}
+
+.titleInput {
+  width: 100%;
+}
+
+/* Input Content */
+.inputContent {
+  width: 100%;
+  height: 156px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.contentTextarea {
+  width: 100%;
+  height: 128px;
+  padding: 16px;
+  border: 1px solid var(--color-border-dark);
+  border-radius: 8px;
+  background: var(--color-background-default);
+  font-family: var(--font-family-korean);
+  font-size: var(--typo-body01-font-size);
+  font-weight: var(--typo-body01-font-weight);
+  line-height: var(--typo-body01-line-height);
+  color: var(--color-text-primary);
+  resize: none;
+  outline: none;
+}
+
+.contentTextarea::placeholder {
+  color: #ABABAB;
+}
+
+.contentTextarea:focus {
+  border-color: var(--color-primary-main);
+}
+
+/* Footer */
+.footer {
+  width: 100%;
+  height: 48px;
+  display: flex;
+  gap: 16px;
+  justify-content: center;
+  position: absolute;
+  bottom: 24px;
+  left: 24px;
+  right: 24px;
+}
+
+.closeButton {
+  width: 104px;
+}
+
+.submitButton {
+  width: 104px;
+}
