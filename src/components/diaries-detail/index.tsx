@@ -4,33 +4,41 @@ import React from 'react';
 import Image from 'next/image';
 import Button from '@/commons/components/button';
 import Input from '@/commons/components/input';
-import { EmotionType, getEmotionImage, getEmotionLabel, getEmotionColor } from '@/commons/constants/enum';
+import { getEmotionImage, getEmotionLabel, getEmotionColor } from '@/commons/constants/enum';
+import { useDiaryBinding } from './hooks/index.binding.hook';
 import styles from './styles.module.css';
 
-// Mock 데이터 인터페이스
-interface DiaryData {
-  id: string;
-  title: string;
-  content: string;
-  emotion: EmotionType;
-  createdAt: string;
+/**
+ * DiariesDetail 컴포넌트 Props 인터페이스
+ */
+export interface DiariesDetailProps {
+  /**
+   * 일기 ID (다이나믹 라우팅에서 추출된 값)
+   */
+  diaryId: string;
 }
 
-// Mock 데이터
-const mockDiaryData: DiaryData = {
-  id: '1',
-  title: '이것은 타이틀 입니다.',
-  content: '내용이 들어갑니다내용이 들어갑니다내용이 들어갑니다내용이 들어갑니다내용이 들어갑니다내용이 들어갑니다내용이 들어갑니다내용이 들어갑니다내용이 들어갑니다내용이 들어갑니다내용이 들어갑니다내용이 들어갑니다내용이 들어갑니다내용이 들어갑니다내용이 들어갑니다내용이 들어갑니다내용이 들어갑니다내용이 들어갑니다내용이 들어갑니다내용이 들어갑니다내용이 들어갑니다내용이 들어갑니다내용이 들어갑니다내용이 들어갑니다내용이 들어갑니다내용이 들어갑니다내용이 들어갑니다내용이 들어갑니다내용이 들어갑니다내용이 들어갑니다내용이 들어갑니다내용이 들어갑니다내용이 들어갑니다내용이 들어갑니다내용이 들어갑니다내용이 들어갑니다내용이 들어갑니다내용이 들어갑니다내용이 들어갑니다내용이 들어갑니다내용이 들어갑니다내용이 들어갑니다내용이 들어갑니다내용이 들어갑니다내용이 들어갑니다',
-  emotion: 'Happy',
-  createdAt: '2024. 07. 12'
-};
-
-const DiariesDetail: React.FC = () => {
-  const diary = mockDiaryData;
+/**
+ * 일기 상세 페이지 컴포넌트
+ * 
+ * 다이나믹 라우팅된 [id]를 통해 로컬스토리지의 실제 일기 데이터를 표시합니다.
+ * 
+ * @param {DiariesDetailProps} props - 컴포넌트 props
+ * @param {string} props.diaryId - 일기 ID
+ * 
+ * @example
+ * ```tsx
+ * <DiariesDetail diaryId="1" />
+ * ```
+ */
+export default function DiariesDetail({ diaryId }: DiariesDetailProps) {
+  const { diary, isLoading, error } = useDiaryBinding(diaryId);
 
   const handleCopyContent = () => {
-    navigator.clipboard.writeText(diary.content);
-    // 복사 완료 알림 로직 추가 가능
+    if (diary) {
+      navigator.clipboard.writeText(diary.content);
+      // 복사 완료 알림 로직 추가 가능
+    }
   };
 
   const handleEdit = () => {
@@ -42,6 +50,54 @@ const DiariesDetail: React.FC = () => {
     // 삭제 로직 추가
     console.log('삭제 버튼 클릭');
   };
+
+  // 로딩 상태 처리
+  if (isLoading) {
+    return (
+      <div className={styles.container} data-testid="diary-detail-page">
+        <div className={styles.gap64}></div>
+        <div className={styles.titleSection}>
+          <div className={styles.titleHeader}>
+            <h1 className={styles.titleText}>로딩 중...</h1>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  // 에러 상태 처리
+  if (error) {
+    return (
+      <div className={styles.container} data-testid="diary-detail-page">
+        <div className={styles.gap64}></div>
+        <div className={styles.titleSection}>
+          <div className={styles.titleHeader}>
+            <h1 className={styles.titleText}>오류 발생</h1>
+          </div>
+          <div className={styles.emotionDateSection}>
+            <p className={styles.errorText}>{error}</p>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  // 일기 데이터가 없는 경우 처리
+  if (!diary) {
+    return (
+      <div className={styles.container} data-testid="diary-detail-page">
+        <div className={styles.gap64}></div>
+        <div className={styles.titleSection}>
+          <div className={styles.titleHeader}>
+            <h1 className={styles.titleText}>일기를 찾을 수 없습니다</h1>
+          </div>
+          <div className={styles.emotionDateSection}>
+            <p className={styles.notFoundText}>요청하신 일기를 찾을 수 없습니다.</p>
+          </div>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className={styles.container} data-testid="diary-detail-page">
@@ -187,6 +243,4 @@ const DiariesDetail: React.FC = () => {
       </div>
     </div>
   );
-};
-
-export default DiariesDetail;
+}

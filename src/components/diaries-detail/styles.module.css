@@ -308,3 +308,24 @@
   height: 1px;
   background-color: var(--color-border-default);
 }
+
+/* 에러 및 상태 메시지 스타일 */
+.errorText {
+  font-family: var(--font-family-korean);
+  font-size: var(--typo-body01-font-size);
+  font-weight: var(--typo-body01-font-weight);
+  line-height: var(--typo-body01-line-height);
+  color: #EA5757;
+  letter-spacing: -0.16px;
+  margin: 0;
+}
+
+.notFoundText {
+  font-family: var(--font-family-korean);
+  font-size: var(--typo-body01-font-size);
+  font-weight: var(--typo-body01-font-weight);
+  line-height: var(--typo-body01-line-height);
+  color: #777777;
+  letter-spacing: -0.16px;
+  margin: 0;
+}
