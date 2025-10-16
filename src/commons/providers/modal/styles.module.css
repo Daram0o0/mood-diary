@@ -1,0 +1,158 @@
+/**
+ * 모달 오버레이 스타일
+ * 전체 화면을 덮는 컨테이너 - flexbox 방식으로 구현
+ */
+.modalOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  z-index: 1000;
+}
+
+/**
+ * 모달 backdrop 스타일
+ * 반투명한 배경으로 모달 뒤의 컨텐츠를 어둡게 처리 - flexbox 방식으로 구현
+ */
+.backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(2px);
+  transition: opacity 0.2s ease-in-out;
+  z-index: -1;
+}
+
+/**
+ * 모달 컨텐츠 스타일
+ * 실제 모달 컨텐츠가 들어가는 컨테이너 - flexbox 방식으로 구현
+ * 기존 모달 컴포넌트와 일관성을 맞춘 스타일
+ */
+.modalContent {
+  display: flex;
+  flex-direction: column;
+  background-color: #ffffff;
+  border-radius: 24px;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+  max-width: 90vw;
+  max-height: 90vh;
+  overflow: auto;
+  transition: transform 0.2s ease-in-out, opacity 0.2s ease-in-out;
+  transform: scale(1);
+  opacity: 1;
+  z-index: 1;
+  font-family: 'Pretendard Variable', -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+/**
+ * 다크 모드 지원 - 기존 모달 컴포넌트와 일관성 유지
+ */
+@media (prefers-color-scheme: dark) {
+  .modalContent {
+    background-color: #1f2937; /* gray-800 - 기존 모달과 동일 */
+    color: #ffffff; /* 기존 모달과 동일한 색상 */
+  }
+}
+
+/**
+ * 다크 모드에서 backdrop 색상 조정
+ */
+@media (prefers-color-scheme: dark) {
+  .backdrop {
+    background-color: rgba(0, 0, 0, 0.7);
+  }
+}
+
+/**
+ * 모바일 반응형 스타일 - 기존 모달 컴포넌트와 일관성 유지
+ */
+@media (max-width: 640px) {
+  .modalOverlay {
+    padding: 16px; /* 기존 모달과 동일한 패딩 */
+  }
+  
+  .modalContent {
+    max-width: 95vw;
+    max-height: 95vh;
+    border-radius: 24px; /* 모바일에서도 동일한 border-radius 유지 */
+  }
+}
+
+/**
+ * 애니메이션 효과 - 기존 모달 컴포넌트와 일관성 유지
+ */
+.modalOverlay {
+  animation: fadeIn 0.2s ease-out;
+}
+
+.modalContent {
+  animation: modalFadeIn 0.2s ease-out; /* 기존 모달과 동일한 애니메이션 */
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes modalFadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.95); /* 기존 모달과 동일한 애니메이션 */
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/**
+ * 접근성을 위한 포커스 스타일 - 기존 모달 컴포넌트와 일관성 유지
+ */
+.modalContent:focus {
+  outline: 2px solid #3b82f6; /* blue-500 - 기존 디자인 시스템과 일치 */
+  outline-offset: 2px;
+}
+
+/**
+ * 스크롤바 스타일링 (웹킷 브라우저)
+ */
+.modalContent::-webkit-scrollbar {
+  width: 6px;
+}
+
+.modalContent::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.modalContent::-webkit-scrollbar-thumb {
+  background-color: rgba(0, 0, 0, 0.2);
+  border-radius: 3px;
+}
+
+.modalContent::-webkit-scrollbar-thumb:hover {
+  background-color: rgba(0, 0, 0, 0.3);
+}
+
+/* 다크 모드 스크롤바 - 기존 모달 컴포넌트와 일관성 유지 */
+@media (prefers-color-scheme: dark) {
+  .modalContent::-webkit-scrollbar-thumb {
+    background-color: rgba(255, 255, 255, 0.2);
+  }
+  
+  .modalContent::-webkit-scrollbar-thumb:hover {
+    background-color: rgba(255, 255, 255, 0.3);
+  }
+}

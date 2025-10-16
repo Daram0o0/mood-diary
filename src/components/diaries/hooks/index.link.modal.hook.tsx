@@ -23,7 +23,7 @@ import DiariesNew from '@/components/diaries-new';
  * ```
  */
 export const useDiaryModal = () => {
-  const { openModal, closeModal } = useModal();
+  const { openModal, closeTopModal } = useModal();
 
   /**
    * 일기쓰기 모달을 여는 함수
@@ -36,7 +36,7 @@ export const useDiaryModal = () => {
    * 일기쓰기 모달을 닫는 함수
    */
   const closeDiaryModal = () => {
-    closeModal();
+    closeTopModal();
   };
 
   return {

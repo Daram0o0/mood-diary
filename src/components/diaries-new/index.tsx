@@ -24,7 +24,7 @@ export default function DiariesNew() {
   const [content, setContent] = useState('');
   
   // 모달 제어 훅
-  const { closeModal } = useModal();
+  const { closeTopModal } = useModal();
 
   /**
    * 감정 선택 핸들러
@@ -46,7 +46,7 @@ export default function DiariesNew() {
    * 닫기 핸들러
    */
   const handleClose = () => {
-    closeModal();
+    closeTopModal();
   };
 
   return (
