@@ -8,94 +8,12 @@ import Button from '@/commons/components/button';
 import Pagination from '@/commons/components/pagination';
 import Image from 'next/image';
 import {
-  EmotionType,
   getEmotionImage,
   getEmotionLabel,
   getEmotionColor,
 } from '@/commons/constants/enum';
 import { useDiaryModal } from './hooks/index.link.modal.hook';
-
-type DiaryItem = {
-  id: string;
-  date: string; // YYYY. MM. DD 형식 (피그마 형식에 맞춤)
-  emotion: EmotionType;
-  title: string;
-};
-
-const mockDiaries: DiaryItem[] = [
-  {
-    id: '1',
-    date: '2024. 03. 12',
-    emotion: 'Sad',
-    title: '타이틀 영역 입니다. 한줄까지만 노출 됩니다.',
-  },
-  {
-    id: '2',
-    date: '2024. 03. 12',
-    emotion: 'Surprise',
-    title: '타이틀 영역 입니다.',
-  },
-  {
-    id: '3',
-    date: '2024. 03. 12',
-    emotion: 'Angry',
-    title: '타이틀 영역 입니다.',
-  },
-  {
-    id: '4',
-    date: '2024. 03. 12',
-    emotion: 'Happy',
-    title: '타이틀 영역 입니다.',
-  },
-  {
-    id: '5',
-    date: '2024. 03. 12',
-    emotion: 'Etc',
-    title: '타이틀 영역 입니다. 한줄까지만 노출 됩니다.',
-  },
-  {
-    id: '6',
-    date: '2024. 03. 12',
-    emotion: 'Surprise',
-    title: '타이틀 영역 입니다.',
-  },
-  {
-    id: '7',
-    date: '2024. 03. 12',
-    emotion: 'Angry',
-    title: '타이틀 영역 입니다.',
-  },
-  {
-    id: '8',
-    date: '2024. 03. 12',
-    emotion: 'Happy',
-    title: '타이틀 영역 입니다.',
-  },
-  {
-    id: '9',
-    date: '2024. 03. 12',
-    emotion: 'Sad',
-    title: '타이틀 영역 입니다. 한줄까지만 노출 됩니다.',
-  },
-  {
-    id: '10',
-    date: '2024. 03. 12',
-    emotion: 'Surprise',
-    title: '타이틀 영역 입니다.',
-  },
-  {
-    id: '11',
-    date: '2024. 03. 12',
-    emotion: 'Angry',
-    title: '타이틀 영역 입니다.',
-  },
-  {
-    id: '12',
-    date: '2024. 03. 12',
-    emotion: 'Happy',
-    title: '타이틀 영역 입니다.',
-  },
-];
+import { useDiaryBinding } from './hooks/index.binding.hook';
 
 const Diaries: React.FC = () => {
   // 페이지네이션 상태 관리
@@ -104,6 +22,9 @@ const Diaries: React.FC = () => {
 
   // 모달 연결 훅
   const { openDiaryModal } = useDiaryModal();
+
+  // 데이터 바인딩 훅
+  const { diaries, isLoading, error } = useDiaryBinding();
 
   // 페이지 변경 핸들러
   const handlePageChange = (page: number) => {
@@ -114,6 +35,30 @@ const Diaries: React.FC = () => {
   const handleDiaryWriteClick = () => {
     openDiaryModal();
   };
+
+  // 로딩 상태 처리
+  if (isLoading) {
+    return (
+      <div className={styles.container} data-testid="diaries-page">
+        <div className={styles.gap}></div>
+        <div style={{ textAlign: 'center', padding: '40px' }}>
+          로딩 중...
+        </div>
+      </div>
+    );
+  }
+
+  // 에러 상태 처리
+  if (error) {
+    return (
+      <div className={styles.container} data-testid="diaries-page">
+        <div className={styles.gap}></div>
+        <div style={{ textAlign: 'center', padding: '40px', color: 'red' }}>
+          에러: {error}
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className={styles.container} data-testid="diaries-page">
@@ -171,12 +116,12 @@ const Diaries: React.FC = () => {
       
       <div className={styles.main}>
         <div className={styles.cardFlex}>
-          {mockDiaries.map((diary) => {
+          {diaries.map((diary) => {
             const imageSrc = getEmotionImage(diary.emotion, 'm');
             const emotionLabel = getEmotionLabel(diary.emotion);
             const emotionColor = getEmotionColor(diary.emotion);
             return (
-              <div key={diary.id} className={styles.diaryCard}>
+              <div key={diary.id} className={styles.diaryCard} data-testid="diary-card">
                 <div className={styles.cardImageWrap}>
                   <Image
                     className={styles.cardImage}
@@ -199,12 +144,13 @@ const Diaries: React.FC = () => {
                     <span 
                       className={styles.cardEmotion}
                       style={{ color: emotionColor }}
+                      data-testid="diary-emotion"
                     >
                       {emotionLabel}
                     </span>
-                    <span className={styles.cardDate}>{diary.date}</span>
+                    <span className={styles.cardDate} data-testid="diary-date">{diary.date}</span>
                   </div>
-                  <p className={styles.cardTitle}>{diary.title}</p>
+                  <p className={styles.cardTitle} data-testid="diary-title">{diary.title}</p>
                 </div>
               </div>
             );
