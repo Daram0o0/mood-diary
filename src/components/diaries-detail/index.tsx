@@ -44,7 +44,7 @@ const DiariesDetail: React.FC = () => {
   };
 
   return (
-    <div className={styles.container}>
+    <div className={styles.container} data-testid="diary-detail-page">
       {/* gap: 1168 * 64 */}
       <div className={styles.gap64}></div>
       
@@ -68,6 +68,7 @@ const DiariesDetail: React.FC = () => {
             <span 
               className={styles.emotionText}
               style={{ color: getEmotionColor(diary.emotion) }}
+              data-testid="diary-emotion"
             >
               {getEmotionLabel(diary.emotion)}
             </span>

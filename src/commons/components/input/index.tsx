@@ -1,6 +1,6 @@
 'use client';
 
-import { InputHTMLAttributes } from 'react';
+import { InputHTMLAttributes, forwardRef } from 'react';
 import { useTheme } from 'next-themes';
 import styles from './styles.module.css';
 
@@ -58,6 +58,7 @@ export interface InputProps extends Omit<InputHTMLAttributes<HTMLInputElement>, 
  * 
  * Figma 디자인 기반의 재사용 가능한 입력 컴포넌트
  * variant, size, theme를 조합하여 다양한 스타일 지원
+ * react-hook-form과의 호환성을 위해 forwardRef 사용
  * 
  * @example
  * ```tsx
@@ -68,7 +69,7 @@ export interface InputProps extends Omit<InputHTMLAttributes<HTMLInputElement>, 
  * />
  * ```
  */
-export default function Input({
+const Input = forwardRef<HTMLInputElement, InputProps>(({
   variant = 'primary',
   size = 'medium',
   theme,
@@ -79,7 +80,7 @@ export default function Input({
   disabled = false,
   className = '',
   ...props
-}: InputProps) {
+}, ref) => {
   const { resolvedTheme } = useTheme();
   
   // theme prop이 있으면 사용, 없으면 시스템 테마 사용
@@ -113,6 +114,7 @@ export default function Input({
         </label>
       )}
       <input
+        ref={ref}
         className={inputClasses}
         disabled={disabled}
         {...props}
@@ -124,5 +126,9 @@ export default function Input({
       )}
     </div>
   );
-}
+});
+
+Input.displayName = 'Input';
+
+export default Input;
 

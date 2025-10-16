@@ -1,11 +1,11 @@
 'use client';
 
-import { useState } from 'react';
 import styles from './styles.module.css';
 import Input from '@/commons/components/input';
 import Button from '@/commons/components/button';
-import { emotions, EmotionType, emotionKeys } from '@/commons/constants/enum';
+import { emotions, emotionKeys } from '@/commons/constants/enum';
 import { useDiaryModalClose } from './hooks/useDiaryModalClose.hook';
+import { useDiaryForm } from './hooks/index.form.hook';
 
 /**
  * DiariesNew 컴포넌트
@@ -19,28 +19,18 @@ import { useDiaryModalClose } from './hooks/useDiaryModalClose.hook';
  * ```
  */
 export default function DiariesNew() {
-  const [selectedEmotion, setSelectedEmotion] = useState<EmotionType>('Happy');
-  const [title, setTitle] = useState('');
-  const [content, setContent] = useState('');
-  
   // 모달 닫기 훅
   const { handleDiaryClose } = useDiaryModalClose();
+  
+  // 일기 폼 훅
+  const {
+    register,
+    handleSubmit,
+    formState: { errors, isValid },
+    handleEmotionChange,
+    watchedFields,
+  } = useDiaryForm();
 
-  /**
-   * 감정 선택 핸들러
-   * @param emotion - 선택된 감정 타입
-   */
-  const handleEmotionChange = (emotion: EmotionType) => {
-    setSelectedEmotion(emotion);
-  };
-
-  /**
-   * 일기 등록 핸들러
-   */
-  const handleSubmit = () => {
-    // 일기 등록 로직
-    console.log('일기 등록:', { selectedEmotion, title, content });
-  };
 
   /**
    * 닫기 핸들러
@@ -51,7 +41,7 @@ export default function DiariesNew() {
   };
 
   return (
-    <div className={styles.wrapper} data-testid="diary-write-modal">
+    <form onSubmit={handleSubmit} className={styles.wrapper} data-testid="diary-write-modal">
       {/* Header */}
       <div className={styles.header}>
         <h1 className={styles.title}>일기 쓰기</h1>
@@ -67,14 +57,20 @@ export default function DiariesNew() {
                 type="radio"
                 name="emotion"
                 value={key}
-                checked={selectedEmotion === key}
+                checked={watchedFields.emotion === key}
                 onChange={() => handleEmotionChange(key)}
                 className={styles.radioInput}
+                data-testid={`emotion-${key.toLowerCase()}`}
               />
               <span className={styles.radioLabel}>{emotions[key].label}</span>
             </label>
           ))}
         </div>
+        {errors.emotion && (
+          <span className={styles.errorMessage} data-testid="emotion-error">
+            {errors.emotion.message}
+          </span>
+        )}
       </div>
 
       {/* Input Title and Content */}
@@ -87,10 +83,15 @@ export default function DiariesNew() {
             size="medium"
             theme="light"
             placeholder="제목을 입력합니다."
-            value={title}
-            onChange={(e) => setTitle(e.target.value)}
+            {...register('title')}
             className={styles.titleInput}
+            data-testid="diary-title-input"
           />
+          {errors.title && (
+            <span className={styles.errorMessage} data-testid="title-error">
+              {errors.title.message}
+            </span>
+          )}
         </div>
 
         {/* Input Content */}
@@ -99,15 +100,21 @@ export default function DiariesNew() {
           <textarea
             className={styles.contentTextarea}
             placeholder="내용을 입력합니다."
-            value={content}
-            onChange={(e) => setContent(e.target.value)}
+            {...register('content')}
+            data-testid="diary-content-input"
           />
+          {errors.content && (
+            <span className={styles.errorMessage} data-testid="content-error">
+              {errors.content.message}
+            </span>
+          )}
         </div>
       </div>
 
       {/* Footer */}
       <div className={styles.footer}>
         <Button
+          type="button"
           variant="secondary"
           size="medium"
           theme="light"
@@ -118,15 +125,17 @@ export default function DiariesNew() {
           닫기
         </Button>
         <Button
+          type="submit"
           variant="primary"
           size="medium"
           theme="light"
-          onClick={handleSubmit}
+          disabled={!isValid}
           className={styles.submitButton}
+          data-testid="diary-submit-button"
         >
           등록하기
         </Button>
       </div>
-    </div>
+    </form>
   );
 }

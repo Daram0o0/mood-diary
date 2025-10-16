@@ -147,3 +147,13 @@
 .submitButton {
   width: 104px;
 }
+
+/* Error Message */
+.errorMessage {
+  font-family: var(--font-family-korean);
+  font-size: var(--typo-caption01-font-size);
+  font-weight: var(--typo-caption01-font-weight);
+  line-height: var(--typo-caption01-line-height);
+  color: #EA5757;
+  margin-top: 4px;
+}

@@ -109,7 +109,7 @@ export default function Modal({
     .join(' ');
   
   return (
-    <div className={modalClasses} data-testid={className.includes('cancel-modal') ? 'cancel-modal' : 'modal'}>
+    <div className={modalClasses} data-testid="modal-content">
       {/* 모달 헤더 영역 */}
       <div className={styles.header}>
         <h2 className={styles.title}>{title}</h2>
@@ -127,6 +127,7 @@ export default function Modal({
             fullWidth
             onClick={onConfirm}
             className={styles.singleButton}
+            data-testid="modal-confirm-button"
           >
             {confirmText}
           </Button>
