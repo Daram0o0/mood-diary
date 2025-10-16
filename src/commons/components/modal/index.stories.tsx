@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/nextjs-vite';
 import Modal from './index';
 
 const meta: Meta<typeof Modal> = {
-  title: 'Commons/Modal',
+  title: 'Commons/Components/Modal',
   component: Modal,
   parameters: {
     layout: 'centered',
