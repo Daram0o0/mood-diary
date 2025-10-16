@@ -14,6 +14,7 @@ import {
 } from '@/commons/constants/enum';
 import { useDiaryModal } from './hooks/index.link.modal.hook';
 import { useDiaryBinding } from './hooks/index.binding.hook';
+import { useLinkRouting } from './hooks/index.link.routing.hook';
 
 const Diaries: React.FC = () => {
   // 페이지네이션 상태 관리
@@ -25,6 +26,9 @@ const Diaries: React.FC = () => {
 
   // 데이터 바인딩 훅
   const { diaries, isLoading, error } = useDiaryBinding();
+
+  // 링크 라우팅 훅
+  const { handleDiaryCardClick, handleDeleteIconClick } = useLinkRouting();
 
   // 페이지 변경 핸들러
   const handlePageChange = (page: number) => {
@@ -121,7 +125,12 @@ const Diaries: React.FC = () => {
             const emotionLabel = getEmotionLabel(diary.emotion);
             const emotionColor = getEmotionColor(diary.emotion);
             return (
-              <div key={diary.id} className={styles.diaryCard} data-testid="diary-card">
+              <div 
+                key={diary.id} 
+                className={styles.diaryCard} 
+                data-testid="diary-card"
+                onClick={() => handleDiaryCardClick(diary.id)}
+              >
                 <div className={styles.cardImageWrap}>
                   <Image
                     className={styles.cardImage}
@@ -130,7 +139,10 @@ const Diaries: React.FC = () => {
                     width={274}
                     height={208}
                   />
-                  <div className={styles.closeIcon}>
+                  <div 
+                    className={styles.closeIcon}
+                    onClick={(e) => handleDeleteIconClick(e)}
+                  >
                     <Image
                       src="/icons/close_outline_light_m.svg"
                       alt="close"

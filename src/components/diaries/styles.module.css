@@ -61,6 +61,7 @@
   border-radius: 16px;
   width: 274px;
   height: 296px;
+  cursor: pointer;
 }
 
 .cardImageWrap {
