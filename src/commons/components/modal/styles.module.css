@@ -1,0 +1,172 @@
+/* Modal Base Styles */
+.modal {
+  width: 480px;
+  height: 200px;
+  background-color: #ffffff;
+  border-radius: 24px;
+  padding: 24px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  font-family: 'Pretendard Variable', -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+/* ============================================== */
+/* Header Styles */
+/* ============================================== */
+
+.header {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  text-align: center;
+}
+
+.title {
+  font-size: 24px;
+  font-weight: 700;
+  line-height: 24px;
+  letter-spacing: -0.24px;
+  color: #000000;
+  margin: 0;
+}
+
+.description {
+  font-size: 20px;
+  font-weight: 500;
+  line-height: 24px;
+  letter-spacing: -0.2px;
+  color: #333333;
+  margin: 0;
+}
+
+/* ============================================== */
+/* Actions Styles */
+/* ============================================== */
+
+.actions {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Single Action: 전체 너비 버튼 */
+.singleButton {
+  width: 100%;
+}
+
+/* Dual Action: 각각 104px 고정 너비 */
+.dualButton {
+  width: 104px;
+  flex-shrink: 0;
+}
+
+/* ============================================== */
+/* Variant Styles */
+/* ============================================== */
+
+/* Info Variant (기본) */
+.variant-info {
+  /* 기본 스타일은 위에서 정의됨 */
+}
+
+/* Danger Variant */
+.variant-danger .title {
+  color: #dc2626; /* red-600 */
+}
+
+.variant-danger .description {
+  color: #dc2626; /* red-600 */
+}
+
+/* ============================================== */
+/* Theme Styles */
+/* ============================================== */
+
+/* Light Theme (기본) */
+.theme-light {
+  background-color: #ffffff;
+}
+
+.theme-light .title {
+  color: #000000;
+}
+
+.theme-light .description {
+  color: #333333;
+}
+
+/* Dark Theme */
+.theme-dark {
+  background-color: #1f2937; /* gray-800 */
+}
+
+.theme-dark .title {
+  color: #ffffff;
+}
+
+.theme-dark .description {
+  color: #d1d5db; /* gray-300 */
+}
+
+.theme-dark.variant-danger .title {
+  color: #f87171; /* red-400 */
+}
+
+.theme-dark.variant-danger .description {
+  color: #f87171; /* red-400 */
+}
+
+/* ============================================== */
+/* Responsive Design */
+/* ============================================== */
+
+@media (max-width: 640px) {
+  .modal {
+    width: 100%;
+    max-width: 480px;
+    margin: 0 16px;
+    height: auto;
+    min-height: 200px;
+  }
+  
+  .title {
+    font-size: 20px;
+    line-height: 24px;
+  }
+  
+  .description {
+    font-size: 18px;
+    line-height: 22px;
+  }
+  
+  .actions {
+    flex-direction: column;
+    gap: 8px;
+  }
+  
+  .dualButton {
+    width: 100%;
+  }
+}
+
+/* ============================================== */
+/* Animation (선택사항) */
+/* ============================================== */
+
+.modal {
+  animation: modalFadeIn 0.2s ease-out;
+}
+
+@keyframes modalFadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
