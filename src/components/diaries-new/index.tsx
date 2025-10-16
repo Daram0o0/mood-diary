@@ -5,7 +5,7 @@ import styles from './styles.module.css';
 import Input from '@/commons/components/input';
 import Button from '@/commons/components/button';
 import { emotions, EmotionType, emotionKeys } from '@/commons/constants/enum';
-import { useModal } from '@/commons/providers/modal/modal.provider';
+import { useDiaryModalClose } from './hooks/useDiaryModalClose.hook';
 
 /**
  * DiariesNew 컴포넌트
@@ -23,8 +23,8 @@ export default function DiariesNew() {
   const [title, setTitle] = useState('');
   const [content, setContent] = useState('');
   
-  // 모달 제어 훅
-  const { closeTopModal } = useModal();
+  // 모달 닫기 훅
+  const { handleDiaryClose } = useDiaryModalClose();
 
   /**
    * 감정 선택 핸들러
@@ -44,13 +44,14 @@ export default function DiariesNew() {
 
   /**
    * 닫기 핸들러
+   * 등록취소 모달을 표시
    */
   const handleClose = () => {
-    closeTopModal();
+    handleDiaryClose();
   };
 
   return (
-    <div className={styles.wrapper}>
+    <div className={styles.wrapper} data-testid="diary-write-modal">
       {/* Header */}
       <div className={styles.header}>
         <h1 className={styles.title}>일기 쓰기</h1>
@@ -112,6 +113,7 @@ export default function DiariesNew() {
           theme="light"
           onClick={handleClose}
           className={styles.closeButton}
+          data-testid="diary-close-button"
         >
           닫기
         </Button>

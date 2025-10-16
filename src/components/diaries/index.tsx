@@ -152,6 +152,7 @@ const Diaries: React.FC = () => {
           size="medium"
           className={styles.buttonWidth}
           onClick={handleDiaryWriteClick}
+          data-testid="diary-write-button"
           icon={
             <Image
               src="/icons/plus_outline_light_m.svg"

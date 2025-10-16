@@ -52,6 +52,15 @@
   justify-content: center;
 }
 
+/* Actions Type Classes */
+.actions-single {
+  /* Single action specific styles */
+}
+
+.actions-dual {
+  /* Dual action specific styles */
+}
+
 /* Single Action: 전체 너비 버튼 */
 .singleButton {
   width: 100%;
