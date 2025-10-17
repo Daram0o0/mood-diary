@@ -51,6 +51,15 @@ export default function DiariesDetail({ diaryId }: DiariesDetailProps) {
     console.log('삭제 버튼 클릭');
   };
 
+  // 날짜 포맷팅 함수 (yyyy. mm. dd. 형식)
+  const formatDate = (dateString: string): string => {
+    const date = new Date(dateString);
+    const year = date.getFullYear();
+    const month = String(date.getMonth() + 1).padStart(2, '0');
+    const day = String(date.getDate()).padStart(2, '0');
+    return `${year}. ${month}. ${day}.`;
+  };
+
   // 로딩 상태 처리
   if (isLoading) {
     return (
@@ -131,7 +140,7 @@ export default function DiariesDetail({ diaryId }: DiariesDetailProps) {
           </div>
           
           <div className={styles.dateSection}>
-            <span className={styles.dateText}>{diary.createdAt}</span>
+            <span className={styles.dateText}>{formatDate(diary.createdAt)}</span>
             <span className={styles.dateLabel}>작성</span>
           </div>
         </div>
