@@ -27,19 +27,19 @@
   color: #ffffff;
 }
 
-
-/* Input Base Styles */
 .input {
-  display: flex;
-  align-items: center;
+  /* display:flex 유지하더라도 */
+  flex: 0 0 auto;   /* 높이 유연 확장 방지 */
+  -webkit-appearance: none;
+  appearance: none; /* 기본 외형 제거 */
+  height: 48px;     /* 원하는 높이 */
+  box-sizing: border-box;
   border: 1px solid;
   border-radius: 8px;
   font-family: 'Pretendard Variable', -apple-system, BlinkMacSystemFont, sans-serif;
   font-weight: 500;
   letter-spacing: -0.01em;
   transition: all 0.2s ease-in-out;
-  box-sizing: border-box;
-  flex: 1;
 }
 
 .input:focus {
