@@ -41,7 +41,6 @@
 .main {
   /* 요구사항: background-color, border 제거 */
   display: flex;
-  justify-content: center;
   align-items: center;
   min-height: 200px;
 }
