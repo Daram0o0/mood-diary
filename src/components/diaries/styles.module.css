@@ -40,6 +40,10 @@
 
 .main {
   /* 요구사항: background-color, border 제거 */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 200px;
 }
 
 .cardFlex {
@@ -148,4 +152,23 @@
 /* width만 className으로 제어 */
 .paginationWidth { 
   width: 288px; /* 피그마 디자인에 맞춰 288px로 설정 */
+}
+
+/* 빈 상태 스타일 */
+.emptyState {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+}
+
+.emptyText {
+  color: var(--color-text-hint);
+  font-size: var(--typo-body01-font-size);
+  line-height: var(--typo-body01-line-height);
+  font-weight: var(--font-weight-medium);
+  letter-spacing: -0.16px;
+  margin: 0;
+  text-align: center;
 }

@@ -16,6 +16,19 @@ import { useDiaryModal } from './hooks/index.link.modal.hook';
 import { useDiaryBinding } from './hooks/index.binding.hook';
 import { useLinkRouting } from './hooks/index.link.routing.hook';
 
+/**
+ * 일기 목록 페이지 컴포넌트
+ * 
+ * 피그마 디자인에 맞춰 일기 카드들을 표시하고, 빈 상태일 때는 "등록된 일기가 없습니다" 메시지를 보여줍니다.
+ * localStorage 기반으로 실제 일기 데이터를 표시합니다.
+ * 
+ * @returns {JSX.Element} 일기 목록 페이지 컴포넌트
+ * 
+ * @example
+ * ```tsx
+ * <Diaries />
+ * ```
+ */
 const Diaries: React.FC = () => {
   // 페이지네이션 상태 관리
   const [currentPage, setCurrentPage] = useState(1);
@@ -119,55 +132,62 @@ const Diaries: React.FC = () => {
       <div className={styles.gap}></div>
       
       <div className={styles.main}>
-        <div className={styles.cardFlex}>
-          {diaries.map((diary) => {
-            const imageSrc = getEmotionImage(diary.emotion, 'm');
-            const emotionLabel = getEmotionLabel(diary.emotion);
-            const emotionColor = getEmotionColor(diary.emotion);
-            return (
-              <div 
-                key={diary.id} 
-                className={styles.diaryCard} 
-                data-testid="diary-card"
-                onClick={() => handleDiaryCardClick(diary.id)}
-              >
-                <div className={styles.cardImageWrap}>
-                  <Image
-                    className={styles.cardImage}
-                    src={imageSrc}
-                    alt={emotionLabel}
-                    width={274}
-                    height={208}
-                  />
-                  <div 
-                    className={styles.closeIcon}
-                    onClick={(e) => handleDeleteIconClick(e)}
-                  >
+        {diaries.length === 0 ? (
+          // 빈 상태 처리: localStorage에 일기 데이터가 없을 때
+          <div className={styles.emptyState}>
+            <p className={styles.emptyText}>등록된 일기가 없습니다.</p>
+          </div>
+        ) : (
+          <div className={styles.cardFlex}>
+            {diaries.map((diary) => {
+              const imageSrc = getEmotionImage(diary.emotion, 'm');
+              const emotionLabel = getEmotionLabel(diary.emotion);
+              const emotionColor = getEmotionColor(diary.emotion);
+              return (
+                <div 
+                  key={diary.id} 
+                  className={styles.diaryCard} 
+                  data-testid="diary-card"
+                  onClick={() => handleDiaryCardClick(diary.id)}
+                >
+                  <div className={styles.cardImageWrap}>
                     <Image
-                      src="/icons/close_outline_light_m.svg"
-                      alt="close"
-                      width={24}
-                      height={24}
+                      className={styles.cardImage}
+                      src={imageSrc}
+                      alt={emotionLabel}
+                      width={274}
+                      height={208}
                     />
-                  </div>
-                </div>
-                <div className={styles.cardContent}>
-                  <div className={styles.cardHeader}>
-                    <span 
-                      className={styles.cardEmotion}
-                      style={{ color: emotionColor }}
-                      data-testid="diary-emotion"
+                    <div 
+                      className={styles.closeIcon}
+                      onClick={(e) => handleDeleteIconClick(e)}
                     >
-                      {emotionLabel}
-                    </span>
-                    <span className={styles.cardDate} data-testid="diary-date">{diary.date}</span>
+                      <Image
+                        src="/icons/close_outline_light_m.svg"
+                        alt="close"
+                        width={24}
+                        height={24}
+                      />
+                    </div>
                   </div>
-                  <p className={styles.cardTitle} data-testid="diary-title">{diary.title}</p>
+                  <div className={styles.cardContent}>
+                    <div className={styles.cardHeader}>
+                      <span 
+                        className={styles.cardEmotion}
+                        style={{ color: emotionColor }}
+                        data-testid="diary-emotion"
+                      >
+                        {emotionLabel}
+                      </span>
+                      <span className={styles.cardDate} data-testid="diary-date">{diary.date}</span>
+                    </div>
+                    <p className={styles.cardTitle} data-testid="diary-title">{diary.title}</p>
+                  </div>
                 </div>
-              </div>
-            );
-          })}
-        </div>
+              );
+            })}
+          </div>
+        )}
       </div>
       
       <div className={styles.gap}></div>
