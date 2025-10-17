@@ -60,6 +60,9 @@ export default function DiariesDetail({ diaryId }: DiariesDetailProps) {
     return `${year}. ${month}. ${day}.`;
   };
 
+  // 포맷된 날짜 텍스트 (인라인 formatDate 호출 방지)
+  const formattedDate = diary ? formatDate(diary.createdAt) : '';
+
   // 로딩 상태 처리
   if (isLoading) {
     return (
@@ -140,7 +143,7 @@ export default function DiariesDetail({ diaryId }: DiariesDetailProps) {
           </div>
           
           <div className={styles.dateSection}>
-            <span className={styles.dateText}>{formatDate(diary.createdAt)}</span>
+            <span className={styles.dateText}>{formattedDate}</span>
             <span className={styles.dateLabel}>작성</span>
           </div>
         </div>
