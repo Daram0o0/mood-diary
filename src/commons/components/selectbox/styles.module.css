@@ -57,7 +57,7 @@
 }
 
 .selectbox:focus-visible {
-  outline: 2px solid #3a5cf3;
+  outline: 2px solid #5A5A5A;
   outline-offset: 2px;
 }
 
@@ -193,11 +193,11 @@
 }
 
 .selectbox.variant-primary.theme-light:hover:not(.disabled) {
-  border-color: #3a5cf3;
+  border-color: #5a5a5a;
 }
 
 .selectbox.variant-primary.theme-light.open {
-  border-color: #3a5cf3;
+  border-color: #5a5a5a;
 }
 
 .selectbox.variant-primary.theme-light.error {
@@ -219,7 +219,7 @@
 }
 
 .selectbox.variant-secondary.theme-light.open {
-  border-color: #3a5cf3;
+  border-color: #5a5a5a;
 }
 
 .selectbox.variant-secondary.theme-light.error {
@@ -243,7 +243,7 @@
 
 .selectbox.variant-tertiary.theme-light.open {
   background-color: #f2f2f2;
-  border-color: #3a5cf3;
+  border-color: #5a5a5a;
 }
 
 .selectbox.variant-tertiary.theme-light.error {
@@ -515,7 +515,7 @@
  * ============================================ */
 
 .selectbox:focus-visible {
-  outline: 2px solid #3a5cf3;
+  outline: 2px solid #5a5a5a;
   outline-offset: 2px;
 }
 
