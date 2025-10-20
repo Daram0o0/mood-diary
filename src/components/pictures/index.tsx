@@ -1,5 +1,8 @@
 'use client';
 
+import { useState } from 'react';
+import Image from 'next/image';
+import Selectbox from '@/commons/components/selectbox';
 import styles from './styles.module.css';
 
 /**
@@ -13,10 +16,19 @@ export interface PicturesProps {
 }
 
 /**
+ * 강아지 사진 Mock 데이터 타입
+ */
+interface DogImage {
+  id: string;
+  src: string;
+  alt: string;
+}
+
+/**
  * Pictures 컴포넌트
  * 
- * 사진 갤러리 페이지의 와이어프레임 구조를 제공합니다.
- * HTML과 flexbox를 활용하여 레이아웃을 구성합니다.
+ * 피그마 디자인 기반의 강아지 사진 갤러리 컴포넌트
+ * 필터 기능과 flex 레이아웃을 제공합니다.
  * 
  * @param {PicturesProps} props - 컴포넌트 props
  * @param {string} [props.className] - 추가 CSS 클래스명
@@ -28,6 +40,22 @@ export interface PicturesProps {
  * ```
  */
 const Pictures: React.FC<PicturesProps> = ({ className }) => {
+  const [selectedFilter, setSelectedFilter] = useState('default');
+
+  // Mock 데이터: 모든 사진을 dog-1.jpg로 통일
+  const dogImages: DogImage[] = Array.from({ length: 10 }, (_, index) => ({
+    id: `dog-${index + 1}`,
+    src: '/images/dog-1.jpg',
+    alt: `강아지 사진 ${index + 1}`,
+  }));
+
+  // 필터 옵션
+  const filterOptions = [
+    { value: 'default', label: '기본' },
+    { value: 'recent', label: '최신순' },
+    { value: 'popular', label: '인기순' },
+  ];
+
   return (
     <div className={`${styles.container} ${className || ''}`}>
       {/* Gap 영역 1: 1168 x 32 */}
@@ -36,7 +64,15 @@ const Pictures: React.FC<PicturesProps> = ({ className }) => {
       {/* Filter 영역: 1168 x 48 */}
       <div className={styles.filterSection}>
         <div className={styles.filterContent}>
-          필터 컨텐츠 영역
+          <Selectbox
+            variant="primary"
+            size="large"
+            theme="light"
+            options={filterOptions}
+            value={selectedFilter}
+            onChange={setSelectedFilter}
+            className={styles.filterSelectbox}
+          />
         </div>
       </div>
       
@@ -46,7 +82,20 @@ const Pictures: React.FC<PicturesProps> = ({ className }) => {
       {/* Main 영역: 1168 x auto */}
       <div className={styles.mainSection}>
         <div className={styles.mainContent}>
-          메인 컨텐츠 영역
+          <div className={styles.imageFlex}>
+            {dogImages.map((image) => (
+              <div key={image.id} className={styles.imageItem}>
+                <Image
+                  src={image.src}
+                  alt={image.alt}
+                  width={640}
+                  height={640}
+                  className={styles.dogImage}
+                  priority={false}
+                />
+              </div>
+            ))}
+          </div>
         </div>
       </div>
     </div>
