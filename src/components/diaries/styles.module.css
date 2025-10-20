@@ -149,9 +149,9 @@
 }
 
 /* width만 className으로 제어 */
-.paginationWidth { 
-  width: 288px; /* 피그마 디자인에 맞춰 288px로 설정 */
-}
+/* .paginationWidth { 
+  width: 288px; 피그마 디자인에 맞춰 288px로 설정
+} */
 
 /* 빈 상태 스타일 */
 .emptyState {
@@ -170,4 +170,24 @@
   letter-spacing: -0.16px;
   margin: 0;
   text-align: center;
+}
+
+/* 로딩 상태 스타일 */
+.loadingState {
+  text-align: center;
+  padding: 40px;
+  color: var(--color-text-secondary);
+  font-size: var(--typo-body01-font-size);
+  line-height: var(--typo-body01-line-height);
+  font-weight: var(--font-weight-medium);
+}
+
+/* 에러 상태 스타일 */
+.errorState {
+  text-align: center;
+  padding: 40px;
+  color: var(--color-status-error);
+  font-size: var(--typo-body01-font-size);
+  line-height: var(--typo-body01-line-height);
+  font-weight: var(--font-weight-medium);
 }

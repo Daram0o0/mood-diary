@@ -32,13 +32,19 @@ import { useLinkRouting } from './hooks/index.link.routing.hook';
 const Diaries: React.FC = () => {
   // 페이지네이션 상태 관리
   const [currentPage, setCurrentPage] = useState(1);
-  const totalPages = 5; // 피그마 디자인에 맞춰 5페이지로 설정
+  const itemsPerPage = 12; // 12개씩 한 페이지로 설정
 
   // 모달 연결 훅
   const { openDiaryModal } = useDiaryModal();
 
   // 데이터 바인딩 훅
   const { diaries, isLoading, error } = useDiaryBinding();
+
+  // 페이지네이션 계산
+  const totalPages = Math.ceil(diaries.length / itemsPerPage);
+  const startIndex = (currentPage - 1) * itemsPerPage;
+  const endIndex = startIndex + itemsPerPage;
+  const currentPageDiaries = diaries.slice(startIndex, endIndex);
 
   // 링크 라우팅 훅
   const { handleDiaryCardClick, handleDeleteIconClick } = useLinkRouting();
@@ -47,6 +53,11 @@ const Diaries: React.FC = () => {
   const handlePageChange = (page: number) => {
     setCurrentPage(page);
   };
+
+  // 데이터가 변경될 때 첫 페이지로 리셋
+  React.useEffect(() => {
+    setCurrentPage(1);
+  }, [diaries.length]);
 
   // 일기쓰기 버튼 클릭 핸들러
   const handleDiaryWriteClick = () => {
@@ -58,7 +69,7 @@ const Diaries: React.FC = () => {
     return (
       <div className={styles.container} data-testid="diaries-page">
         <div className={styles.gap}></div>
-        <div style={{ textAlign: 'center', padding: '40px' }}>
+        <div className={styles.loadingState}>
           로딩 중...
         </div>
       </div>
@@ -70,7 +81,7 @@ const Diaries: React.FC = () => {
     return (
       <div className={styles.container} data-testid="diaries-page">
         <div className={styles.gap}></div>
-        <div style={{ textAlign: 'center', padding: '40px', color: 'red' }}>
+        <div className={styles.errorState}>
           에러: {error}
         </div>
       </div>
@@ -139,7 +150,7 @@ const Diaries: React.FC = () => {
           </div>
         ) : (
           <div className={styles.cardFlex}>
-            {diaries.map((diary) => {
+            {currentPageDiaries.map((diary) => {
               const imageSrc = getEmotionImage(diary.emotion, 'm');
               const emotionLabel = getEmotionLabel(diary.emotion);
               const emotionColor = getEmotionColor(diary.emotion);
@@ -192,19 +203,22 @@ const Diaries: React.FC = () => {
       
       <div className={styles.gap}></div>
       
-      <div className={styles.pagination}>
-        <Pagination
-          currentPage={currentPage}
-          totalPages={totalPages}
-          onPageChange={handlePageChange}
-          variant="primary"
-          theme="light"
-          size="medium"
-          showArrows={true}
-          visiblePages={5}
-          className={styles.paginationWidth}
-        />
-      </div>
+      {/* 페이지네이션은 데이터가 있을 때만 표시 */}
+      {diaries.length > 0 && totalPages >= 1 && (
+        <div className={styles.pagination}>
+          <Pagination
+            currentPage={currentPage}
+            totalPages={totalPages}
+            onPageChange={handlePageChange}
+            variant="primary"
+            theme="light"
+            size="medium"
+            showArrows={true}
+            visiblePages={5}
+            className={styles.paginationWidth}
+          />
+        </div>
+      )}
       
       <div className={styles.gap}></div>
     </div>
