@@ -33,7 +33,10 @@ const AuthSignup: React.FC<AuthSignupProps> = ({ className = '' }) => {
   return (
     <div className={`${styles.wrapper} ${className}`}>
       <div className={styles.formCard}>
-        <h1 className={styles.title}>회원가입</h1>
+        <div className={styles.header}>
+          <h1 className={styles.title}>회원가입</h1>
+          <p className={styles.subtitle}>새로운 계정을 만들어 일기를 작성해보세요</p>
+        </div>
         
         <form onSubmit={onSubmit} className={styles.form} role="form" aria-label="회원가입 폼" data-testid="auth-signup-form">
           <div className={styles.fieldGroup}>

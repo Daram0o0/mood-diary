@@ -30,14 +30,27 @@
  * Typography
  * ============================================ */
 
+.header {
+  text-align: center;
+  margin-bottom: 32px;
+}
+
 .title {
   font-family: var(--font-family-korean);
   font-size: var(--typo-headline01-font-size);
   line-height: var(--typo-headline01-line-height);
   font-weight: var(--typo-headline01-font-weight);
   color: var(--color-text-primary);
-  text-align: center;
-  margin: 0 0 40px 0;
+  margin: 0 0 8px 0;
+}
+
+.subtitle {
+  font-family: var(--font-family-korean);
+  font-size: var(--typo-body02-m-font-size);
+  line-height: var(--typo-body02-m-line-height);
+  font-weight: var(--typo-body02-m-font-weight);
+  color: var(--color-text-secondary);
+  margin: 0;
 }
 
 /* ============================================

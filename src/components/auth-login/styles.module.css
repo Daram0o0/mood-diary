@@ -7,17 +7,17 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background: var(--color-background-paper);
+  background: var(--color-background-default);
   padding: 20px;
 }
 
 .loginCard {
   width: 100%;
-  max-width: 400px;
+  max-width: 480px;
   background: var(--color-background-elevated);
-  border-radius: 16px;
-  padding: 40px 32px;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  border-radius: 12px;
+  padding: 48px 40px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
   border: 1px solid var(--color-border-light);
 }
 
@@ -31,12 +31,12 @@
 }
 
 .title {
-  font-size: var(--typo-headline02-font-size);
-  line-height: var(--typo-headline02-line-height);
-  font-weight: var(--typo-headline02-font-weight);
+  font-family: var(--font-family-korean);
+  font-size: var(--typo-headline01-font-size);
+  line-height: var(--typo-headline01-line-height);
+  font-weight: var(--typo-headline01-font-weight);
   color: var(--color-text-primary);
   margin: 0 0 8px 0;
-  font-family: var(--font-family-korean);
 }
 
 .subtitle {
@@ -53,30 +53,26 @@
 /* ============================================== */
 
 .form {
-  margin-bottom: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
 }
 
-.inputGroup {
-  margin-bottom: 20px;
+.fieldGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
 }
 
-.inputGroup:last-of-type {
-  margin-bottom: 0;
-}
-
-.input {
+.field {
   width: 100%;
 }
 
-/* ============================================== */
-/* Button Section */
-/* ============================================== */
-
-.buttonGroup {
-  margin-top: 32px;
+.actions {
+  margin-top: 12px;
 }
 
-.loginButton {
+.submitButton {
   width: 100%;
 }
 
@@ -112,7 +108,7 @@
 }
 
 .signupLink:focus {
-  outline: 2px solid var(--color-primary-light);
+  outline: 2px solid var(--color-primary-main);
   outline-offset: 2px;
   border-radius: 4px;
 }
@@ -131,8 +127,8 @@
   }
   
   .title {
-    font-size: var(--typo-headline03-font-size);
-    line-height: var(--typo-headline03-line-height);
+    font-size: var(--typo-headline02-font-size);
+    line-height: var(--typo-headline02-line-height);
   }
   
   .subtitle {

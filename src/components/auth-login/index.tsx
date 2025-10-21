@@ -42,39 +42,46 @@ export default function AuthLogin() {
         </div>
 
         <form className={styles.form}>
-          <div className={styles.inputGroup}>
+          <div className={styles.fieldGroup}>
             <Input
               variant="primary"
               theme="light"
               size="medium"
               type="email"
+              label="이메일"
               placeholder="이메일을 입력하세요"
               value={email}
               onChange={handleEmailChange}
-              className={styles.input}
+              className={styles.field}
+              aria-label="이메일 입력"
+              required
             />
           </div>
 
-          <div className={styles.inputGroup}>
+          <div className={styles.fieldGroup}>
             <Input
               variant="primary"
               theme="light"
               size="medium"
               type="password"
+              label="비밀번호"
               placeholder="비밀번호를 입력하세요"
               value={password}
               onChange={handlePasswordChange}
-              className={styles.input}
+              className={styles.field}
+              aria-label="비밀번호 입력"
+              required
             />
           </div>
 
-          <div className={styles.buttonGroup}>
+          <div className={styles.actions}>
             <Button
               variant="primary"
               theme="light"
               size="medium"
               onClick={handleLogin}
-              className={styles.loginButton}
+              className={styles.submitButton}
+              aria-label="로그인 버튼"
             >
               로그인
             </Button>
