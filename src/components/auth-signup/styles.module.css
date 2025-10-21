@@ -1,0 +1,162 @@
+/* 
+ * AuthSignup Component Styles
+ * 회원가입 폼 컴포넌트 스타일
+ */
+
+/* ============================================
+ * Container & Layout
+ * ============================================ */
+
+.wrapper {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--color-background-default);
+  padding: 20px;
+}
+
+.formCard {
+  width: 100%;
+  max-width: 480px;
+  background: var(--color-background-elevated);
+  border-radius: 12px;
+  padding: 48px 40px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  border: 1px solid var(--color-border-light);
+}
+
+/* ============================================
+ * Typography
+ * ============================================ */
+
+.title {
+  font-family: var(--font-family-korean);
+  font-size: var(--typo-headline01-font-size);
+  line-height: var(--typo-headline01-line-height);
+  font-weight: var(--typo-headline01-font-weight);
+  color: var(--color-text-primary);
+  text-align: center;
+  margin: 0 0 40px 0;
+}
+
+/* ============================================
+ * Form Layout
+ * ============================================ */
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.fieldGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.field {
+  width: 100%;
+}
+
+.actions {
+  margin-top: 12px;
+}
+
+.submitButton {
+  width: 100%;
+}
+
+/* ============================================
+ * Navigation Links
+ * ============================================ */
+
+.navigation {
+  margin-top: 32px;
+  text-align: center;
+}
+
+.navigationText {
+  font-family: var(--font-family-korean);
+  font-size: var(--typo-body02-m-font-size);
+  line-height: var(--typo-body02-m-line-height);
+  font-weight: var(--typo-body02-m-font-weight);
+  color: var(--color-text-secondary);
+  margin: 0;
+}
+
+.navigationLink {
+  color: var(--color-primary-main);
+  text-decoration: none;
+  font-weight: var(--font-weight-semibold);
+  transition: color 0.2s ease;
+}
+
+.navigationLink:hover {
+  color: var(--color-primary-dark);
+  text-decoration: underline;
+}
+
+.navigationLink:focus {
+  outline: 2px solid var(--color-primary-main);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+/* ============================================
+ * Responsive Design
+ * ============================================ */
+
+@media (max-width: 480px) {
+  .wrapper {
+    padding: 16px;
+  }
+  
+  .formCard {
+    padding: 32px 24px;
+    border-radius: 8px;
+  }
+  
+  .title {
+    font-size: var(--typo-headline02-font-size);
+    line-height: var(--typo-headline02-line-height);
+    margin-bottom: 32px;
+  }
+  
+  .form {
+    gap: 20px;
+  }
+  
+  .fieldGroup {
+    gap: 10px;
+  }
+  
+  .actions {
+    margin-top: 8px;
+  }
+  
+  .navigation {
+    margin-top: 24px;
+  }
+}
+
+/* ============================================
+ * Dark Mode Support
+ * ============================================ */
+
+@media (prefers-color-scheme: dark) {
+  .formCard {
+    background: var(--color-background-elevated);
+    border-color: var(--color-border-default);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+  }
+  
+  .title {
+    color: var(--color-text-primary);
+  }
+  
+  .navigationText {
+    color: var(--color-text-secondary);
+  }
+}
