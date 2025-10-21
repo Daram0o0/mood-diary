@@ -1,8 +1,8 @@
 'use client';
 
-import { useState } from 'react';
 import Input from '@/commons/components/input';
 import Button from '@/commons/components/button';
+import { useSignupForm } from './hooks/index.form.hook';
 import styles from './styles.module.css';
 
 export interface AuthSignupProps {
@@ -27,41 +27,21 @@ export interface AuthSignupProps {
  * ```
  */
 const AuthSignup: React.FC<AuthSignupProps> = ({ className = '' }) => {
-  const [formData, setFormData] = useState({
-    email: '',
-    password: '',
-    confirmPassword: '',
-    name: '',
-  });
-
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = e.target;
-    setFormData(prev => ({
-      ...prev,
-      [name]: value,
-    }));
-  };
-
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    // 회원가입 로직은 구현하지 않음 (요구사항에 따라 기능 구현 제외)
-    console.log('회원가입 폼 제출:', formData);
-  };
+  const { form, onSubmit, isLoading, isFormValid, errors } = useSignupForm();
+  const { register } = form;
 
   return (
     <div className={`${styles.wrapper} ${className}`}>
       <div className={styles.formCard}>
         <h1 className={styles.title}>회원가입</h1>
         
-        <form onSubmit={handleSubmit} className={styles.form} role="form" aria-label="회원가입 폼">
+        <form onSubmit={onSubmit} className={styles.form} role="form" aria-label="회원가입 폼" data-testid="auth-signup-form">
           <div className={styles.fieldGroup}>
             <Input
               type="email"
-              name="email"
               label="이메일"
               placeholder="이메일을 입력하세요"
-              value={formData.email}
-              onChange={handleInputChange}
+              {...register('email')}
               variant="primary"
               theme="light"
               size="medium"
@@ -69,17 +49,17 @@ const AuthSignup: React.FC<AuthSignupProps> = ({ className = '' }) => {
               className={styles.field}
               aria-label="이메일 입력"
               required
+              error={!!errors.email}
+              errorMessage={errors.email?.message}
             />
           </div>
 
           <div className={styles.fieldGroup}>
             <Input
               type="password"
-              name="password"
               label="비밀번호"
               placeholder="비밀번호를 입력하세요"
-              value={formData.password}
-              onChange={handleInputChange}
+              {...register('password')}
               variant="primary"
               theme="light"
               size="medium"
@@ -87,17 +67,17 @@ const AuthSignup: React.FC<AuthSignupProps> = ({ className = '' }) => {
               className={styles.field}
               aria-label="비밀번호 입력"
               required
+              error={!!errors.password}
+              errorMessage={errors.password?.message}
             />
           </div>
 
           <div className={styles.fieldGroup}>
             <Input
               type="password"
-              name="confirmPassword"
               label="비밀번호 재입력"
               placeholder="비밀번호를 다시 입력하세요"
-              value={formData.confirmPassword}
-              onChange={handleInputChange}
+              {...register('passwordConfirm')}
               variant="primary"
               theme="light"
               size="medium"
@@ -105,17 +85,17 @@ const AuthSignup: React.FC<AuthSignupProps> = ({ className = '' }) => {
               className={styles.field}
               aria-label="비밀번호 재입력"
               required
+              error={!!errors.passwordConfirm}
+              errorMessage={errors.passwordConfirm?.message}
             />
           </div>
 
           <div className={styles.fieldGroup}>
             <Input
               type="text"
-              name="name"
               label="이름"
               placeholder="이름을 입력하세요"
-              value={formData.name}
-              onChange={handleInputChange}
+              {...register('name')}
               variant="primary"
               theme="light"
               size="medium"
@@ -123,6 +103,8 @@ const AuthSignup: React.FC<AuthSignupProps> = ({ className = '' }) => {
               className={styles.field}
               aria-label="이름 입력"
               required
+              error={!!errors.name}
+              errorMessage={errors.name?.message}
             />
           </div>
 
@@ -135,8 +117,9 @@ const AuthSignup: React.FC<AuthSignupProps> = ({ className = '' }) => {
               fullWidth
               className={styles.submitButton}
               aria-label="회원가입 버튼"
+              disabled={!isFormValid || isLoading}
             >
-              회원가입
+              {isLoading ? '처리 중...' : '회원가입'}
             </Button>
           </div>
         </form>
