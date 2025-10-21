@@ -1,0 +1,141 @@
+/* 로그인 페이지 컨테이너 */
+.container {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--color-background-paper);
+  padding: 20px;
+}
+
+/* 로그인 카드 */
+.loginCard {
+  width: 100%;
+  max-width: 400px;
+  background: var(--color-background-elevated);
+  border-radius: 16px;
+  padding: 40px 32px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  border: 1px solid var(--color-border-light);
+}
+
+/* 헤더 섹션 */
+.header {
+  text-align: center;
+  margin-bottom: 32px;
+}
+
+.title {
+  font-size: var(--typo-headline02-font-size);
+  line-height: var(--typo-headline02-line-height);
+  font-weight: var(--typo-headline02-font-weight);
+  color: var(--color-text-primary);
+  margin: 0 0 8px 0;
+  font-family: var(--font-family-korean);
+}
+
+.subtitle {
+  font-size: var(--typo-body02-m-font-size);
+  line-height: var(--typo-body02-m-line-height);
+  font-weight: var(--typo-body02-m-font-weight);
+  color: var(--color-text-secondary);
+  margin: 0;
+  font-family: var(--font-family-korean);
+}
+
+/* 폼 섹션 */
+.form {
+  margin-bottom: 24px;
+}
+
+.inputGroup {
+  margin-bottom: 20px;
+}
+
+.inputGroup:last-of-type {
+  margin-bottom: 0;
+}
+
+.input {
+  width: 100%;
+}
+
+/* 버튼 그룹 */
+.buttonGroup {
+  margin-top: 32px;
+}
+
+.loginButton {
+  width: 100%;
+}
+
+/* 푸터 섹션 */
+.footer {
+  text-align: center;
+  padding-top: 24px;
+  border-top: 1px solid var(--color-border-light);
+}
+
+.signupText {
+  font-size: var(--typo-body02-s-font-size);
+  line-height: var(--typo-body02-s-line-height);
+  font-weight: var(--typo-body02-s-font-weight);
+  color: var(--color-text-secondary);
+  margin: 0;
+  font-family: var(--font-family-korean);
+}
+
+.signupLink {
+  color: var(--color-primary-main);
+  text-decoration: none;
+  font-weight: var(--font-weight-semibold);
+  transition: color 0.2s ease;
+}
+
+.signupLink:hover {
+  color: var(--color-primary-dark);
+  text-decoration: underline;
+}
+
+.signupLink:focus {
+  outline: 2px solid var(--color-primary-light);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+/* 반응형 디자인 */
+@media (max-width: 480px) {
+  .container {
+    padding: 16px;
+  }
+  
+  .loginCard {
+    padding: 32px 24px;
+  }
+  
+  .title {
+    font-size: var(--typo-headline03-font-size);
+    line-height: var(--typo-headline03-line-height);
+  }
+  
+  .subtitle {
+    font-size: var(--typo-body03-font-size);
+    line-height: var(--typo-body03-line-height);
+  }
+}
+
+/* 다크 모드 지원 */
+@media (prefers-color-scheme: dark) {
+  .container {
+    background: var(--color-background-paper);
+  }
+  
+  .loginCard {
+    background: var(--color-background-elevated);
+    border-color: var(--color-border-default);
+  }
+  
+  .footer {
+    border-top-color: var(--color-border-default);
+  }
+}
