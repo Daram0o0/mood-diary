@@ -2,7 +2,7 @@
 /* Container & Layout */
 /* ============================================== */
 
-.container {
+.wrapper {
   min-height: 100vh;
   display: flex;
   align-items: center;
@@ -11,7 +11,7 @@
   padding: 20px;
 }
 
-.loginCard {
+.formCard {
   width: 100%;
   max-width: 480px;
   background: var(--color-background-elevated);
@@ -68,6 +68,15 @@
   width: 100%;
 }
 
+.errorMessage {
+  font-size: var(--typo-body03-font-size);
+  line-height: var(--typo-body03-line-height);
+  font-weight: var(--typo-body03-font-weight);
+  color: var(--color-error-main);
+  margin-top: 4px;
+  font-family: var(--font-family-korean);
+}
+
 .actions {
   margin-top: 12px;
 }
@@ -77,16 +86,16 @@
 }
 
 /* ============================================== */
-/* Footer Section */
+/* Navigation Section */
 /* ============================================== */
 
-.footer {
+.navigation {
   text-align: center;
   padding-top: 24px;
   border-top: 1px solid var(--color-border-light);
 }
 
-.signupText {
+.navigationText {
   font-size: var(--typo-body02-s-font-size);
   line-height: var(--typo-body02-s-line-height);
   font-weight: var(--typo-body02-s-font-weight);
@@ -95,19 +104,19 @@
   font-family: var(--font-family-korean);
 }
 
-.signupLink {
+.navigationLink {
   color: var(--color-primary-main);
   text-decoration: none;
   font-weight: var(--font-weight-semibold);
   transition: color 0.2s ease;
 }
 
-.signupLink:hover {
+.navigationLink:hover {
   color: var(--color-primary-dark);
   text-decoration: underline;
 }
 
-.signupLink:focus {
+.navigationLink:focus {
   outline: 2px solid var(--color-primary-main);
   outline-offset: 2px;
   border-radius: 4px;
@@ -118,11 +127,11 @@
 /* ============================================== */
 
 @media (max-width: 480px) {
-  .container {
+  .wrapper {
     padding: 16px;
   }
   
-  .loginCard {
+  .formCard {
     padding: 32px 24px;
   }
   
@@ -142,16 +151,16 @@
 /* ============================================== */
 
 @media (prefers-color-scheme: dark) {
-  .container {
+  .wrapper {
     background: var(--color-background-paper);
   }
   
-  .loginCard {
+  .formCard {
     background: var(--color-background-elevated);
     border-color: var(--color-border-default);
   }
   
-  .footer {
+  .navigation {
     border-top-color: var(--color-border-default);
   }
 }
