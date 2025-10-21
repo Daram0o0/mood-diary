@@ -8,6 +8,7 @@
 .header {
   display: flex;
   align-items: center;
+  justify-content: space-between;
   width: 1168px;
   height: 60px;
   padding: 0;
@@ -147,4 +148,24 @@
   line-height: var(--typo-body02-s-line-height);
   letter-spacing: -0.14px;
   color: var(--color-text-hint);
+}
+
+/* 인증 상태 UI 스타일 */
+.authStatus {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.userName {
+  font-family: var(--font-family-korean);
+  font-weight: var(--font-weight-medium);
+  font-size: var(--typo-body02-m-font-size);
+  line-height: var(--typo-body02-m-line-height);
+  letter-spacing: -0.14px;
+  color: var(--color-text-primary);
+}
+
+.logoutButton {
+  width: 72px;
 }

@@ -5,6 +5,7 @@ import Image from 'next/image';
 import styles from './styles.module.css';
 import { useLinkRouting } from './hooks/index.link.routing.hook';
 import { useAreaVisibility } from './hooks/index.area.hook';
+import Button from '@/commons/components/button';
 
 export interface LayoutProps {
   /**
@@ -57,6 +58,19 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
               <span className={styles.logoText}>민지의 다이어리</span>
             </div>
           )}
+          
+          {/* 인증 상태 UI - 로그인 상태만 구현 */}
+          <div className={styles.authStatus}>
+            <span className={styles.userName}>민지님</span>
+            <Button
+              variant="tertiary"
+              theme="light"
+              size="small"
+              className={styles.logoutButton}
+            >
+              로그아웃
+            </Button>
+          </div>
         </header>
       )}
       
