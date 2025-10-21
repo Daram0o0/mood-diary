@@ -139,8 +139,8 @@ const AuthProvider = ({ children }: AuthProviderProps) => {
       setIsAuthenticated(true);
       setUser(user);
       
-      // 로그인 페이지로 이동
-      router.push(urlPaths.authLogin);
+      // 로그인 성공 후 일기 목록 페이지로 이동
+      router.push(urlPaths.diariesList);
     } catch (error) {
       console.error('로그인 처리 오류:', error);
     }

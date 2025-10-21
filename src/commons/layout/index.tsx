@@ -5,6 +5,7 @@ import Image from 'next/image';
 import styles from './styles.module.css';
 import { useLinkRouting } from './hooks/index.link.routing.hook';
 import { useAreaVisibility } from './hooks/index.area.hook';
+import { useLayoutAuth } from './hooks/index.auth.hook';
 import Button from '@/commons/components/button';
 
 export interface LayoutProps {
@@ -48,6 +49,13 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
     showFooter,
   } = useAreaVisibility();
 
+  const {
+    isAuthenticated,
+    userName,
+    handleLogin,
+    handleLogout,
+  } = useLayoutAuth();
+
   return (
     <div className={styles.layout}>
       {/* Header 영역: 1168 * 60 */}
@@ -59,17 +67,36 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
             </div>
           )}
           
-          {/* 인증 상태 UI - 로그인 상태만 구현 */}
+          {/* 인증 상태 UI - 로그인 상태에 따른 분기 */}
           <div className={styles.authStatus}>
-            <span className={styles.userName}>민지님</span>
-            <Button
-              variant="tertiary"
-              theme="light"
-              size="small"
-              className={styles.logoutButton}
-            >
-              로그아웃
-            </Button>
+            {isAuthenticated ? (
+              <>
+                <span className={styles.userName} data-testid="user-name">
+                  {userName}님
+                </span>
+                <Button
+                  variant="tertiary"
+                  theme="light"
+                  size="small"
+                  className={styles.logoutButton}
+                  onClick={handleLogout}
+                  data-testid="logout-button"
+                >
+                  로그아웃
+                </Button>
+              </>
+            ) : (
+              <Button
+                variant="tertiary"
+                theme="light"
+                size="small"
+                className={styles.loginButton}
+                onClick={handleLogin}
+                data-testid="login-button"
+              >
+                로그인
+              </Button>
+            )}
           </div>
         </header>
       )}

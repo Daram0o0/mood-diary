@@ -4,10 +4,9 @@ import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
 import { useMutation } from '@tanstack/react-query';
-import { useRouter } from 'next/navigation';
 import { useModal } from '@/commons/providers/modal/modal.provider';
+import { useAuth, User } from '@/commons/providers/auth/auth.provider';
 import Modal from '@/commons/components/modal';
-import { urlPaths } from '@/commons/constants/url';
 
 /**
  * 로그인 폼 스키마
@@ -110,6 +109,17 @@ const fetchUserLoggedIn = async (accessToken: string): Promise<UserResponse> => 
 };
 
 /**
+ * UserResponse를 User 타입으로 변환하는 함수
+ */
+const convertToUser = (userResponse: UserResponse): User => {
+  return {
+    id: userResponse._id,
+    email: '', // API에서 이메일을 제공하지 않으므로 빈 문자열로 설정
+    name: userResponse.name,
+  };
+};
+
+/**
  * 로그인 폼 훅
  * 
  * react-hook-form, zod, react-query를 사용하여 로그인 폼을 관리합니다.
@@ -118,8 +128,8 @@ const fetchUserLoggedIn = async (accessToken: string): Promise<UserResponse> => 
  * @returns 로그인 폼 관련 상태와 함수들
  */
 export const useLoginForm = () => {
-  const router = useRouter();
   const { openModal, closeAllModals } = useModal();
+  const { login } = useAuth();
 
   // 폼 설정
   const form = useForm<LoginFormData>({
@@ -139,9 +149,8 @@ export const useLoginForm = () => {
         // 사용자 정보 조회
         const userData = await fetchUserLoggedIn(data.accessToken);
         
-        // 로컬 스토리지에 저장
-        localStorage.setItem('accessToken', data.accessToken);
-        localStorage.setItem('user', JSON.stringify(userData));
+        // AuthProvider의 login 함수를 사용하여 상태 동기화
+        login(convertToUser(userData), data.accessToken);
         
         // 로그인 완료 모달 표시
         openModal(
@@ -153,14 +162,14 @@ export const useLoginForm = () => {
             confirmText="확인"
             onConfirm={() => {
               closeAllModals();
-              router.push(urlPaths.diariesList);
             }}
           />
         );
       } catch (error) {
         console.error('사용자 정보 조회 실패:', error);
         // 사용자 정보 조회 실패 시에도 로그인은 성공으로 처리
-        localStorage.setItem('accessToken', data.accessToken);
+        const fallbackUser: User = { id: 'temp', email: '', name: '사용자' };
+        login(fallbackUser, data.accessToken);
         
         openModal(
           <Modal
@@ -171,7 +180,6 @@ export const useLoginForm = () => {
             confirmText="확인"
             onConfirm={() => {
               closeAllModals();
-              router.push(urlPaths.diariesList);
             }}
           />
         );
