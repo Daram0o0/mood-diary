@@ -13,6 +13,11 @@ import { test, expect } from '@playwright/test';
 
 test.describe('일기쓰기 폼 등록 기능', () => {
   test.beforeEach(async ({ page }) => {
+    // 테스트 환경에서 로그인 상태로 설정
+    await page.addInitScript(() => {
+      window.__TEST_BYPASS__ = true;
+    });
+
     // /diaries 페이지로 이동
     await page.goto('/diaries');
     

@@ -1,46 +1,53 @@
 'use client';
 
-import { useModal } from '@/commons/providers/modal/modal.provider';
-import DiariesNew from '@/components/diaries-new';
+import { useAuthGuard } from '@/commons/providers/auth/auth.guard.hook';
+import { useDiaryModal } from './index.modal.hook';
 
 /**
- * useDiaryModal 훅
+ * 일기쓰기 버튼 권한 분기 Hook
  * 
- * 일기쓰기 모달 연결 기능을 제공하는 커스텀 훅입니다.
- * 모달 열기/닫기 기능을 통합하여 관리합니다.
- * 
- * @returns {Object} 모달 제어 함수들
- * @returns {Function} returns.openDiaryModal - 일기쓰기 모달을 여는 함수
- * @returns {Function} returns.closeDiaryModal - 일기쓰기 모달을 닫는 함수
+ * 일기쓰기 버튼 클릭 시 로그인 상태에 따라 다른 동작을 수행합니다.
+ * - 로그인된 사용자: 일기쓰기 모달 표시
+ * - 비로그인 사용자: 로그인 요청 모달 표시
  * 
  * @example
  * ```tsx
- * const { openDiaryModal, closeDiaryModal } = useDiaryModal();
+ * const { handleDiaryWriteClick } = useDiaryWriteAuth();
  * 
- * const handleClick = () => {
- *   openDiaryModal();
- * };
+ * <Button onClick={handleDiaryWriteClick}>
+ *   일기쓰기
+ * </Button>
  * ```
  */
-export const useDiaryModal = () => {
-  const { openModal, closeTopModal } = useModal();
+export const useDiaryWriteAuth = () => {
+  const { checkAuth } = useAuthGuard();
+  const { openDiaryModal } = useDiaryModal();
 
   /**
-   * 일기쓰기 모달을 여는 함수
+   * 일기쓰기 버튼 클릭 핸들러
+   * 
+   * 권한 검증을 수행하고, 권한이 있는 경우 일기쓰기 모달을 표시합니다.
+   * 권한이 없는 경우 로그인 요청 모달이 자동으로 표시됩니다.
    */
-  const openDiaryModal = () => {
-    openModal(<DiariesNew />);
-  };
+  const handleDiaryWriteClick = () => {
+    // 권한 검증 실행
+    const authResult = checkAuth({
+      bypassInTest: true, // 테스트 환경에서 우회 허용
+      showModal: true,    // 권한 없을 때 모달 표시
+    });
 
-  /**
-   * 일기쓰기 모달을 닫는 함수
-   */
-  const closeDiaryModal = () => {
-    closeTopModal();
+    // 권한이 있는 경우에만 일기쓰기 모달 표시
+    if (authResult.isAuthorized) {
+      openDiaryModal();
+    }
   };
 
   return {
-    openDiaryModal,
-    closeDiaryModal,
+    /**
+     * 일기쓰기 버튼 클릭 핸들러
+     */
+    handleDiaryWriteClick,
   };
 };
+
+export default useDiaryWriteAuth;

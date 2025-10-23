@@ -87,7 +87,7 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
               </>
             ) : (
               <Button
-                variant="tertiary"
+                variant="secondary"
                 theme="light"
                 size="small"
                 className={styles.loginButton}

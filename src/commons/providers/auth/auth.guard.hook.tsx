@@ -60,7 +60,9 @@ export const useAuthGuard = () => {
    * 테스트 환경 확인
    */
   const isTestEnvironment = () => {
-    return process.env.NEXT_PUBLIC_TEST_ENV === 'test';
+    // Playwright 테스트 환경 감지
+    return typeof window !== 'undefined' && 
+           (window as unknown as { __TEST_BYPASS__?: boolean }).__TEST_BYPASS__ !== undefined;
   };
 
   /**
@@ -86,7 +88,7 @@ export const useAuthGuard = () => {
         variant="info"
         actions="dual"
         title="로그인이 필요합니다"
-        description="이 기능을 사용하려면 로그인이 필요합니다. 로그인하시겠습니까?"
+        description={"계속 진행하려면 로그인이 필요합니다.\n로그인하시겠습니까?"}
         onConfirm={() => {
           closeAllModals();
           router.push(urlPaths.authLogin);

@@ -12,9 +12,9 @@ import {
   getEmotionLabel,
   getEmotionColor,
 } from '@/commons/constants/enum';
-import { useDiaryModal } from './hooks/index.link.modal.hook';
 import { useDiaryBinding } from './hooks/index.binding.hook';
 import { useLinkRouting } from './hooks/index.link.routing.hook';
+import { useDiaryWriteAuth } from './hooks/index.link.modal.hook';
 
 /**
  * 일기 목록 페이지 컴포넌트
@@ -34,8 +34,8 @@ const Diaries: React.FC = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 12; // 12개씩 한 페이지로 설정
 
-  // 모달 연결 훅
-  const { openDiaryModal } = useDiaryModal();
+  // 권한 분기 훅
+  const { handleDiaryWriteClick } = useDiaryWriteAuth();
 
   // 데이터 바인딩 훅
   const { diaries, isLoading, error } = useDiaryBinding();
@@ -59,10 +59,7 @@ const Diaries: React.FC = () => {
     setCurrentPage(1);
   }, [diaries.length]);
 
-  // 일기쓰기 버튼 클릭 핸들러
-  const handleDiaryWriteClick = () => {
-    openDiaryModal();
-  };
+  // 일기쓰기 버튼 클릭 핸들러는 useDiaryWriteAuth 훅에서 제공됩니다.
 
   // 로딩 상태 처리
   if (isLoading) {
