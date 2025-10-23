@@ -1,8 +1,8 @@
-"use client";
+'use client';
 
-import { createContext, useContext, useState, ReactNode, useEffect } from "react";
-import { createPortal } from "react-dom";
-import styles from "./styles.module.css";
+import { createContext, useContext, useEffect, ReactNode, useState } from 'react';
+import { createPortal } from 'react-dom';
+import styles from './styles.module.css';
 
 /**
  * 모달 아이템 인터페이스
@@ -51,7 +51,7 @@ const ModalContext = createContext<ModalContextType | undefined>(undefined);
 export const useModal = () => {
   const context = useContext(ModalContext);
   if (!context) {
-    throw new Error("useModal must be used within a ModalProvider");
+    throw new Error('useModal must be used within a ModalProvider');
   }
   return context;
 };
@@ -155,7 +155,7 @@ export default function ModalProvider({ children }: ModalProviderProps) {
   return (
     <ModalContext.Provider value={contextValue}>
       {children}
-      {typeof window !== "undefined" &&
+      {typeof window !== 'undefined' &&
         modals.map((modal) =>
           createPortal(
             <div
