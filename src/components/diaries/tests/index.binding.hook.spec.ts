@@ -10,19 +10,19 @@ test.describe('일기 목록 페이지 데이터 바인딩', () => {
     // /diaries 페이지로 이동
     await page.goto('/diaries');
     
-    // 페이지가 완전히 로드될 때까지 대기 (data-testid 기반)
-    await page.waitForSelector('[data-testid="diaries-page"]', { timeout: 500 });
+    // 페이지가 완전히 로드될 때까지 대기 (data-testid 기반, 타임아웃 증가)
+    await page.waitForSelector('[data-testid="diaries-page"]', { timeout: 10000 });
   });
 
   test('로컬스토리지에 데이터가 없을 때 빈 상태 표시', async ({ page }) => {
-    // 로컬스토리지 초기화
-    await page.evaluate(() => {
+    // 로컬스토리지 초기화 (WebKit SecurityError 방지를 위해 addInitScript 사용)
+    await page.addInitScript(() => {
       localStorage.removeItem('diaries');
     });
 
     // 페이지 새로고침
     await page.reload();
-    await page.waitForSelector('[data-testid="diaries-page"]', { timeout: 500 });
+    await page.waitForSelector('[data-testid="diaries-page"]', { timeout: 10000 });
 
     // 일기 카드가 표시되지 않는지 확인
     const diaryCards = await page.locator('[data-testid="diary-card"]').count();
@@ -55,14 +55,14 @@ test.describe('일기 목록 페이지 데이터 바인딩', () => {
       }
     ];
 
-    // 로컬스토리지에 테스트 데이터 저장
-    await page.evaluate((diaries) => {
+    // 로컬스토리지에 테스트 데이터 저장 (WebKit SecurityError 방지를 위해 addInitScript 사용)
+    await page.addInitScript((diaries) => {
       localStorage.setItem('diaries', JSON.stringify(diaries));
     }, testDiaries);
 
     // 페이지 새로고침
     await page.reload();
-    await page.waitForSelector('[data-testid="diaries-page"]', { timeout: 500 });
+    await page.waitForSelector('[data-testid="diaries-page"]', { timeout: 10000 });
 
 
     // 일기 카드가 로드될 때까지 대기

@@ -1,9 +1,10 @@
 'use client';
 
-import { useState, useRef, useCallback } from 'react';
+import { useRef, useCallback } from 'react';
 import Image from 'next/image';
 import Selectbox from '@/commons/components/selectbox';
 import { useDogImages, DogImage } from './hooks/index.binding.hook';
+import { useFilter } from './hooks/index.filter.hook';
 import styles from './styles.module.css';
 
 /**
@@ -47,8 +48,15 @@ const SplashScreen: React.FC = () => {
  * ```
  */
 const Pictures: React.FC<PicturesProps> = ({ className }) => {
-  const [selectedFilter, setSelectedFilter] = useState('default');
   const observerRef = useRef<IntersectionObserver | null>(null);
+  
+  // 필터 기능 hook 사용
+  const {
+    selectedFilter,
+    setSelectedFilter,
+    filterOptions,
+    getImageSizeForCurrentFilter,
+  } = useFilter();
   
   // 강아지 이미지 데이터 조회
   const {
@@ -81,12 +89,8 @@ const Pictures: React.FC<PicturesProps> = ({ className }) => {
     [isLoading, isFetchingNextPage, hasNextPage, fetchNextPage]
   );
 
-  // 필터 옵션
-  const filterOptions = [
-    { value: 'default', label: '기본' },
-    { value: 'recent', label: '최신순' },
-    { value: 'popular', label: '인기순' },
-  ];
+  // 현재 필터에 따른 이미지 크기 가져오기
+  const currentImageSize = getImageSizeForCurrentFilter();
 
   return (
     <div className={`${styles.container} ${className || ''}`} data-testid="pictures-container">
@@ -118,7 +122,7 @@ const Pictures: React.FC<PicturesProps> = ({ className }) => {
           {isLoading && (
             <div className={styles.imageFlex}>
               {Array.from({ length: 6 }, (_, index) => (
-                <div key={`splash-${index}`} className={styles.imageItem}>
+                <div key={`splash-${index}`} className={styles.imageItem} data-filter={selectedFilter}>
                   <SplashScreen />
                 </div>
               ))}
@@ -143,13 +147,14 @@ const Pictures: React.FC<PicturesProps> = ({ className }) => {
                   <div
                     key={image.id}
                     className={styles.imageItem}
+                    data-filter={selectedFilter}
                     ref={isLastTwo ? lastImageElementRef : null}
                   >
                     <Image
                       src={image.src}
                       alt={image.alt}
-                      width={640}
-                      height={640}
+                      width={currentImageSize.width}
+                      height={currentImageSize.height}
                       className={styles.dogImage}
                       priority={index < 6} // 첫 6개 이미지는 우선 로딩
                     />
@@ -161,7 +166,7 @@ const Pictures: React.FC<PicturesProps> = ({ className }) => {
               {isFetchingNextPage && (
                 <>
                   {Array.from({ length: 6 }, (_, index) => (
-                    <div key={`next-splash-${index}`} className={styles.imageItem}>
+                    <div key={`next-splash-${index}`} className={styles.imageItem} data-filter={selectedFilter}>
                       <SplashScreen />
                     </div>
                   ))}

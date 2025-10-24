@@ -82,11 +82,11 @@ export default function Searchbar({
   const currentTheme = theme || resolvedTheme || 'light';
   
   // 검색 실행 핸들러
-  const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
-    if (e.key === 'Enter' && onSearch) {
-      onSearch(e.currentTarget.value);
+  const handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
+    if (event.key === 'Enter' && onSearch) {
+      onSearch(event.currentTarget.value);
     }
-    props.onKeyDown?.(e);
+    props.onKeyDown?.(event);
   };
   
   // 클래스명 조합
@@ -98,7 +98,7 @@ export default function Searchbar({
     .filter(Boolean)
     .join(' ');
   
-  const containerClasses = [
+  const searchbarClasses = [
     styles.searchbarContainer,
     styles[`variant-${variant}`],
     styles[`size-${size}`],
@@ -110,7 +110,7 @@ export default function Searchbar({
   
   return (
     <div className={wrapperClasses}>
-      <div className={containerClasses}>
+      <div className={searchbarClasses}>
         {showSearchIcon && (
           <span className={styles.searchIcon}>
             <Image

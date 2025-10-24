@@ -12,9 +12,10 @@ import {
   getEmotionLabel,
   getEmotionColor,
 } from '@/commons/constants/enum';
-import { useDiaryBinding } from './hooks/index.binding.hook';
+import { useDiaryBinding, DiaryItem } from './hooks/index.binding.hook';
 import { useLinkRouting } from './hooks/index.link.routing.hook';
 import { useDiaryWriteAuth } from './hooks/index.link.modal.hook';
+import { useSearch } from './hooks/index.search.hook';
 
 /**
  * 일기 목록 페이지 컴포넌트
@@ -40,11 +41,26 @@ const Diaries: React.FC = () => {
   // 데이터 바인딩 훅
   const { diaries, isLoading, error } = useDiaryBinding();
 
+  // 검색 기능 훅
+  const { 
+    searchQuery, 
+    selectedEmotion, 
+    filteredDiaries, 
+    isSearchActive,
+    handleSearchChange, 
+    handleEmotionChange, 
+    handleSearch
+    // handleClearSearch 
+  } = useSearch(diaries);
+
+  // 검색 결과에 따른 데이터 선택
+  const displayDiaries = isSearchActive ? filteredDiaries : diaries;
+  
   // 페이지네이션 계산
-  const totalPages = Math.ceil(diaries.length / itemsPerPage);
+  const totalPages = Math.ceil(displayDiaries.length / itemsPerPage);
   const startIndex = (currentPage - 1) * itemsPerPage;
   const endIndex = startIndex + itemsPerPage;
-  const currentPageDiaries = diaries.slice(startIndex, endIndex);
+  const currentPageDiaries = displayDiaries.slice(startIndex, endIndex);
 
   // 링크 라우팅 훅
   const { handleDiaryCardClick, handleDeleteIconClick } = useLinkRouting();
@@ -57,7 +73,7 @@ const Diaries: React.FC = () => {
   // 데이터가 변경될 때 첫 페이지로 리셋
   React.useEffect(() => {
     setCurrentPage(1);
-  }, [diaries.length]);
+  }, [displayDiaries.length]);
 
   // 일기쓰기 버튼 클릭 핸들러는 useDiaryWriteAuth 훅에서 제공됩니다.
 
@@ -98,13 +114,14 @@ const Diaries: React.FC = () => {
             className={styles.selectWidth}
             options={[
               { value: 'all', label: '전체' },
-              { value: 'happy', label: '행복' },
-              { value: 'sad', label: '슬픔' },
-              { value: 'angry', label: '분노' },
-              { value: 'surprise', label: '놀람' },
-              { value: 'etc', label: '기타' },
+              { value: 'Happy', label: '행복' },
+              { value: 'Sad', label: '슬픔' },
+              { value: 'Angry', label: '분노' },
+              { value: 'Surprise', label: '놀람' },
+              { value: 'Etc', label: '기타' },
             ]}
-            value={'all'}
+            value={selectedEmotion}
+            onChange={handleEmotionChange}
           />
 
           <Searchbar
@@ -113,6 +130,9 @@ const Diaries: React.FC = () => {
             size="medium"
             placeholder="검색어를 입력해 주세요."
             className={styles.searchWidth}
+            value={searchQuery}
+            onChange={(e) => handleSearchChange(e.target.value)}
+            onSearch={handleSearch}
           />
         </div>
 
@@ -140,14 +160,16 @@ const Diaries: React.FC = () => {
       <div className={styles.gap}></div>
       
       <div className={styles.main}>
-        {diaries.length === 0 ? (
-          // 빈 상태 처리: localStorage에 일기 데이터가 없을 때
+        {displayDiaries.length === 0 ? (
+          // 빈 상태 처리: localStorage에 일기 데이터가 없거나 검색 결과가 없을 때
           <div className={styles.emptyState}>
-            <p className={styles.emptyText}>등록된 일기가 없습니다.</p>
+            <p className={styles.emptyText}>
+              {isSearchActive ? '검색 결과가 없습니다.' : '등록된 일기가 없습니다.'}
+            </p>
           </div>
         ) : (
           <div className={styles.cardFlex}>
-            {currentPageDiaries.map((diary) => {
+            {currentPageDiaries.map((diary: DiaryItem) => {
               const imageSrc = getEmotionImage(diary.emotion, 'm');
               const emotionLabel = getEmotionLabel(diary.emotion);
               const emotionColor = getEmotionColor(diary.emotion);
@@ -201,7 +223,7 @@ const Diaries: React.FC = () => {
       <div className={styles.gap}></div>
       
       {/* 페이지네이션은 데이터가 있을 때만 표시 */}
-      {diaries.length > 0 && totalPages >= 1 && (
+      {displayDiaries.length > 0 && totalPages >= 1 && (
         <div className={styles.pagination}>
           <Pagination
             currentPage={currentPage}

@@ -6,6 +6,7 @@ import Button from '@/commons/components/button';
 import Input from '@/commons/components/input';
 import { getEmotionImage, getEmotionLabel, getEmotionColor } from '@/commons/constants/enum';
 import { useDiaryBinding } from './hooks/index.binding.hook';
+import { useRetrospectForm } from './hooks/index.retrospect.form.hook';
 import styles from './styles.module.css';
 
 /**
@@ -33,6 +34,7 @@ export interface DiariesDetailProps {
  */
 export default function DiariesDetail({ diaryId }: DiariesDetailProps) {
   const { diary, isLoading, error } = useDiaryBinding(diaryId);
+  const { form, onSubmit, isSubmitting, isFormValid } = useRetrospectForm(parseInt(diaryId));
 
   const handleCopyContent = () => {
     if (diary) {
@@ -212,24 +214,27 @@ export default function DiariesDetail({ diaryId }: DiariesDetailProps) {
       {/* retrospect-input: 1168 * 85 */}
       <div className={styles.retrospectInput}>
         <div className={styles.retrospectInputLabel}>회고</div>
-        <div className={styles.retrospectInputWrapper}>
+        <form onSubmit={onSubmit} className={styles.retrospectInputWrapper}>
           <div className={styles.retrospectInputField}>
-            <Input 
+            <Input
               variant="primary"
               size="medium"
               theme="light"
               placeholder="회고를 남겨보세요."
+              {...form.register('content')}
             />
           </div>
-          <Button 
-            variant="primary" 
-            size="medium" 
+          <Button
+            variant="primary"
+            size="medium"
             theme="light"
             className={styles.saveRetrospectButton}
+            type="submit"
+            disabled={!isFormValid || isSubmitting}
           >
             입력
           </Button>
-        </div>
+        </form>
       </div>
       
       {/* gap: 1168 * 16 */}

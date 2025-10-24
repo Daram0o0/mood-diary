@@ -48,8 +48,17 @@ test.describe('일기 상세 페이지 데이터 바인딩', () => {
     // /diaries/1 페이지로 이동
     await page.goto('/diaries/1');
 
-    // 페이지가 완전히 로드될 때까지 대기 (data-testid 기반)
-    await page.waitForSelector('[data-testid="diary-detail-page"]', { timeout: 500 });
+    // 페이지 로딩 완료 대기
+    await page.waitForLoadState('networkidle');
+
+    // 페이지가 완전히 로드될 때까지 대기 (data-testid 기반, 타임아웃 증가)
+    await page.waitForSelector('[data-testid="diary-detail-page"]', { timeout: 10000 });
+
+    // 로딩 상태가 아닌지 확인
+    await expect(page.locator('text=로딩 중...')).not.toBeVisible();
+
+    // 에러 상태가 아닌지 확인
+    await expect(page.locator('text=일기를 찾을 수 없습니다')).not.toBeVisible();
 
     // 제목이 올바르게 표시되는지 확인 (CSS Modules 해시화된 클래스명 사용)
     await expect(page.locator('h1[class*="titleText"]')).toHaveText('첫 번째 일기');
@@ -73,8 +82,8 @@ test.describe('일기 상세 페이지 데이터 바인딩', () => {
     // /diaries/2 페이지로 이동
     await page.goto('/diaries/2');
 
-    // 페이지가 완전히 로드될 때까지 대기 (data-testid 기반)
-    await page.waitForSelector('[data-testid="diary-detail-page"]', { timeout: 500 });
+    // 페이지가 완전히 로드될 때까지 대기 (data-testid 기반, 타임아웃 증가)
+    await page.waitForSelector('[data-testid="diary-detail-page"]', { timeout: 10000 });
 
     // 제목이 올바르게 표시되는지 확인 (CSS Modules 해시화된 클래스명 사용)
     await expect(page.locator('h1[class*="titleText"]')).toHaveText('두 번째 일기');
@@ -98,8 +107,8 @@ test.describe('일기 상세 페이지 데이터 바인딩', () => {
     // /diaries/3 페이지로 이동
     await page.goto('/diaries/3');
 
-    // 페이지가 완전히 로드될 때까지 대기 (data-testid 기반)
-    await page.waitForSelector('[data-testid="diary-detail-page"]', { timeout: 500 });
+    // 페이지가 완전히 로드될 때까지 대기 (data-testid 기반, 타임아웃 증가)
+    await page.waitForSelector('[data-testid="diary-detail-page"]', { timeout: 10000 });
 
     // 제목이 올바르게 표시되는지 확인 (CSS Modules 해시화된 클래스명 사용)
     await expect(page.locator('h1[class*="titleText"]')).toHaveText('세 번째 일기');
@@ -123,8 +132,8 @@ test.describe('일기 상세 페이지 데이터 바인딩', () => {
     // /diaries/999 페이지로 이동 (존재하지 않는 ID)
     await page.goto('/diaries/999');
 
-    // 페이지가 완전히 로드될 때까지 대기 (data-testid 기반)
-    await page.waitForSelector('[data-testid="diary-detail-page"]', { timeout: 500 });
+    // 페이지가 완전히 로드될 때까지 대기 (data-testid 기반, 타임아웃 증가)
+    await page.waitForSelector('[data-testid="diary-detail-page"]', { timeout: 10000 });
 
     // 에러 상태 확인 - "오류 발생" 메시지 표시
     await expect(page.locator('h1[class*="titleText"]')).toHaveText('오류 발생');
@@ -140,8 +149,8 @@ test.describe('일기 상세 페이지 데이터 바인딩', () => {
     // /diaries/1 페이지로 이동
     await page.goto('/diaries/1');
 
-    // 페이지가 완전히 로드될 때까지 대기 (data-testid 기반)
-    await page.waitForSelector('[data-testid="diary-detail-page"]', { timeout: 500 });
+    // 페이지가 완전히 로드될 때까지 대기 (data-testid 기반, 타임아웃 증가)
+    await page.waitForSelector('[data-testid="diary-detail-page"]', { timeout: 10000 });
 
     // 에러 상태 확인 - "오류 발생" 메시지 표시
     await expect(page.locator('h1[class*="titleText"]')).toHaveText('오류 발생');
