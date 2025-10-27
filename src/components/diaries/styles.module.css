@@ -28,6 +28,11 @@
   height: 40px;
 }
 
+/* ============================================== */
+/* Search Area - Desktop & Mobile */
+/* ============================================== */
+
+/* 데스크톱 버전 (767px 초과) */
 .search {
   display: flex;
   align-items: center;
@@ -43,7 +48,20 @@
   flex: 1;
 }
 
-/* 비율 기반 반응형 width 제어 */
+/* 모바일 버전 (767px 이하) - 기본적으로 숨김 */
+.searchMobile {
+  display: none;
+}
+
+.searchMobileBottom {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  width: 100%;
+}
+
+/* 비율 기반 반응형 width 제어 - 데스크톱 */
 .selectWidth { 
   width: 15%; 
   min-width: 100px;
@@ -58,6 +76,19 @@
   width: 14%; 
   min-width: 100px;
   max-width: 130px;
+}
+
+/* 모바일 전용 width 제어 */
+.searchMobileWidth {
+  width: 100%;
+}
+
+.selectMobileWidth {
+  width: 102px; /* 피그마 디자인에 맞춰 102px 고정 */
+}
+
+.buttonMobileWidth {
+  width: 103px; /* 피그마 디자인에 맞춰 103px 고정 */
 }
 
 /* ============================================== */
@@ -84,13 +115,13 @@
 .diaryCard {
   display: flex;
   flex-direction: column;
-  background-color: var(--color-background-elevated);
-  /* 요구사항: border 제거 */
-  /* box-shadow 제거 요구사항에 따라 그림자 미사용 */
-  border-radius: 16px;
   width: 274px;
   height: 296px;
+  background-color: var(--color-background-elevated);
+  border-radius: 16px;
   cursor: pointer;
+  /* 요구사항: border 제거 */
+  /* box-shadow 제거 요구사항에 따라 그림자 미사용 */
 }
 
 .cardImageWrap {
@@ -103,11 +134,11 @@
 }
 
 .cardImage {
+  display: block;
   width: 100%;
   height: 100%;
   border-radius: 16px 16px 16px 16px; /* 요구사항: 16px 통일 */
   object-fit: cover;
-  display: block;
 }
 
 .closeIcon {
@@ -116,20 +147,20 @@
   right: 12px;
   width: 24px;
   height: 24px;
-  border-radius: 100px;
   display: flex;
   align-items: center;
   justify-content: center;
+  border-radius: 100px;
   cursor: pointer;
-  box-shadow: 0 0 8px rgba(0, 0, 0, 0.16);
+  box-shadow: 0 0 8px var(--color-border-dark);
 }
 
 .cardContent {
-  /* 요구사항: height 제거 */
-  padding: 16px 0;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  padding: 16px 0;
+  /* 요구사항: height 제거 */
 }
 
 .cardHeader {
@@ -140,26 +171,29 @@
 }
 
 .cardEmotion {
-  font-size: 14px;
-  line-height: 20px;
-  font-weight: 600;
-  letter-spacing: -0.14px;
+  font-family: 'Pretendard Variable', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-size: var(--typo-subtitle01-font-size);
+  line-height: var(--typo-subtitle01-line-height);
+  font-weight: var(--typo-subtitle01-font-weight);
+  letter-spacing: -0.01em;
 }
 
 .cardDate {
+  font-family: 'Pretendard Variable', -apple-system, BlinkMacSystemFont, sans-serif;
   color: var(--color-text-secondary);
-  font-size: 14px;
-  line-height: 24px;
-  font-weight: 400;
-  letter-spacing: -0.14px;
+  font-size: var(--typo-body02-s-font-size);
+  line-height: var(--typo-body02-s-line-height);
+  font-weight: var(--typo-body02-s-font-weight);
+  letter-spacing: -0.01em;
 }
 
 .cardTitle {
+  font-family: 'Pretendard Variable', -apple-system, BlinkMacSystemFont, sans-serif;
   color: var(--color-text-primary);
-  font-size: 18px;
-  line-height: 24px;
-  font-weight: 700;
-  letter-spacing: -0.18px;
+  font-size: var(--typo-title01-font-size);
+  line-height: var(--typo-title01-line-height);
+  font-weight: var(--typo-title01-font-weight);
+  letter-spacing: -0.01em;
   margin: 0;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -194,135 +228,117 @@
 }
 
 .emptyText {
+  font-family: 'Pretendard Variable', -apple-system, BlinkMacSystemFont, sans-serif;
   color: var(--color-text-hint);
   font-size: var(--typo-body01-font-size);
   line-height: var(--typo-body01-line-height);
   font-weight: var(--font-weight-medium);
-  letter-spacing: -0.16px;
+  letter-spacing: -0.01em;
   margin: 0;
   text-align: center;
 }
 
 /* 로딩 상태 스타일 */
 .loadingState {
+  font-family: 'Pretendard Variable', -apple-system, BlinkMacSystemFont, sans-serif;
   text-align: center;
   padding: 40px;
   color: var(--color-text-secondary);
   font-size: var(--typo-body01-font-size);
   line-height: var(--typo-body01-line-height);
   font-weight: var(--font-weight-medium);
+  letter-spacing: -0.01em;
 }
 
 /* ============================================== */
 /* Responsive Design */
 /* ============================================== */
 
-@media (max-width: 768px) {
+/* 767px 브레이크포인트 기준 반응형 디자인 - 피그마 디자인에 맞춤 */
+@media (max-width: 767px) {
+  /* 데스크톱 버전 숨김 */
   .search {
-    height: 44px;
-    gap: 12px;
+    display: none;
   }
   
-  .searchLeft {
-    gap: 12px;
-  }
-  
-  .selectWidth {
-    width: 20%;
-    min-width: 80px;
-    max-width: 120px;
-  }
-  
-  .searchWidth {
-    width: 50%;
-    min-width: 150px;
-    max-width: 300px;
-  }
-  
-  .buttonWidth {
-    width: 18%;
-    min-width: 80px;
-    max-width: 100px;
+  /* 모바일 버전 표시 */
+  .searchMobile {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    width: 100%;
   }
   
   .cardFlex {
     gap: 16px;
-    justify-content: center;
+    justify-content: flex-start;
+    /* 피그마 디자인: 2열 그리드, 152px 카드 너비 */
   }
   
   .diaryCard {
-    width: 240px;
-    height: 260px;
+    /* 피그마 디자인에 맞춰 카드 크기 조정 */
+    width: 152px;
+    height: 192px;
   }
   
   .cardImageWrap {
-    height: 180px;
+    /* 피그마 디자인에 맞춰 이미지 높이 조정 */
+    height: 116px;
   }
   
   .cardContent {
-    padding: 12px 0;
+    padding: 8px 0;
   }
   
   .cardTitle {
-    font-size: 16px;
-    line-height: 22px;
+    font-size: var(--typo-title02-font-size);
+    line-height: var(--typo-title02-line-height);
   }
 }
 
-@media (max-width: 480px) {
+/* 더 작은 화면 크기 (360px 이하) - 피그마 디자인 기준 */
+@media (max-width: 360px) {
   .search {
-    height: 40px;
-    gap: 8px;
+    gap: 12px;
   }
   
   .searchLeft {
     gap: 8px;
   }
   
-  .selectWidth {
-    width: 25%;
-    min-width: 70px;
-    max-width: 100px;
-  }
-  
-  .searchWidth {
-    width: 45%;
-    min-width: 120px;
-    max-width: 200px;
-  }
-  
-  .buttonWidth {
-    width: 20%;
-    min-width: 70px;
-    max-width: 90px;
-  }
-  
   .cardFlex {
     gap: 12px;
+    /* 매우 작은 화면에서는 1열로 변경 */
+    justify-content: center;
   }
   
   .diaryCard {
-    width: 200px;
-    height: 240px;
+    /* 피그마 디자인 유지하되 더 작은 화면에서는 중앙 정렬 */
+    width: 152px;
+    height: 192px;
   }
   
   .cardImageWrap {
-    height: 160px;
+    height: 116px;
   }
   
   .cardContent {
-    padding: 10px 0;
+    padding: 8px 0;
   }
   
   .cardTitle {
-    font-size: 14px;
-    line-height: 20px;
+    font-size: var(--typo-title03-font-size);
+    line-height: var(--typo-title03-line-height);
   }
   
-  .cardEmotion,
+  .cardEmotion {
+    font-size: var(--typo-subtitle02-font-size);
+    line-height: var(--typo-subtitle02-line-height);
+  }
+  
   .cardDate {
-    font-size: 12px;
-    line-height: 18px;
+    font-size: var(--typo-body03-font-size);
+    line-height: var(--typo-body03-line-height);
   }
 }
 

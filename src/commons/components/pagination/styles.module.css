@@ -2,6 +2,7 @@
 .pagination {
   display: inline-flex;
   align-items: center;
+  justify-content: center;
   gap: 8px;
   font-family: 'Pretendard Variable', -apple-system, BlinkMacSystemFont, sans-serif;
 }

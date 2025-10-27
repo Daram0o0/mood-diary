@@ -4,9 +4,9 @@
  * Node ID: 3:140 (Filter), 3:146 (Main)
  */
 
-/* ============================================== */
-/* Container & Layout */
-/* ============================================== */
+/* ============================================
+ * Container & Layout
+ * ============================================ */
 
 .container {
   display: flex;
@@ -17,9 +17,9 @@
   box-sizing: border-box;
 }
 
-/* ============================================== */
-/* Gap Areas - 비율기반 반응형 */
-/* ============================================== */
+/* ============================================
+ * Gap Areas - 비율기반 반응형
+ * ============================================ */
 
 .gap32 {
   width: 100%;
@@ -35,9 +35,9 @@
   box-sizing: border-box;
 }
 
-/* ============================================== */
-/* Filter Section - 비율기반 반응형 */
-/* ============================================== */
+/* ============================================
+ * Filter Section - 비율기반 반응형
+ * ============================================ */
 
 .filterSection {
   width: 100%;
@@ -62,9 +62,9 @@
   width: 120px; /* 개별 아이템은 고정값 유지 */
 }
 
-/* ============================================== */
-/* Main Section - 비율기반 반응형 */
-/* ============================================== */
+/* ============================================
+ * Main Section - 비율기반 반응형
+ * ============================================ */
 
 .mainSection {
   width: 100%;
@@ -82,9 +82,9 @@
   box-sizing: border-box;
 }
 
-/* ============================================== */
-/* Image Layout */
-/* ============================================== */
+/* ============================================
+ * Image Layout
+ * ============================================ */
 
 .imageFlex {
   display: flex;
@@ -96,29 +96,11 @@
 }
 
 .imageItem {
-  width: 640px;
-  height: 640px;
   position: relative;
   overflow: hidden;
   border-radius: 24px; /* 피그마 디자인에 맞춘 모서리 반경 */
   box-sizing: border-box;
   transition: width 0.3s ease, height 0.3s ease; /* 부드러운 크기 변경 애니메이션 */
-}
-
-/* 필터에 따른 이미지 크기 클래스 */
-.imageItem[data-filter="default"] {
-  width: 640px;
-  height: 640px;
-}
-
-.imageItem[data-filter="horizontal"] {
-  width: 640px;
-  height: 480px;
-}
-
-.imageItem[data-filter="vertical"] {
-  width: 480px;
-  height: 640px;
 }
 
 .dogImage {
@@ -128,14 +110,12 @@
   border-radius: 24px; /* 피그마 디자인에 맞춘 모서리 반경 */
 }
 
-/* ============================================== */
-/* Splash Screen (Loading) - 스켈레톤 애니메이션 */
-/* ============================================== */
+/* ============================================
+ * Splash Screen (Loading) - 스켈레톤 애니메이션
+ * ============================================ */
 
 .splashScreen {
-  width: 640px;
-  height: 640px;
-  background-color: var(--color-background-secondary); /* 회색 배경 - 테스트와 일치 */
+  background-color: var(--color-background-default); /* 일관된 배경색 사용 */
   border-radius: 24px;
   position: relative;
   overflow: hidden;
@@ -175,9 +155,9 @@
   }
 }
 
-/* ============================================== */
-/* Error Message */
-/* ============================================== */
+/* ============================================
+ * Error Message
+ * ============================================ */
 
 .errorMessage {
   display: flex;
@@ -186,57 +166,98 @@
   justify-content: center;
   padding: 40px;
   text-align: center;
-  color: var(--color-status-error);
+  color: var(--color-error-main);
   font-family: var(--font-family-korean);
   font-size: var(--typo-body02-m-font-size, 16px);
   font-weight: var(--typo-body02-m-font-weight, 500);
   line-height: var(--typo-body02-m-line-height, 1.5);
 }
 
-/* ============================================== */
-/* Responsive Design */
-/* ============================================== */
+/* ============================================
+ * Responsive Design - 브레이크포인트 767px 기반
+ * ============================================ */
 
-/* max-width보다 작아질 때 조건부 패딩 적용 */
-@media (max-width: 1168px) {
-
+/* 데스크톱: 768px 이상 */
+@media (min-width: 768px) {
+  .filterSection {
+    max-width: 1168px;
+    padding: 0;
+  }
+  
+  .imageFlex {
+    gap: 40px;
+  }
+  
+  .imageItem {
+    width: 640px;
+    height: 640px;
+  }
+  
+  .imageItem[data-filter="horizontal"] {
+    width: 640px;
+    height: 480px;
+  }
+  
+  .imageItem[data-filter="vertical"] {
+    width: 480px;
+    height: 640px;
+  }
+  
+  .splashScreen {
+    width: 640px;
+    height: 640px;
+  }
 }
 
-@media (max-width: 768px) {
-
+/* 모바일: 767px 이하 - 피그마 디자인 기반 */
+@media (max-width: 767px) {
+  .filterSection {
+    max-width: 360px;
+  }
   
   .imageFlex {
     gap: 24px;
   }
   
+  /* 기본형: 280x280px (피그마 노드 3:3709 기준) */
   .imageItem {
-    width: 100%;
-    max-width: 400px;
-    height: 400px;
+    width: 280px;
+    height: 280px;
   }
   
+  /* 가로형: 280x210px (피그마 노드 3:3767 기준) */
   .imageItem[data-filter="horizontal"] {
-    width: 100%;
-    max-width: 400px;
-    height: 300px;
+    width: 280px;
+    height: 210px;
   }
   
+  /* 세로형: 280x372px (피그마 노드 3:3825 기준) */
   .imageItem[data-filter="vertical"] {
-    width: 100%;
-    max-width: 300px;
-    height: 400px;
+    width: 280px;
+    height: 372px;
   }
   
   .splashScreen {
-    width: 100%;
-    max-width: 400px;
-    height: 400px;
+    width: 280px;
+    height: 280px;
+  }
+  
+  /* 가로형 스플래시 스크린 */
+  .splashScreen[data-filter="horizontal"] {
+    width: 280px;
+    height: 210px;
+  }
+  
+  /* 세로형 스플래시 스크린 */
+  .splashScreen[data-filter="vertical"] {
+    width: 280px;
+    height: 372px;
   }
 }
 
-@media (max-width: 480px) {
-  .container {
-    padding: 0 12px;
+/* 매우 작은 화면: 320px 이하 */
+@media (max-width: 320px) {
+  .filterSection {
   }
   
   .imageFlex {
@@ -245,25 +266,37 @@
   
   .imageItem {
     width: 100%;
-    max-width: 300px;
-    height: 300px;
+    max-width: 280px;
+    height: 280px;
   }
   
   .imageItem[data-filter="horizontal"] {
     width: 100%;
-    max-width: 300px;
-    height: 225px;
+    max-width: 280px;
+    height: 210px;
   }
   
   .imageItem[data-filter="vertical"] {
     width: 100%;
-    max-width: 225px;
-    height: 300px;
+    max-width: 280px;
+    height: 372px;
   }
   
   .splashScreen {
     width: 100%;
-    max-width: 300px;
-    height: 300px;
+    max-width: 280px;
+    height: 280px;
+  }
+  
+  .splashScreen[data-filter="horizontal"] {
+    width: 100%;
+    max-width: 280px;
+    height: 210px;
+  }
+  
+  .splashScreen[data-filter="vertical"] {
+    width: 100%;
+    max-width: 280px;
+    height: 372px;
   }
 }

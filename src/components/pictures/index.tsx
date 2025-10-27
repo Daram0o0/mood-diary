@@ -24,9 +24,9 @@ export interface PicturesProps {
  * 회색 배경에 두꺼운 흰 세로줄 1개가 우측 30도 기울어져서 빠르게 움직입니다.
  * 스켈레톤 애니메이션으로 부드럽게 퍼져보이는 효과를 제공합니다.
  */
-const SplashScreen: React.FC = () => {
+const SplashScreen: React.FC<{ filter?: string }> = ({ filter }) => {
   return (
-    <div className={styles.splashScreen} data-testid="splash-screen">
+    <div className={styles.splashScreen} data-testid="splash-screen" data-filter={filter}>
       <div className={styles.splashLine}></div>
     </div>
   );
@@ -123,7 +123,7 @@ const Pictures: React.FC<PicturesProps> = ({ className }) => {
             <div className={styles.imageFlex}>
               {Array.from({ length: 6 }, (_, index) => (
                 <div key={`splash-${index}`} className={styles.imageItem} data-filter={selectedFilter}>
-                  <SplashScreen />
+                  <SplashScreen filter={selectedFilter} />
                 </div>
               ))}
             </div>
@@ -167,7 +167,7 @@ const Pictures: React.FC<PicturesProps> = ({ className }) => {
                 <>
                   {Array.from({ length: 6 }, (_, index) => (
                     <div key={`next-splash-${index}`} className={styles.imageItem} data-filter={selectedFilter}>
-                      <SplashScreen />
+                      <SplashScreen filter={selectedFilter} />
                     </div>
                   ))}
                 </>

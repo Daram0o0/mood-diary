@@ -9,7 +9,10 @@
   gap: 40px;
 }
 
-/* Header */
+/* ============================================== */
+/* Header Styles */
+/* ============================================== */
+
 .header {
   width: 100%;
 }
@@ -23,7 +26,10 @@
   margin: 0;
 }
 
-/* Emotion Box */
+/* ============================================== */
+/* Emotion Box Styles */
+/* ============================================== */
+
 .emotionBox {
   width: 100%;
   display: flex;
@@ -58,7 +64,7 @@
   height: 24px;
   margin: 0;
   cursor: pointer;
-  accent-color: #000000;
+  accent-color: var(--color-primary-main);
 }
 
 .radioLabel {
@@ -70,7 +76,10 @@
   cursor: pointer;
 }
 
-/* Input Container */
+/* ============================================== */
+/* Input Container Styles */
+/* ============================================== */
+
 .inputContainer {
   width: 100%;
   display: flex;
@@ -78,7 +87,6 @@
   gap: 24px;
 }
 
-/* Input Title */
 .inputTitle {
   width: 100%;
   display: flex;
@@ -91,14 +99,13 @@
   font-size: var(--typo-subtitle01-font-size);
   font-weight: var(--typo-subtitle01-font-weight);
   line-height: var(--typo-subtitle01-line-height);
-  color: #333333;
+  color: var(--color-text-secondary);
 }
 
 .titleInput {
   width: 100%;
 }
 
-/* Input Content */
 .inputContent {
   width: 100%;
   display: flex;
@@ -123,14 +130,17 @@
 }
 
 .contentTextarea::placeholder {
-  color: #ABABAB;
+  color: var(--color-text-disabled);
 }
 
 .contentTextarea:focus {
-  border-color: #5A5A5A;
+  border-color: var(--color-primary-main);
 }
 
-/* Footer */
+/* ============================================== */
+/* Footer Styles */
+/* ============================================== */
+
 .footer {
   width: 100%;
   display: flex;
@@ -148,12 +158,67 @@
   width: 104px;
 }
 
-/* Error Message */
+/* ============================================== */
+/* Error Message Styles */
+/* ============================================== */
+
 .errorMessage {
   font-family: var(--font-family-korean);
   font-size: var(--typo-caption01-font-size);
   font-weight: var(--typo-caption01-font-weight);
   line-height: var(--typo-caption01-line-height);
-  color: #EA5757;
+  color: var(--color-status-error);
   margin-top: 4px;
+}
+
+/* ============================================== */
+/* Responsive Styles */
+/* ============================================== */
+
+/* Mobile responsive - 767px 이하 */
+@media (max-width: 767px) {
+  .wrapper {
+    width: 320px;
+    padding: 16px;
+    gap: 24px;
+  }
+  
+  .emotionOptions {
+    flex-direction: column;
+    gap: 12px;
+    align-items: flex-start;
+  }
+  
+  .footer {
+    gap: 12px;
+  }
+  
+  .closeButton {
+    width: 80px;
+  }
+  
+  .submitButton {
+    width: 80px;
+  }
+  
+  .title {
+    font-size: 18px;
+    line-height: 22px;
+  }
+  
+  .emotionTitle {
+    font-size: 14px;
+    line-height: 18px;
+  }
+  
+  .inputLabel {
+    font-size: 11px;
+    line-height: 14px;
+  }
+  
+  .contentTextarea {
+    height: 100px;
+    padding: 12px;
+    font-size: 13px;
+  }
 }

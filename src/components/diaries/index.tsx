@@ -118,37 +118,39 @@ const Diaries: React.FC = () => {
     <div className={styles.container} data-testid="diaries-page">
       <div className={styles.gap}></div>
       
+      {/* 데스크톱 버전 (767px 초과) */}
       <div className={styles.search}>
         <div className={styles.searchLeft}>
           <Selectbox
             variant="primary"
-            theme="light"
             size="large"
-            className={styles.selectWidth}
+            theme="light"
             options={getFilterOptions()}
             value={selectedEmotion}
             onChange={handleEmotionChange}
+            className={styles.selectWidth}
+            fullWidth={false}
           />
 
           <Searchbar
             variant="primary"
-            theme="light"
             size="medium"
+            theme="light"
             placeholder="검색어를 입력해 주세요."
-            className={styles.searchWidth}
             value={searchQuery}
             onChange={(e) => handleSearchChange(e.target.value)}
             onSearch={handleSearch}
+            className={styles.searchWidth}
+            fullWidth={false}
           />
         </div>
 
         <Button
           variant="primary"
-          theme="light"
           size="medium"
-          className={styles.buttonWidth}
+          theme="light"
           onClick={handleDiaryWriteClick}
-          data-testid="diary-write-button"
+          className={styles.buttonWidth}
           icon={
             <Image
               src="/icons/plus_outline_light_m.svg"
@@ -158,9 +160,60 @@ const Diaries: React.FC = () => {
             />
           }
           iconPosition="left"
+          fullWidth={false}
+          data-testid="diary-write-button"
         >
           일기쓰기
         </Button>
+      </div>
+
+      {/* 모바일 버전 (767px 이하) */}
+      <div className={styles.searchMobile}>
+        <Searchbar
+          variant="primary"
+          size="medium"
+          theme="light"
+          placeholder="검색어를 입력해 주세요."
+          value={searchQuery}
+          onChange={(e) => handleSearchChange(e.target.value)}
+          onSearch={handleSearch}
+          className={styles.searchMobileWidth}
+          fullWidth={true}
+        />
+
+        <div className={styles.searchMobileBottom}>
+          <Selectbox
+            variant="primary"
+            size="large"
+            theme="light"
+            options={getFilterOptions()}
+            value={selectedEmotion}
+            onChange={handleEmotionChange}
+            className={styles.selectMobileWidth}
+            fullWidth={false}
+          />
+
+          <Button
+            variant="primary"
+            size="medium"
+            theme="light"
+            onClick={handleDiaryWriteClick}
+            className={styles.buttonMobileWidth}
+            icon={
+              <Image
+                src="/icons/plus_outline_light_m.svg"
+                alt="plus"
+                width={24}
+                height={24}
+              />
+            }
+            iconPosition="left"
+            fullWidth={false}
+            data-testid="diary-write-button-mobile"
+          >
+            일기쓰기
+          </Button>
+        </div>
       </div>
       
       <div className={styles.gap}></div>
@@ -234,12 +287,12 @@ const Diaries: React.FC = () => {
       {displayDiaries.length > 0 && paginationState.totalPages >= 1 && (
         <div className={styles.pagination}>
           <Pagination
+            variant="primary"
+            size="medium"
+            theme="light"
             currentPage={paginationState.currentPage}
             totalPages={paginationState.totalPages}
             onPageChange={handlePageChange}
-            variant="primary"
-            theme="light"
-            size="medium"
             showArrows={true}
             visiblePages={5}
             className={styles.paginationWidth}

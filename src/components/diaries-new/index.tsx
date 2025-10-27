@@ -1,5 +1,6 @@
 'use client';
 
+import { useState, useEffect } from 'react';
 import styles from './styles.module.css';
 import Input from '@/commons/components/input';
 import Button from '@/commons/components/button';
@@ -12,6 +13,7 @@ import { useDiaryForm } from './hooks/index.form.hook';
  * 
  * 일기 작성 폼 컴포넌트
  * 감정 선택, 제목/내용 입력, 등록/닫기 기능을 제공합니다.
+ * 반응형 디자인을 지원하여 모바일과 데스크톱 환경에서 최적화된 사용자 경험을 제공합니다.
  * 
  * @example
  * ```tsx
@@ -19,6 +21,9 @@ import { useDiaryForm } from './hooks/index.form.hook';
  * ```
  */
 export default function DiariesNew() {
+  // 반응형 상태 관리
+  const [isMobile, setIsMobile] = useState(false);
+  
   // 모달 닫기 훅
   const { handleDiaryClose } = useDiaryModalClose();
   
@@ -31,10 +36,21 @@ export default function DiariesNew() {
     watchedFields,
   } = useDiaryForm();
 
+  // 브레이크포인트 감지 훅
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth <= 767);
+    };
+    
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
 
   /**
    * 닫기 핸들러
-   * 등록취소 모달을 표시
+   * 등록취소 모달을 표시합니다.
    */
   const handleClose = () => {
     handleDiaryClose();
@@ -116,7 +132,7 @@ export default function DiariesNew() {
         <Button
           type="button"
           variant="secondary"
-          size="medium"
+          size={isMobile ? "small" : "medium"}
           theme="light"
           onClick={handleClose}
           className={styles.closeButton}
@@ -127,7 +143,7 @@ export default function DiariesNew() {
         <Button
           type="submit"
           variant="primary"
-          size="medium"
+          size={isMobile ? "small" : "medium"}
           theme="light"
           disabled={!isValid}
           className={styles.submitButton}
