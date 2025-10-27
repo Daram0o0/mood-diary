@@ -8,11 +8,9 @@ import { DiaryItem } from './index.binding.hook';
  */
 export interface UseSearchReturn {
   searchQuery: string;
-  selectedEmotion: string;
   filteredDiaries: DiaryItem[];
   isSearchActive: boolean;
   handleSearchChange: (value: string) => void;
-  handleEmotionChange: (value: string) => void;
   handleSearch: () => void;
 }
 
@@ -36,7 +34,6 @@ export interface UseSearchReturn {
  */
 export const useSearch = (diaries: DiaryItem[]): UseSearchReturn => {
   const [searchQuery, setSearchQuery] = useState<string>('');
-  const [selectedEmotion, setSelectedEmotion] = useState<string>('all');
   const [isSearchActive, setIsSearchActive] = useState<boolean>(false);
   
   // 디바운싱을 위한 ref
@@ -62,26 +59,21 @@ export const useSearch = (diaries: DiaryItem[]): UseSearchReturn => {
 
   // 검색 활성화 상태 업데이트
   useEffect(() => {
-    if (debouncedSearchQuery.trim() || selectedEmotion !== 'all') {
+    if (debouncedSearchQuery.trim()) {
       setIsSearchActive(true);
     } else {
       setIsSearchActive(false);
     }
-  }, [debouncedSearchQuery, selectedEmotion]);
+  }, [debouncedSearchQuery]);
 
   // 검색어 변경 핸들러
   const handleSearchChange = (value: string) => {
     setSearchQuery(value);
   };
 
-  // 감정 필터 변경 핸들러
-  const handleEmotionChange = (value: string) => {
-    setSelectedEmotion(value);
-  };
-
   // 검색 실행 핸들러
   const handleSearch = () => {
-    if (searchQuery.trim() || selectedEmotion !== 'all') {
+    if (searchQuery.trim()) {
       setIsSearchActive(true);
     } else {
       setIsSearchActive(false);
@@ -98,22 +90,16 @@ export const useSearch = (diaries: DiaryItem[]): UseSearchReturn => {
       // 제목 검색 조건
       const titleMatch = debouncedSearchQuery.trim() === '' || 
         diary.title.toLowerCase().includes(debouncedSearchQuery.toLowerCase());
-      
-      // 감정 필터 조건
-      const emotionMatch = selectedEmotion === 'all' || 
-        diary.emotion === selectedEmotion;
 
-      return titleMatch && emotionMatch;
+      return titleMatch;
     });
-  }, [diaries, debouncedSearchQuery, selectedEmotion, isSearchActive]);
+  }, [diaries, debouncedSearchQuery, isSearchActive]);
 
   return {
     searchQuery,
-    selectedEmotion,
     filteredDiaries,
     isSearchActive,
     handleSearchChange,
-    handleEmotionChange,
     handleSearch,
   };
 };

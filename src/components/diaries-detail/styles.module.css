@@ -277,11 +277,10 @@
 
 .retrospectItem {
   width: 100%;
-  height: 24px;
+  height: 104px;
   display: flex;
   align-items: center;
-  gap: 12px;
-  flex-shrink: 0;
+  justify-content: center;
 }
 
 .retrospectItemText {
@@ -290,7 +289,7 @@
   font-size: var(--typo-body01-font-size);
   font-weight: var(--typo-body01-font-weight);
   line-height: var(--typo-body01-line-height);
-  color: var(--color-text-primary);
+  color: var(--color-text-hint);
   letter-spacing: -0.16px;
 }
 
@@ -329,3 +328,4 @@
   letter-spacing: -0.16px;
   margin: 0;
 }
+

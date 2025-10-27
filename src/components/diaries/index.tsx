@@ -16,6 +16,7 @@ import { useDiaryBinding, DiaryItem } from './hooks/index.binding.hook';
 import { useLinkRouting } from './hooks/index.link.routing.hook';
 import { useDiaryWriteAuth } from './hooks/index.link.modal.hook';
 import { useSearch } from './hooks/index.search.hook';
+import { useFilter } from './hooks/index.filter.hook';
 
 /**
  * 일기 목록 페이지 컴포넌트
@@ -44,17 +45,37 @@ const Diaries: React.FC = () => {
   // 검색 기능 훅
   const { 
     searchQuery, 
-    selectedEmotion, 
-    filteredDiaries, 
+    filteredDiaries: searchFilteredDiaries, 
     isSearchActive,
     handleSearchChange, 
-    handleEmotionChange, 
     handleSearch
     // handleClearSearch 
   } = useSearch(diaries);
 
-  // 검색 결과에 따른 데이터 선택
-  const displayDiaries = isSearchActive ? filteredDiaries : diaries;
+  // 필터 기능 훅
+  const { 
+    selectedEmotion, 
+    filteredDiaries: filterFilteredDiaries, 
+    isFilterActive,
+    handleEmotionChange, 
+    getFilterOptions
+  } = useFilter(diaries);
+
+  // 검색과 필터 결과에 따른 데이터 선택
+  let displayDiaries = diaries;
+  
+  if (isSearchActive && isFilterActive) {
+    // 검색과 필터가 모두 활성화된 경우: 검색 결과에 필터 적용
+    displayDiaries = filterFilteredDiaries.filter(diary => 
+      searchFilteredDiaries.some(searchDiary => searchDiary.id === diary.id)
+    );
+  } else if (isSearchActive) {
+    // 검색만 활성화된 경우
+    displayDiaries = searchFilteredDiaries;
+  } else if (isFilterActive) {
+    // 필터만 활성화된 경우
+    displayDiaries = filterFilteredDiaries;
+  }
   
   // 페이지네이션 계산
   const totalPages = Math.ceil(displayDiaries.length / itemsPerPage);
@@ -112,14 +133,7 @@ const Diaries: React.FC = () => {
             theme="light"
             size="large"
             className={styles.selectWidth}
-            options={[
-              { value: 'all', label: '전체' },
-              { value: 'Happy', label: '행복' },
-              { value: 'Sad', label: '슬픔' },
-              { value: 'Angry', label: '분노' },
-              { value: 'Surprise', label: '놀람' },
-              { value: 'Etc', label: '기타' },
-            ]}
+            options={getFilterOptions()}
             value={selectedEmotion}
             onChange={handleEmotionChange}
           />

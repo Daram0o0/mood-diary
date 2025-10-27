@@ -7,6 +7,7 @@ import Input from '@/commons/components/input';
 import { getEmotionImage, getEmotionLabel, getEmotionColor } from '@/commons/constants/enum';
 import { useDiaryBinding } from './hooks/index.binding.hook';
 import { useRetrospectForm } from './hooks/index.retrospect.form.hook';
+import { useRetrospectBinding } from './hooks/index.retrospect.binding.hook';
 import styles from './styles.module.css';
 
 /**
@@ -35,6 +36,7 @@ export interface DiariesDetailProps {
 export default function DiariesDetail({ diaryId }: DiariesDetailProps) {
   const { diary, isLoading, error } = useDiaryBinding(diaryId);
   const { form, onSubmit, isSubmitting, isFormValid } = useRetrospectForm(parseInt(diaryId));
+  const { retrospects, isLoading: isRetrospectsLoading, error: retrospectError } = useRetrospectBinding(parseInt(diaryId));
 
   const handleCopyContent = () => {
     if (diary) {
@@ -64,6 +66,15 @@ export default function DiariesDetail({ diaryId }: DiariesDetailProps) {
 
   // 포맷된 날짜 텍스트 (인라인 formatDate 호출 방지)
   const formattedDate = diary ? formatDate(diary.createdAt) : '';
+
+  // 회고 날짜 포맷팅 함수 (yyyy. mm. dd 형식)
+  const formatRetrospectDate = (dateString: string): string => {
+    const date = new Date(dateString);
+    const year = date.getFullYear();
+    const month = String(date.getMonth() + 1).padStart(2, '0');
+    const day = String(date.getDate()).padStart(2, '0');
+    return `[${year}. ${month}. ${day}]`;
+  };
 
   // 로딩 상태 처리
   if (isLoading) {
@@ -242,21 +253,35 @@ export default function DiariesDetail({ diaryId }: DiariesDetailProps) {
       
       {/* retrospect-list: 1168 * 72 */}
       <div className={styles.retrospectList}>
-        <div className={styles.retrospectItem}>
-          <p className={styles.retrospectItemText}>
-            3년이 지나고 다시 보니 이때가 그립다.
-          </p>
-          <span className={styles.retrospectItemDateText}>[2024. 09. 24]</span>
-        </div>
-        
-        <div className={styles.retrospectLine}></div>
-        
-        <div className={styles.retrospectItem}>
-          <p className={styles.retrospectItemText}>
-            3년이 지나고 다시 보니 이때가 그립다.
-          </p>
-          <span className={styles.retrospectItemDateText}>[2024. 09. 24]</span>
-        </div>
+        {isRetrospectsLoading ? (
+          <div className={styles.retrospectItem}>
+            <p className={styles.retrospectItemText}>회고를 불러오는 중...</p>
+          </div>
+        ) : retrospectError ? (
+          <div className={styles.retrospectItem}>
+            <p className={styles.retrospectItemText}>회고를 불러올 수 없습니다.</p>
+          </div>
+        ) : retrospects.length === 0 ? (
+          <div className={styles.retrospectItem}>
+            <p className={styles.retrospectItemText}>등록된 회고가 없습니다.</p>
+          </div>
+        ) : (
+          retrospects.map((retrospect, index) => (
+            <React.Fragment key={retrospect.id}>
+              <div className={styles.retrospectItem}>
+                <p className={styles.retrospectItemText}>
+                  {retrospect.content}
+                </p>
+                <span className={styles.retrospectItemDateText}>
+                  {formatRetrospectDate(retrospect.createdAt)}
+                </span>
+              </div>
+              {index < retrospects.length - 1 && (
+                <div className={styles.retrospectLine}></div>
+              )}
+            </React.Fragment>
+          ))
+        )}
       </div>
     </div>
   );
