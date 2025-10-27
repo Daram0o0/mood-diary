@@ -31,6 +31,7 @@ export interface UseDiaryBindingReturn {
   diaries: DiaryItem[];
   isLoading: boolean;
   error: string | null;
+  refreshDiaries: () => void;
 }
 
 /**
@@ -61,72 +62,77 @@ export const useDiaryBinding = (): UseDiaryBindingReturn => {
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
 
-  useEffect(() => {
-    const loadDiaries = () => {
-      try {
-        setIsLoading(true);
-        setError(null);
+  const loadDiaries = () => {
+    try {
+      setIsLoading(true);
+      setError(null);
 
-        // 브라우저 환경에서만 localStorage 접근
-        if (typeof window === 'undefined') {
-          setDiaries([]);
-          setIsLoading(false);
-          return;
-        }
-
-        // 로컬스토리지에서 diaries 데이터 가져오기
-        const diariesJson = localStorage.getItem('diaries');
-        
-        if (!diariesJson) {
-          // 데이터가 없는 경우 빈 배열로 설정
-          setDiaries([]);
-          setIsLoading(false);
-          return;
-        }
-
-        // JSON 파싱
-        const rawDiaries: DiaryData[] = JSON.parse(diariesJson);
-        
-        if (!Array.isArray(rawDiaries)) {
-          setError('일기 데이터 형식이 올바르지 않습니다.');
-          setDiaries([]);
-          setIsLoading(false);
-          return;
-        }
-
-        // DiaryData를 DiaryItem으로 변환
-        const convertedDiaries: DiaryItem[] = rawDiaries.map(diary => ({
-          id: diary.id,
-          title: diary.title,
-          date: formatDate(diary.createdAt),
-          emotion: diary.emotion
-        }));
-
-        // 최신순으로 정렬 (createdAt 기준 내림차순)
-        const sortedDiaries = convertedDiaries.sort((a, b) => {
-          const dateA = new Date(rawDiaries.find(d => d.id === a.id)?.createdAt || '');
-          const dateB = new Date(rawDiaries.find(d => d.id === b.id)?.createdAt || '');
-          return dateB.getTime() - dateA.getTime();
-        });
-
-        setDiaries(sortedDiaries);
-        setIsLoading(false);
-        
-      } catch (err) {
-        console.error('일기 목록 로드 중 오류 발생:', err);
-        setError('일기 목록을 불러오는 중 오류가 발생했습니다.');
+      // 브라우저 환경에서만 localStorage 접근
+      if (typeof window === 'undefined') {
         setDiaries([]);
         setIsLoading(false);
+        return;
       }
-    };
 
+      // 로컬스토리지에서 diaries 데이터 가져오기
+      const diariesJson = localStorage.getItem('diaries');
+      
+      if (!diariesJson) {
+        // 데이터가 없는 경우 빈 배열로 설정
+        setDiaries([]);
+        setIsLoading(false);
+        return;
+      }
+
+      // JSON 파싱
+      const rawDiaries: DiaryData[] = JSON.parse(diariesJson);
+      
+      if (!Array.isArray(rawDiaries)) {
+        setError('일기 데이터 형식이 올바르지 않습니다.');
+        setDiaries([]);
+        setIsLoading(false);
+        return;
+      }
+
+      // DiaryData를 DiaryItem으로 변환
+      const convertedDiaries: DiaryItem[] = rawDiaries.map(diary => ({
+        id: diary.id,
+        title: diary.title,
+        date: formatDate(diary.createdAt),
+        emotion: diary.emotion
+      }));
+
+      // 최신순으로 정렬 (createdAt 기준 내림차순)
+      const sortedDiaries = convertedDiaries.sort((a, b) => {
+        const dateA = new Date(rawDiaries.find(d => d.id === a.id)?.createdAt || '');
+        const dateB = new Date(rawDiaries.find(d => d.id === b.id)?.createdAt || '');
+        return dateB.getTime() - dateA.getTime();
+      });
+
+      setDiaries(sortedDiaries);
+      setIsLoading(false);
+      
+    } catch (err) {
+      console.error('일기 목록 로드 중 오류 발생:', err);
+      setError('일기 목록을 불러오는 중 오류가 발생했습니다.');
+      setDiaries([]);
+      setIsLoading(false);
+    }
+  };
+
+  useEffect(() => {
     loadDiaries();
   }, []);
+
+  const refreshDiaries = () => {
+    loadDiaries();
+  };
 
   return {
     diaries,
     isLoading,
-    error
+    error,
+    refreshDiaries
   };
 };
 

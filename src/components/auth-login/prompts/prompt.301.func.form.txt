@@ -36,8 +36,8 @@
 
                 3-2) 성공시나리오
                     - API 모킹하지 말 것.
-                        - 사용할 email: "a@c.com"
-                        - 사용할 password: "1234qwer"
+                        - 사용할 email: "a@a.aa"
+                        - 사용할 password: "aaaaaaaa8"
 
                     - loginUser API: accessToken이 정상적으로 반환되는지 확인할 것.
                     

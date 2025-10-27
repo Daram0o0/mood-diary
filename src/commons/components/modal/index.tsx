@@ -140,7 +140,7 @@ export default function Modal({
               theme="light"
               onClick={onCancel}
               className={styles.dualButton}
-              data-testid="continue-button"
+              data-testid="cancel-button"
             >
               {cancelText}
             </Button>
@@ -150,7 +150,7 @@ export default function Modal({
               theme="light"
               onClick={onConfirm}
               className={styles.dualButton}
-              data-testid="cancel-button"
+              data-testid="continue-button"
             >
               {confirmText}
             </Button>

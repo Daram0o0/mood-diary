@@ -11,7 +11,7 @@
 
 ==============================================
 
-조건-피그마) 활용할MCP: CursorTalkToFigmaMCP(채널명: nu8j0m9l)
+조건-피그마) 활용할MCP: CursorTalkToFigmaMCP(채널명: iod0irt6)
 조건-피그마) 구현될 컴포넌트 노드ID(삭제모달): 62:2635
 
 조건-파일경로) 참고할 TSX  파일경로: src/components/diaries-detail/index.tsx
@@ -20,7 +20,7 @@
 조건-파일경로) 구현될 TEST 파일경로: src/components/diaries-detail/tests/index.delete.hook.spec.ts
 
 ==============================================
-
+[핵심요구사항 #1]
 핵심요구사항) 병렬처리 구현을 위한 작업 방식 조건
             - 다른 채팅에서 개발중인 파일을 수정 및 삭제 하지 말 것.
             - 테스트 충돌을 방지하기 위해, 빌드테스트, 전체테스트를 하지 말 것.
@@ -72,3 +72,33 @@
                     - "삭제" 클릭: 
                         - 해당 모달의 id와 일치하는 객체를 로컬스토리지의 diaries에서 제거
                         - /diaries로 페이지 이동
+
+==============================================
+[핵심요구사항 #2]
+
+핵심요구사항) [핵심요구사항 #1]은 참고만 할 것.
+
+핵심요구사항) diaries의 index.delete.hook.ts 파일을 참고해서 구현할 것.
+
+핵심요구사항) 기존 index.delete.hook.ts 파일을 tsx로 변경하고 Modal자체를 import한 후 Modal컴포넌트를 활용한 DeleteModal을 만들어 return 시킬 것.
+
+==============================================
+[핵심요구사항 #3]
+핵심요구사항) [핵심요구사항 #1,#2]는 참고만 할 것.
+
+핵심요구사항) export {Modal}은 삭제할 것.
+
+핵심요구사항) DeleteModal은 화면의 정중앙에 뜨며, 뒤 배경은 블러처리될 것.
+        - 참고 노드 ID : 62:2587
+
+핵심요구사항) 공통컴포넌트나 provider을 수정하지 말 것.
+
+핵심요구사항) 다음의 조건에 맞게 모달 열람 기능을 step-by-step 으로 구현하고, 적용 결과를 체크리스트로 반환할 것.
+            1) 모달조건
+                - 일기쓰기 모달 컴포넌트 경로: src/components/diaries-new/index.tsx
+                - 모달 프로바이더 경로: src/commons/providers/modal/modal.provider.tsx
+                - 이미 셋팅되어있는 modal.provider를 사용할 것.
+                - 이미 셋팅되어있는 modal.provider를 수정하지 말 것.
+            
+            2) 상세 구현 내용
+                - 삭제버튼: 클릭시, 모달 컴포넌트를 기존의 페이지 위 중앙에 overlay 하여 겹칠 것.

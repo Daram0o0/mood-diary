@@ -5,10 +5,12 @@ import Image from 'next/image';
 import Button from '@/commons/components/button';
 import Input from '@/commons/components/input';
 import { getEmotionImage, getEmotionLabel, getEmotionColor, emotionKeys } from '@/commons/constants/enum';
+import { useAuthGuard } from '@/commons/providers/auth/auth.guard.hook';
 import { useDiaryBinding } from './hooks/index.binding.hook';
 import { useRetrospectForm } from './hooks/index.retrospect.form.hook';
 import { useRetrospectBinding } from './hooks/index.retrospect.binding.hook';
 import { useDiaryUpdate } from './hooks/index.update.hook';
+import { useDiaryDelete } from './hooks/index.delete.hook';
 import styles from './styles.module.css';
 
 /**
@@ -39,6 +41,21 @@ export default function DiariesDetail({ diaryId }: DiariesDetailProps) {
   const { form, onSubmit, isSubmitting, isFormValid } = useRetrospectForm(parseInt(diaryId));
   const { retrospects, isLoading: isRetrospectsLoading, error: retrospectError } = useRetrospectBinding(parseInt(diaryId));
   
+  // 권한 체크 훅
+  const { isAuthorized } = useAuthGuard();
+  
+  // 테스트 환경에서 권한 우회 확인
+  const isDeleteButtonVisible = () => {
+    if (typeof window !== 'undefined') {
+      const testBypass = (window as unknown as { __TEST_BYPASS__?: boolean }).__TEST_BYPASS__;
+      if (testBypass !== undefined && testBypass) {
+        return true;
+      }
+    }
+    
+    return isAuthorized();
+  };
+  
   // 수정 기능 훅
   const {
     form: updateForm,
@@ -49,6 +66,11 @@ export default function DiariesDetail({ diaryId }: DiariesDetailProps) {
     startEdit,
     cancelEdit,
   } = useDiaryUpdate(parseInt(diaryId), diary || { id: 0, title: '', content: '', emotion: 'Happy', createdAt: '' });
+
+  // 삭제 기능 훅
+  const {
+    openModal,
+  } = useDiaryDelete(parseInt(diaryId));
 
   const handleCopyContent = () => {
     if (diary) {
@@ -62,8 +84,7 @@ export default function DiariesDetail({ diaryId }: DiariesDetailProps) {
   };
 
   const handleDelete = () => {
-    // 삭제 로직 추가
-    console.log('삭제 버튼 클릭');
+    openModal();
   };
 
   // 날짜 포맷팅 함수 (yyyy. mm. dd. 형식)
@@ -298,15 +319,17 @@ export default function DiariesDetail({ diaryId }: DiariesDetailProps) {
               >
                 수정
               </Button>
-              <Button 
-                variant="secondary" 
-                size="medium" 
-                theme="light"
-                className={styles.deleteButton}
-                onClick={handleDelete}
-              >
-                삭제
-              </Button>
+              {isDeleteButtonVisible() && (
+                <Button 
+                  variant="secondary" 
+                  size="medium" 
+                  theme="light"
+                  className={styles.deleteButton}
+                  onClick={handleDelete}
+                >
+                  삭제
+                </Button>
+              )}
             </div>
           </div>
         </>
@@ -377,6 +400,7 @@ export default function DiariesDetail({ diaryId }: DiariesDetailProps) {
           ))
         )}
       </div>
+      
     </div>
   );
 }

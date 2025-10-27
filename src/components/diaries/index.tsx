@@ -18,6 +18,7 @@ import { useDiaryWriteAuth } from './hooks/index.link.modal.hook';
 import { useSearch } from './hooks/index.search.hook';
 import { useFilter } from './hooks/index.filter.hook';
 import { usePagination } from './hooks/index.pagination.hook';
+import { useDiaryDelete } from './hooks/index.delete.hook';
 
 /**
  * 일기 목록 페이지 컴포넌트
@@ -37,7 +38,7 @@ const Diaries: React.FC = () => {
   const { handleDiaryWriteClick } = useDiaryWriteAuth();
 
   // 데이터 바인딩 훅
-  const { diaries, isLoading, error } = useDiaryBinding();
+  const { diaries, isLoading, error, refreshDiaries } = useDiaryBinding();
 
   // 검색 기능 훅
   const { 
@@ -82,7 +83,10 @@ const Diaries: React.FC = () => {
   } = usePagination(displayDiaries, 12);
 
   // 링크 라우팅 훅
-  const { handleDiaryCardClick, handleDeleteIconClick } = useLinkRouting();
+  const { handleDiaryCardClick } = useLinkRouting();
+  
+  // 일기 삭제 훅
+  const { handleDeleteClick, isDeleteIconVisible } = useDiaryDelete(refreshDiaries);
 
   // 일기쓰기 버튼 클릭 핸들러는 useDiaryWriteAuth 훅에서 제공됩니다.
 
@@ -190,17 +194,19 @@ const Diaries: React.FC = () => {
                       width={274}
                       height={208}
                     />
-                    <div 
-                      className={styles.closeIcon}
-                      onClick={(e) => handleDeleteIconClick(e)}
-                    >
-                      <Image
-                        src="/icons/close_outline_light_m.svg"
-                        alt="close"
-                        width={24}
-                        height={24}
-                      />
-                    </div>
+                    {isDeleteIconVisible() && (
+                      <div 
+                        className={styles.closeIcon}
+                        onClick={(e) => handleDeleteClick(e, diary.id)}
+                      >
+                        <Image
+                          src="/icons/close_outline_light_m.svg"
+                          alt="close"
+                          width={24}
+                          height={24}
+                        />
+                      </div>
+                    )}
                   </div>
                   <div className={styles.cardContent}>
                     <div className={styles.cardHeader}>
