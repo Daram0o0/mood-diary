@@ -111,15 +111,22 @@ export default function Searchbar({
   return (
     <div className={wrapperClasses}>
       <div className={searchbarClasses}>
-        {showSearchIcon && (
-          <span className={styles.searchIcon}>
+        {onSearch && showSearchIcon && (
+          <button
+          type="button"
+          className={styles.searchButton}
+          onClick={() => onSearch(props.value as string || '')}
+          disabled={disabled}
+          data-testid="search-button"
+          aria-label="검색"
+        >
             <Image
               src="/icons/search_outline_light_m.svg"
               alt="검색"
               width={24}
               height={24}
             />
-          </span>
+          </button>
         )}
         <input
           type="search"
@@ -129,23 +136,6 @@ export default function Searchbar({
           data-testid="search-input"
           {...props}
         />
-        {onSearch && (
-          <button
-            type="button"
-            className={styles.searchButton}
-            onClick={() => onSearch(props.value as string || '')}
-            disabled={disabled}
-            data-testid="search-button"
-            aria-label="검색"
-          >
-            <Image
-              src="/icons/search_outline_light_m.svg"
-              alt="검색"
-              width={24}
-              height={24}
-            />
-          </button>
-        )}
       </div>
     </div>
   );

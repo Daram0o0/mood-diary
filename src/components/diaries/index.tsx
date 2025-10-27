@@ -117,7 +117,7 @@ const Diaries: React.FC = () => {
   return (
     <div className={styles.container} data-testid="diaries-page">
       <div className={styles.gap}></div>
-      
+
       {/* 데스크톱 버전 (767px 초과) */}
       <div className={styles.search}>
         <div className={styles.searchLeft}>
@@ -227,7 +227,7 @@ const Diaries: React.FC = () => {
             </p>
           </div>
         ) : (
-          <div className={styles.cardFlex}>
+          <div className={styles.cardGrid}>
             {currentPageItems.map((diary: DiaryItem) => {
               const imageSrc = getEmotionImage(diary.emotion, 'm');
               const emotionLabel = getEmotionLabel(diary.emotion);
