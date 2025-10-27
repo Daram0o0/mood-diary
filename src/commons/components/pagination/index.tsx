@@ -176,7 +176,7 @@ export default function Pagination({
   };
   
   return (
-    <div className={containerClasses}>
+    <div className={containerClasses} data-testid="pagination">
       {/* 이전 버튼 */}
       {showArrows && (
         <button
@@ -203,6 +203,8 @@ export default function Pagination({
             onClick={() => handlePageClick(page)}
             aria-label={`페이지 ${page}`}
             aria-current={page === currentPage ? 'page' : undefined}
+            data-testid="pagination-page-button"
+            data-active={page === currentPage ? 'true' : 'false'}
           >
             {page}
           </button>

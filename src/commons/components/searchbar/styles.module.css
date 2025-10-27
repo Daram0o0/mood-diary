@@ -24,6 +24,33 @@
   flex-shrink: 0;
 }
 
+/* Search Button */
+.searchButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 4px;
+  border-radius: 4px;
+  transition: background-color 0.2s ease-in-out;
+  flex-shrink: 0;
+}
+
+.searchButton:hover {
+  background-color: rgba(0, 0, 0, 0.05);
+}
+
+.searchButton:disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
+.searchButton:disabled:hover {
+  background-color: transparent;
+}
+
 /* Input takes remaining space */
 .searchbar {
   flex: 1;

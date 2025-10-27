@@ -22,6 +22,12 @@ export default defineConfig({
   /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */
   use: {
     /* Base URL to use in actions like `await page.goto('/')`. */
+    contextOptions: {
+      ignoreHTTPSErrors: true,
+    },
+    launchOptions: {
+      args: ['--disable-web-security', '--disable-features=IsolateOrigins,site-per-process'],
+    },
     baseURL: `http://localhost:${3000 + (process.env.AGENT_INDEX ? parseInt(process.env.AGENT_INDEX) : 0)}`,
     extraHTTPHeaders: {
       'Accept': 'application/json',
@@ -39,7 +45,12 @@ export default defineConfig({
 
     {
       name: 'firefox',
-      use: { ...devices['Desktop Firefox'] },
+      use: { 
+        ...devices['Desktop Firefox'],
+        launchOptions: {
+          args: ['--no-sandbox', '--disable-setuid-sandbox']
+        }
+      },
     },
 
     {

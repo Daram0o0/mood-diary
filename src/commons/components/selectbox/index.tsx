@@ -247,6 +247,7 @@ export default function Selectbox({
         aria-controls={dropdownId}
         aria-haspopup="listbox"
         aria-disabled={disabled}
+        data-testid="filter-select"
       >
         <span className={`${styles.displayText} ${!selectedOption && styles.placeholder}`}>
           {displayText}
@@ -274,6 +275,7 @@ export default function Selectbox({
               role="option"
               aria-selected={option.value === selectedValue}
               aria-disabled={option.disabled}
+              data-testid={`filter-option-${option.value}`}
             >
               <span className={styles.optionLabel}>{option.label}</span>
               {option.value === selectedValue && (

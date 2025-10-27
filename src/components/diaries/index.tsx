@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState } from 'react';
+import React from 'react';
 import styles from './styles.module.css';
 import Selectbox from '@/commons/components/selectbox';
 import Searchbar from '@/commons/components/searchbar';
@@ -17,6 +17,7 @@ import { useLinkRouting } from './hooks/index.link.routing.hook';
 import { useDiaryWriteAuth } from './hooks/index.link.modal.hook';
 import { useSearch } from './hooks/index.search.hook';
 import { useFilter } from './hooks/index.filter.hook';
+import { usePagination } from './hooks/index.pagination.hook';
 
 /**
  * 일기 목록 페이지 컴포넌트
@@ -32,10 +33,6 @@ import { useFilter } from './hooks/index.filter.hook';
  * ```
  */
 const Diaries: React.FC = () => {
-  // 페이지네이션 상태 관리
-  const [currentPage, setCurrentPage] = useState(1);
-  const itemsPerPage = 12; // 12개씩 한 페이지로 설정
-
   // 권한 분기 훅
   const { handleDiaryWriteClick } = useDiaryWriteAuth();
 
@@ -77,24 +74,15 @@ const Diaries: React.FC = () => {
     displayDiaries = filterFilteredDiaries;
   }
   
-  // 페이지네이션 계산
-  const totalPages = Math.ceil(displayDiaries.length / itemsPerPage);
-  const startIndex = (currentPage - 1) * itemsPerPage;
-  const endIndex = startIndex + itemsPerPage;
-  const currentPageDiaries = displayDiaries.slice(startIndex, endIndex);
+  // 페이지네이션 훅
+  const { 
+    paginationState, 
+    currentPageItems, 
+    handlePageChange 
+  } = usePagination(displayDiaries, 12);
 
   // 링크 라우팅 훅
   const { handleDiaryCardClick, handleDeleteIconClick } = useLinkRouting();
-
-  // 페이지 변경 핸들러
-  const handlePageChange = (page: number) => {
-    setCurrentPage(page);
-  };
-
-  // 데이터가 변경될 때 첫 페이지로 리셋
-  React.useEffect(() => {
-    setCurrentPage(1);
-  }, [displayDiaries.length]);
 
   // 일기쓰기 버튼 클릭 핸들러는 useDiaryWriteAuth 훅에서 제공됩니다.
 
@@ -177,13 +165,13 @@ const Diaries: React.FC = () => {
         {displayDiaries.length === 0 ? (
           // 빈 상태 처리: localStorage에 일기 데이터가 없거나 검색 결과가 없을 때
           <div className={styles.emptyState}>
-            <p className={styles.emptyText}>
+            <p className={styles.emptyText} data-testid="empty-message">
               {isSearchActive ? '검색 결과가 없습니다.' : '등록된 일기가 없습니다.'}
             </p>
           </div>
         ) : (
           <div className={styles.cardFlex}>
-            {currentPageDiaries.map((diary: DiaryItem) => {
+            {currentPageItems.map((diary: DiaryItem) => {
               const imageSrc = getEmotionImage(diary.emotion, 'm');
               const emotionLabel = getEmotionLabel(diary.emotion);
               const emotionColor = getEmotionColor(diary.emotion);
@@ -237,11 +225,11 @@ const Diaries: React.FC = () => {
       <div className={styles.gap}></div>
       
       {/* 페이지네이션은 데이터가 있을 때만 표시 */}
-      {displayDiaries.length > 0 && totalPages >= 1 && (
+      {displayDiaries.length > 0 && paginationState.totalPages >= 1 && (
         <div className={styles.pagination}>
           <Pagination
-            currentPage={currentPage}
-            totalPages={totalPages}
+            currentPage={paginationState.currentPage}
+            totalPages={paginationState.totalPages}
             onPageChange={handlePageChange}
             variant="primary"
             theme="light"

@@ -1,0 +1,569 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>일기 Mock 데이터 등록</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        .container {
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #333;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        .info {
+            background: #e3f2fd;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            border-left: 4px solid #2196f3;
+        }
+        button {
+            background: #2196f3;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 16px;
+            margin: 10px 5px;
+            transition: background-color 0.3s;
+        }
+        button:hover {
+            background: #1976d2;
+        }
+        button:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+        }
+        .success {
+            background: #e8f5e8;
+            color: #2e7d32;
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 20px;
+            border-left: 4px solid #4caf50;
+            display: none;
+        }
+        .error {
+            background: #ffebee;
+            color: #c62828;
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 20px;
+            border-left: 4px solid #f44336;
+            display: none;
+        }
+        .stats {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 20px;
+        }
+        .stats h3 {
+            margin-top: 0;
+            color: #495057;
+        }
+        .stats p {
+            margin: 5px 0;
+            color: #6c757d;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>📝 일기 Mock 데이터 등록</h1>
+        
+        <div class="info">
+            <strong>📋 안내사항:</strong><br>
+            • 이 페이지는 페이지네이션 테스트를 위한 Mock 데이터를 로컬스토리지에 등록합니다.<br>
+            • 브라우저의 개발자 도구에서 로컬스토리지의 'diaries' 키를 확인할 수 있습니다.<br>
+            • 데이터는 최신순으로 정렬되어 저장됩니다.
+        </div>
+        
+        <div style="text-align: center;">
+            <button onclick="registerMockData()" id="registerBtn">
+                🚀 Mock 데이터 등록하기 (50개)
+            </button>
+            <button onclick="clearData()" id="clearBtn">
+                🗑️ 기존 데이터 삭제
+            </button>
+            <button onclick="checkData()" id="checkBtn">
+                📊 데이터 확인
+            </button>
+        </div>
+        
+        <div id="success" class="success"></div>
+        <div id="error" class="error"></div>
+        
+        <div id="stats" class="stats" style="display: none;">
+            <h3>📈 데이터 통계</h3>
+            <p id="statsContent"></p>
+        </div>
+    </div>
+
+    <script>
+        const mockData = [
+  {
+    "id": 34,
+    "title": "평화로운 하루 34",
+    "content": "오늘은 조금 화가 났지만, 곧 마음을 다잡을 수 있었어요.",
+    "emotion": "Happy",
+    "createdAt": "2025-10-19T03:06:26.620Z"
+  },
+  {
+    "id": 8,
+    "title": "평화로운 하루 8",
+    "content": "오랜만에 휴식을 취하며 마음의 평화를 찾았습니다.",
+    "emotion": "Etc",
+    "createdAt": "2025-10-15T03:06:26.620Z"
+  },
+  {
+    "id": 22,
+    "title": "새로운 경험 22",
+    "content": "친구들과 함께 시간을 보내며 많은 이야기를 나누었어요. 정말 즐거웠습니다.",
+    "emotion": "Surprise",
+    "createdAt": "2025-10-02T03:06:26.620Z"
+  },
+  {
+    "id": 14,
+    "title": "바쁜 하루 14",
+    "content": "예상치 못한 일이 있었지만, 잘 해결할 수 있었어요.",
+    "emotion": "Etc",
+    "createdAt": "2025-09-29T03:06:26.620Z"
+  },
+  {
+    "id": 6,
+    "title": "힘든 하루 6",
+    "content": "새로운 취미를 시작하게 되어서 기대가 됩니다.",
+    "emotion": "Sad",
+    "createdAt": "2025-09-24T03:06:26.620Z"
+  },
+  {
+    "id": 38,
+    "title": "일상의 소소한 행복 38",
+    "content": "오늘은 정말 놀라운 하루였어요. 예상치 못한 일이 많았습니다.",
+    "emotion": "Etc",
+    "createdAt": "2025-09-24T03:06:26.620Z"
+  },
+  {
+    "id": 33,
+    "title": "기분 좋은 하루 33",
+    "content": "오늘은 정말 감동적인 하루였습니다. 눈물이 났어요.",
+    "emotion": "Angry",
+    "createdAt": "2025-09-15T03:06:26.620Z"
+  },
+  {
+    "id": 3,
+    "title": "감동적인 하루 3",
+    "content": "예상치 못한 일이 있었지만, 잘 해결할 수 있었어요.",
+    "emotion": "Etc",
+    "createdAt": "2025-09-12T03:06:26.620Z"
+  },
+  {
+    "id": 46,
+    "title": "조용한 하루 46",
+    "content": "새로운 영화를 보며 즐거운 시간을 보냈습니다.",
+    "emotion": "Etc",
+    "createdAt": "2025-09-07T03:06:26.620Z"
+  },
+  {
+    "id": 40,
+    "title": "도전적인 하루 40",
+    "content": "새로운 영화를 보며 즐거운 시간을 보냈습니다.",
+    "emotion": "Sad",
+    "createdAt": "2025-08-26T03:06:26.620Z"
+  },
+  {
+    "id": 7,
+    "title": "가족과의 시간 7",
+    "content": "오늘은 정말 놀라운 하루였어요. 예상치 못한 일이 많았습니다.",
+    "emotion": "Angry",
+    "createdAt": "2025-08-24T03:06:26.620Z"
+  },
+  {
+    "id": 12,
+    "title": "힘든 하루 12",
+    "content": "새로운 영화를 보며 즐거운 시간을 보냈습니다.",
+    "emotion": "Sad",
+    "createdAt": "2025-08-17T03:06:26.620Z"
+  },
+  {
+    "id": 2,
+    "title": "바쁜 하루 2",
+    "content": "예상치 못한 일이 있었지만, 잘 해결할 수 있었어요.",
+    "emotion": "Happy",
+    "createdAt": "2025-08-15T03:06:26.620Z"
+  },
+  {
+    "id": 49,
+    "title": "일상의 소소한 행복 49",
+    "content": "오랜만에 휴식을 취하며 마음의 평화를 찾았습니다.",
+    "emotion": "Angry",
+    "createdAt": "2025-08-15T03:06:26.620Z"
+  },
+  {
+    "id": 25,
+    "title": "재미있는 하루 25",
+    "content": "오늘은 정말 놀라운 하루였어요. 예상치 못한 일이 많았습니다.",
+    "emotion": "Angry",
+    "createdAt": "2025-08-14T03:06:26.620Z"
+  },
+  {
+    "id": 13,
+    "title": "새로운 경험 13",
+    "content": "오늘은 조금 우울했지만, 좋은 음악을 들으며 위로를 받았습니다.",
+    "emotion": "Angry",
+    "createdAt": "2025-08-13T03:06:26.620Z"
+  },
+  {
+    "id": 9,
+    "title": "기분 좋은 하루 9",
+    "content": "예상치 못한 일이 있었지만, 잘 해결할 수 있었어요.",
+    "emotion": "Surprise",
+    "createdAt": "2025-08-04T03:06:26.620Z"
+  },
+  {
+    "id": 43,
+    "title": "재미있는 하루 43",
+    "content": "새로운 취미를 시작하게 되어서 기대가 됩니다.",
+    "emotion": "Happy",
+    "createdAt": "2025-07-26T03:06:26.620Z"
+  },
+  {
+    "id": 41,
+    "title": "즐거운 하루 41",
+    "content": "오늘은 조금 우울했지만, 좋은 음악을 들으며 위로를 받았습니다.",
+    "emotion": "Etc",
+    "createdAt": "2025-07-18T03:06:26.620Z"
+  },
+  {
+    "id": 23,
+    "title": "일상의 소소한 행복 23",
+    "content": "가족과 함께 맛있는 음식을 먹으며 소중한 시간을 보냈습니다.",
+    "emotion": "Sad",
+    "createdAt": "2025-07-07T03:06:26.620Z"
+  },
+  {
+    "id": 32,
+    "title": "우울한 하루 32",
+    "content": "가족과 함께 맛있는 음식을 먹으며 소중한 시간을 보냈습니다.",
+    "emotion": "Etc",
+    "createdAt": "2025-06-29T03:06:26.620Z"
+  },
+  {
+    "id": 24,
+    "title": "우울한 하루 24",
+    "content": "가족과 함께 맛있는 음식을 먹으며 소중한 시간을 보냈습니다.",
+    "emotion": "Surprise",
+    "createdAt": "2025-06-26T03:06:26.620Z"
+  },
+  {
+    "id": 1,
+    "title": "여유로운 하루 1",
+    "content": "새로운 사람을 만나서 좋은 인상을 받았어요.",
+    "emotion": "Surprise",
+    "createdAt": "2025-06-18T03:06:26.620Z"
+  },
+  {
+    "id": 5,
+    "title": "재미있는 하루 5",
+    "content": "친구들과 함께 시간을 보내며 많은 이야기를 나누었어요. 정말 즐거웠습니다.",
+    "emotion": "Sad",
+    "createdAt": "2025-06-15T03:06:26.620Z"
+  },
+  {
+    "id": 44,
+    "title": "우울한 하루 44",
+    "content": "오늘은 정말 특별한 하루였어요. 새로운 경험을 하게 되어서 기분이 좋았습니다.",
+    "emotion": "Angry",
+    "createdAt": "2025-05-27T03:06:26.620Z"
+  },
+  {
+    "id": 48,
+    "title": "감동적인 하루 48",
+    "content": "오늘은 조금 피곤했지만, 보람 있는 하루였어요.",
+    "emotion": "Etc",
+    "createdAt": "2025-05-18T03:06:26.620Z"
+  },
+  {
+    "id": 37,
+    "title": "조용한 하루 37",
+    "content": "오랜만에 운동을 하니 몸이 가벼워진 것 같아요.",
+    "emotion": "Sad",
+    "createdAt": "2025-05-13T03:06:26.620Z"
+  },
+  {
+    "id": 10,
+    "title": "힘든 하루 10",
+    "content": "새로운 취미를 시작하게 되어서 기대가 됩니다.",
+    "emotion": "Angry",
+    "createdAt": "2025-05-11T03:06:26.620Z"
+  },
+  {
+    "id": 50,
+    "title": "힘든 하루 50",
+    "content": "가족과 함께 맛있는 음식을 먹으며 소중한 시간을 보냈습니다.",
+    "emotion": "Angry",
+    "createdAt": "2025-05-09T03:06:26.620Z"
+  },
+  {
+    "id": 20,
+    "title": "오늘의 하루 20",
+    "content": "오늘은 정말 놀라운 하루였어요. 예상치 못한 일이 많았습니다.",
+    "emotion": "Angry",
+    "createdAt": "2025-04-12T03:06:26.620Z"
+  },
+  {
+    "id": 29,
+    "title": "평범한 하루 29",
+    "content": "오늘은 정말 감동적인 하루였습니다. 눈물이 났어요.",
+    "emotion": "Happy",
+    "createdAt": "2025-04-12T03:06:26.620Z"
+  },
+  {
+    "id": 30,
+    "title": "평범한 하루 30",
+    "content": "예상치 못한 일이 있었지만, 잘 해결할 수 있었어요.",
+    "emotion": "Sad",
+    "createdAt": "2025-04-12T03:06:26.620Z"
+  },
+  {
+    "id": 31,
+    "title": "기분 좋은 하루 31",
+    "content": "오늘은 정말 재미있는 하루였어요. 웃음이 끊이지 않았습니다.",
+    "emotion": "Angry",
+    "createdAt": "2025-04-05T03:06:26.620Z"
+  },
+  {
+    "id": 26,
+    "title": "즐거운 하루 26",
+    "content": "오늘은 조금 우울했지만, 좋은 음악을 들으며 위로를 받았습니다.",
+    "emotion": "Happy",
+    "createdAt": "2025-04-04T03:06:26.620Z"
+  },
+  {
+    "id": 18,
+    "title": "신나는 하루 18",
+    "content": "오늘은 정말 특별한 하루였어요. 새로운 경험을 하게 되어서 기분이 좋았습니다.",
+    "emotion": "Surprise",
+    "createdAt": "2025-03-31T03:06:26.620Z"
+  },
+  {
+    "id": 35,
+    "title": "평범한 하루 35",
+    "content": "오랜만에 운동을 하니 몸이 가벼워진 것 같아요.",
+    "emotion": "Etc",
+    "createdAt": "2025-03-19T03:06:26.620Z"
+  },
+  {
+    "id": 47,
+    "title": "특별한 하루 47",
+    "content": "오늘은 조금 화가 났지만, 곧 마음을 다잡을 수 있었어요.",
+    "emotion": "Sad",
+    "createdAt": "2025-03-12T03:06:26.620Z"
+  },
+  {
+    "id": 11,
+    "title": "도전적인 하루 11",
+    "content": "오늘은 정말 특별한 하루였어요. 새로운 경험을 하게 되어서 기분이 좋았습니다.",
+    "emotion": "Sad",
+    "createdAt": "2025-03-05T03:06:26.620Z"
+  },
+  {
+    "id": 19,
+    "title": "가족과의 시간 19",
+    "content": "오랜만에 휴식을 취하며 마음의 평화를 찾았습니다.",
+    "emotion": "Surprise",
+    "createdAt": "2025-02-27T03:06:26.620Z"
+  },
+  {
+    "id": 36,
+    "title": "새로운 경험 36",
+    "content": "오늘은 조금 화가 났지만, 곧 마음을 다잡을 수 있었어요.",
+    "emotion": "Happy",
+    "createdAt": "2025-01-13T03:06:26.620Z"
+  },
+  {
+    "id": 21,
+    "title": "재미있는 하루 21",
+    "content": "오늘은 조금 우울했지만, 좋은 음악을 들으며 위로를 받았습니다.",
+    "emotion": "Sad",
+    "createdAt": "2025-01-11T03:06:26.620Z"
+  },
+  {
+    "id": 42,
+    "title": "즐거운 하루 42",
+    "content": "조용한 카페에서 혼자만의 시간을 보내며 생각을 정리했습니다.",
+    "emotion": "Surprise",
+    "createdAt": "2025-01-10T03:06:26.620Z"
+  },
+  {
+    "id": 15,
+    "title": "신나는 하루 15",
+    "content": "조용한 카페에서 혼자만의 시간을 보내며 생각을 정리했습니다.",
+    "emotion": "Sad",
+    "createdAt": "2024-12-26T03:06:26.620Z"
+  },
+  {
+    "id": 39,
+    "title": "평화로운 하루 39",
+    "content": "오늘은 정말 특별한 하루였어요. 새로운 경험을 하게 되어서 기분이 좋았습니다.",
+    "emotion": "Etc",
+    "createdAt": "2024-12-16T03:06:26.620Z"
+  },
+  {
+    "id": 17,
+    "title": "감동적인 하루 17",
+    "content": "친구들과 함께 시간을 보내며 많은 이야기를 나누었어요. 정말 즐거웠습니다.",
+    "emotion": "Etc",
+    "createdAt": "2024-12-14T03:06:26.620Z"
+  },
+  {
+    "id": 28,
+    "title": "평범한 하루 28",
+    "content": "새로운 책을 읽으며 많은 것을 배웠습니다.",
+    "emotion": "Surprise",
+    "createdAt": "2024-12-09T03:06:26.620Z"
+  },
+  {
+    "id": 45,
+    "title": "평범한 하루 45",
+    "content": "친구들과 함께 시간을 보내며 많은 이야기를 나누었어요. 정말 즐거웠습니다.",
+    "emotion": "Surprise",
+    "createdAt": "2024-11-16T03:06:26.620Z"
+  },
+  {
+    "id": 4,
+    "title": "도전적인 하루 4",
+    "content": "새로운 취미를 시작하게 되어서 기대가 됩니다.",
+    "emotion": "Happy",
+    "createdAt": "2024-11-13T03:06:26.620Z"
+  },
+  {
+    "id": 27,
+    "title": "기분 좋은 하루 27",
+    "content": "친구들과 함께 시간을 보내며 많은 이야기를 나누었어요. 정말 즐거웠습니다.",
+    "emotion": "Angry",
+    "createdAt": "2024-11-10T03:06:26.620Z"
+  },
+  {
+    "id": 16,
+    "title": "즐거운 하루 16",
+    "content": "오늘은 조금 힘들었지만, 끝까지 포기하지 않고 해냈어요.",
+    "emotion": "Etc",
+    "createdAt": "2024-10-28T03:06:26.620Z"
+  }
+];
+        
+        function showMessage(message, isError = false) {
+            const successDiv = document.getElementById('success');
+            const errorDiv = document.getElementById('error');
+            
+            if (isError) {
+                successDiv.style.display = 'none';
+                errorDiv.style.display = 'block';
+                errorDiv.textContent = message;
+            } else {
+                errorDiv.style.display = 'none';
+                successDiv.style.display = 'block';
+                successDiv.textContent = message;
+            }
+        }
+        
+        function registerMockData() {
+            try {
+                localStorage.setItem('diaries', JSON.stringify(mockData));
+                showMessage(`✅ 성공적으로 ${mockData.length}개의 일기 데이터가 등록되었습니다!`);
+                updateStats();
+            } catch (error) {
+                showMessage(`❌ 데이터 등록 중 오류가 발생했습니다: ${error.message}`, true);
+            }
+        }
+        
+        function clearData() {
+            try {
+                localStorage.removeItem('diaries');
+                showMessage('🗑️ 기존 일기 데이터가 삭제되었습니다.');
+                document.getElementById('stats').style.display = 'none';
+            } catch (error) {
+                showMessage(`❌ 데이터 삭제 중 오류가 발생했습니다: ${error.message}`, true);
+            }
+        }
+        
+        function checkData() {
+            try {
+                const stored = localStorage.getItem('diaries');
+                if (!stored) {
+                    showMessage('📭 로컬스토리지에 일기 데이터가 없습니다.', true);
+                    return;
+                }
+                
+                const data = JSON.parse(stored);
+                showMessage(`📊 현재 ${data.length}개의 일기 데이터가 저장되어 있습니다.`);
+                updateStats();
+            } catch (error) {
+                showMessage(`❌ 데이터 확인 중 오류가 발생했습니다: ${error.message}`, true);
+            }
+        }
+        
+        function updateStats() {
+            try {
+                const stored = localStorage.getItem('diaries');
+                if (!stored) return;
+                
+                const data = JSON.parse(stored);
+                const emotionCounts = {};
+                
+                data.forEach(diary => {
+                    emotionCounts[diary.emotion] = (emotionCounts[diary.emotion] || 0) + 1;
+                });
+                
+                const emotionLabels = {
+                    'Happy': '행복해요',
+                    'Sad': '슬퍼요',
+                    'Angry': '화나요',
+                    'Surprise': '놀랐어요',
+                    'Etc': '기타'
+                };
+                
+                let statsContent = `총 ${data.length}개의 일기<br>`;
+                statsContent += '감정별 분포:<br>';
+                
+                Object.entries(emotionCounts).forEach(([emotion, count]) => {
+                    const label = emotionLabels[emotion] || emotion;
+                    statsContent += `• ${label}: ${count}개<br>`;
+                });
+                
+                const latestDate = new Date(data[0]?.createdAt || '');
+                const oldestDate = new Date(data[data.length - 1]?.createdAt || '');
+                
+                statsContent += `<br>최신 일기: ${latestDate.toLocaleDateString('ko-KR')}<br>`;
+                statsContent += `가장 오래된 일기: ${oldestDate.toLocaleDateString('ko-KR')}`;
+                
+                document.getElementById('statsContent').innerHTML = statsContent;
+                document.getElementById('stats').style.display = 'block';
+            } catch (error) {
+                console.error('통계 업데이트 오류:', error);
+            }
+        }
+        
+        // 페이지 로드 시 기존 데이터 확인
+        window.onload = function() {
+            checkData();
+        };
+    </script>
+</body>
+</html>

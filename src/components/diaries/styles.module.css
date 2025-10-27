@@ -149,9 +149,9 @@
 }
 
 /* width만 className으로 제어 */
-/* .paginationWidth { 
-  width: 288px; 피그마 디자인에 맞춰 288px로 설정
-} */
+.paginationWidth { 
+  width: 288px; /* 피그마 디자인에 맞춰 288px로 설정 */
+}
 
 /* 빈 상태 스타일 */
 .emptyState {
