@@ -1,3 +1,11 @@
+/* 
+ * Diaries Component Styles
+ * 일기 목록 및 검색 스타일
+ */
+
+/* ============================================== */
+/* Container & Layout */
+/* ============================================== */
 .container {
   display: flex;
   flex-direction: column;
@@ -21,38 +29,56 @@
 }
 
 .search {
-  height: 48px;
   display: flex;
   align-items: center;
   justify-content: space-between;
+  width: 100%;
+  height: 48px;
 }
 
 .searchLeft {
   display: flex;
   align-items: center;
   gap: 16px;
+  flex: 1;
 }
 
-/* width만 className로 제어 */
-.selectWidth { width: 120px; }
-.searchWidth { width: 320px; }
-.buttonWidth { width: 110px; }
+/* 비율 기반 반응형 width 제어 */
+.selectWidth { 
+  width: 15%; 
+  min-width: 100px;
+  max-width: 150px;
+}
+.searchWidth { 
+  width: 40%; 
+  min-width: 200px;
+  max-width: 400px;
+}
+.buttonWidth { 
+  width: 14%; 
+  min-width: 100px;
+  max-width: 130px;
+}
 
+/* ============================================== */
+/* Main Content */
+/* ============================================== */
 .main {
   /* 요구사항: background-color, border 제거 */
   display: flex;
-  align-items: center;
-  min-height: 200px;
+  align-items: flex-start;
+  width: 100%;
+  /* 고정 높이 제거 - 자동으로 축소되도록 함 */
 }
 
 .cardFlex {
   display: flex;
   flex-wrap: wrap;
+  justify-content: flex-start;
   gap: 24px;
   padding: 0;
-  justify-content: flex-start;
-  /* 피그마 디자인과 동일한 4열 배치를 위한 최대 너비 설정 */
-  max-width: 1200px;
+  width: 100%;
+  /* 최대 너비 제거하여 전체 가로가 자동으로 축소되도록 함 */
 }
 
 .diaryCard {
@@ -140,6 +166,9 @@
   white-space: nowrap;
 }
 
+/* ============================================== */
+/* Pagination */
+/* ============================================== */
 .pagination {
   height: 32px;
   display: flex;
@@ -148,12 +177,14 @@
   /* 요구사항: background-color, border 제거 */
 }
 
-/* width만 className으로 제어 */
+/* 비율 기반 반응형 width 제어 */
 .paginationWidth { 
   width: 288px; /* 피그마 디자인에 맞춰 288px로 설정 */
 }
 
-/* 빈 상태 스타일 */
+/* ============================================== */
+/* Empty & Loading States */
+/* ============================================== */
 .emptyState {
   display: flex;
   justify-content: center;
@@ -182,12 +213,116 @@
   font-weight: var(--font-weight-medium);
 }
 
-/* 에러 상태 스타일 */
-.errorState {
-  text-align: center;
-  padding: 40px;
-  color: var(--color-status-error);
-  font-size: var(--typo-body01-font-size);
-  line-height: var(--typo-body01-line-height);
-  font-weight: var(--font-weight-medium);
+/* ============================================== */
+/* Responsive Design */
+/* ============================================== */
+
+@media (max-width: 768px) {
+  .search {
+    height: 44px;
+    gap: 12px;
+  }
+  
+  .searchLeft {
+    gap: 12px;
+  }
+  
+  .selectWidth {
+    width: 20%;
+    min-width: 80px;
+    max-width: 120px;
+  }
+  
+  .searchWidth {
+    width: 50%;
+    min-width: 150px;
+    max-width: 300px;
+  }
+  
+  .buttonWidth {
+    width: 18%;
+    min-width: 80px;
+    max-width: 100px;
+  }
+  
+  .cardFlex {
+    gap: 16px;
+    justify-content: center;
+  }
+  
+  .diaryCard {
+    width: 240px;
+    height: 260px;
+  }
+  
+  .cardImageWrap {
+    height: 180px;
+  }
+  
+  .cardContent {
+    padding: 12px 0;
+  }
+  
+  .cardTitle {
+    font-size: 16px;
+    line-height: 22px;
+  }
 }
+
+@media (max-width: 480px) {
+  .search {
+    height: 40px;
+    gap: 8px;
+  }
+  
+  .searchLeft {
+    gap: 8px;
+  }
+  
+  .selectWidth {
+    width: 25%;
+    min-width: 70px;
+    max-width: 100px;
+  }
+  
+  .searchWidth {
+    width: 45%;
+    min-width: 120px;
+    max-width: 200px;
+  }
+  
+  .buttonWidth {
+    width: 20%;
+    min-width: 70px;
+    max-width: 90px;
+  }
+  
+  .cardFlex {
+    gap: 12px;
+  }
+  
+  .diaryCard {
+    width: 200px;
+    height: 240px;
+  }
+  
+  .cardImageWrap {
+    height: 160px;
+  }
+  
+  .cardContent {
+    padding: 10px 0;
+  }
+  
+  .cardTitle {
+    font-size: 14px;
+    line-height: 20px;
+  }
+  
+  .cardEmotion,
+  .cardDate {
+    font-size: 12px;
+    line-height: 18px;
+  }
+}
+

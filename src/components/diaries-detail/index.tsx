@@ -158,7 +158,7 @@ export default function DiariesDetail({ diaryId }: DiariesDetailProps) {
 
   return (
     <div className={styles.container} data-testid="diary-detail-page">
-      {/* gap: 1168 * 64 */}
+      {/* gap: 100% * 64px */}
       <div className={styles.gap64}></div>
       
       {isEditing ? (
@@ -241,7 +241,7 @@ export default function DiariesDetail({ diaryId }: DiariesDetailProps) {
       ) : (
         // 일반 모드 UI
         <>
-          {/* detail-title: 1168 * 84 */}
+          {/* detail-title: 100% * 84px */}
           <div className={styles.titleSection}>
             {/* 타이틀 영역 */}
             <div className={styles.titleHeader}>
@@ -274,10 +274,10 @@ export default function DiariesDetail({ diaryId }: DiariesDetailProps) {
             </div>
           </div>
           
-          {/* gap: 1168 * 24 */}
+          {/* gap: 100% * 24px */}
           <div className={styles.gap24}></div>
           
-          {/* detail-content: 1168 * 169 */}
+          {/* detail-content: 100% * auto */}
           <div className={styles.contentSection}>
             <div className={styles.contentHeader}>
               <h2 className={styles.contentLabel}>내용</h2>
@@ -304,10 +304,10 @@ export default function DiariesDetail({ diaryId }: DiariesDetailProps) {
             </div>
           </div>
           
-          {/* gap: 1168 * 24 */}
+          {/* gap: 100% * 24px */}
           <div className={styles.gap24}></div>
           
-          {/* detail-footer: 1168 * 56 */}
+          {/* detail-footer: 100% * 56px */}
           <div className={styles.detailFooter}>
             <div className={styles.footerActions}>
               <Button 
@@ -335,10 +335,10 @@ export default function DiariesDetail({ diaryId }: DiariesDetailProps) {
         </>
       )}
       
-      {/* gap: 1168 * 24 */}
+      {/* gap: 100% * 24px */}
       <div className={styles.gap24}></div>
       
-      {/* retrospect-input: 1168 * 85 */}
+      {/* retrospect-input: 100% * 85px */}
       <div className={styles.retrospectInput}>
         <div className={styles.retrospectInputLabel}>회고</div>
         <form onSubmit={onSubmit} className={styles.retrospectInputWrapper}>
@@ -365,10 +365,10 @@ export default function DiariesDetail({ diaryId }: DiariesDetailProps) {
         </form>
       </div>
       
-      {/* gap: 1168 * 16 */}
+      {/* gap: 100% * 16px */}
       <div className={styles.gap16}></div>
       
-      {/* retrospect-list: 1168 * 72 */}
+      {/* retrospect-list: 100% * auto */}
       <div className={styles.retrospectList}>
         {isRetrospectsLoading ? (
           <div className={styles.retrospectItem}>

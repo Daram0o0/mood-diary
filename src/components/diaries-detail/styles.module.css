@@ -1,33 +1,44 @@
+/* 
+ * Diaries Detail Component Styles
+ * 일기 상세보기 및 편집 스타일
+ */
+
+/* ============================================== */
+/* Container & Layout */
+/* ============================================== */
+
 .container {
   display: flex;
   flex-direction: column;
   width: 100%;
   max-width: 1168px;
   margin: 0 auto;
-  padding: 0;
+  padding: 0 20px;
 }
 
-/* gap: width 1168px, height 64px */
+/* gap: width 100%, height 64px */
 .gap64 {
-  width: 1168px;
+  width: 100%;
   height: 64px;
 }
 
-/* gap: width 1168px, height 24px */
+/* gap: width 100%, height 24px */
 .gap24 {
-  width: 1168px;
+  width: 100%;
   height: 24px;
 }
 
-/* gap: width 1168px, height 16px */
+/* gap: width 100%, height 16px */
 .gap16 {
-  width: 1168px;
+  width: 100%;
   height: 16px;
 }
 
-/* detail-title: width 1168px, height 84px */
+/* ============================================== */
+/* Title Section */
+/* ============================================== */
 .titleSection {
-  width: 1168px;
+  width: 100%;
   height: 84px;
   display: flex;
   flex-direction: column;
@@ -40,7 +51,7 @@
   height: 36px;
   display: flex;
   align-items: center;
-  border-bottom: 2px solid #000000;
+  border-bottom: 2px solid var(--color-text-primary);
 }
 
 .titleText {
@@ -83,23 +94,23 @@
 }
 
 .emotionHappy {
-  color: #EA5757;
+  color: var(--color-status-error);
 }
 
 .emotionSad {
-  color: #28B4E1;
+  color: var(--color-status-info);
 }
 
 .emotionAngry {
-  color: #777777;
+  color: var(--color-status-warning);
 }
 
 .emotionSurprise {
-  color: #D59029;
+  color: var(--color-status-warning);
 }
 
 .emotionEtc {
-  color: #A229ED;
+  color: var(--color-status-info);
 }
 
 .dateSection {
@@ -127,9 +138,11 @@
   letter-spacing: -0.14px;
 }
 
-/* detail-content: width 1168px, height auto */
+/* ============================================== */
+/* Content Section */
+/* ============================================== */
 .contentSection {
-  width: 1168px;
+  width: 100%;
   display: flex;
   flex-direction: column;
   align-self: stretch;
@@ -198,13 +211,15 @@
   letter-spacing: -0.16px;
 }
 
-/* detail-footer: width 1168px, height 56px */
+/* ============================================== */
+/* Footer Actions */
+/* ============================================== */
 .detailFooter {
-  width: 1168px;
+  width: 100%;
   height: 56px;
   display: flex;
   flex-direction: column;
-  border-bottom: 1px solid #000000;
+  border-bottom: 1px solid var(--color-border-default);
 }
 
 .footerActions {
@@ -221,9 +236,11 @@
   height: 40px;
 }
 
-/* retrospect-input: width 1168px, height 85px */
+/* ============================================== */
+/* Retrospect Section */
+/* ============================================== */
 .retrospectInput {
-  width: 1168px;
+  width: 100%;
   height: 85px;
   display: flex;
   flex-direction: column;
@@ -265,9 +282,9 @@
   line-height: 24px;
 }
 
-/* retrospect-list: width 1168px, height auto */
+/* retrospect-list: width 100%, height auto */
 .retrospectList {
-  width: 1168px;
+  width: 100%;
   display: flex;
   flex-direction: column;
   gap: 12px;
@@ -314,7 +331,7 @@
   font-size: var(--typo-body01-font-size);
   font-weight: var(--typo-body01-font-weight);
   line-height: var(--typo-body01-line-height);
-  color: #EA5757;
+  color: var(--color-status-error);
   letter-spacing: -0.16px;
   margin: 0;
 }
@@ -324,14 +341,16 @@
   font-size: var(--typo-body01-font-size);
   font-weight: var(--typo-body01-font-weight);
   line-height: var(--typo-body01-line-height);
-  color: #777777;
+  color: var(--color-text-secondary);
   letter-spacing: -0.16px;
   margin: 0;
 }
 
-/* 수정 모드 스타일 */
+/* ============================================== */
+/* Edit Form */
+/* ============================================== */
 .editForm {
-  width: 1168px;
+  width: 100%;
   display: flex;
   flex-direction: column;
   gap: 24px;
@@ -372,7 +391,7 @@
 }
 
 .emotionOption:hover {
-  background-color: #f5f5f5;
+  background-color: var(--color-background-paper);
 }
 
 .emotionRadio {
@@ -413,7 +432,7 @@
   width: 100%;
   height: 128px;
   padding: 16px;
-  border: 1px solid #d4d3d3;
+  border: 1px solid var(--color-border-dark);
   border-radius: 8px;
   font-family: var(--font-family-korean);
   font-size: var(--typo-body01-font-size);
@@ -422,16 +441,16 @@
   color: var(--color-text-primary);
   letter-spacing: -0.16px;
   resize: vertical;
-  background-color: #ffffff;
+  background-color: var(--color-background-default);
 }
 
 .contentTextarea:focus {
   outline: none;
-  border-color: #000000;
+  border-color: var(--color-text-primary);
 }
 
 .contentTextarea::placeholder {
-  color: #ababab;
+  color: var(--color-text-disabled);
 }
 
 /* 버튼 영역 */
@@ -443,14 +462,26 @@
   margin-top: 16px;
 }
 
-/* 에러 메시지 */
-.errorMessage {
-  font-family: var(--font-family-korean);
-  font-size: var(--typo-body02-s-font-size);
-  font-weight: var(--typo-body02-s-font-weight);
-  line-height: var(--typo-body02-s-line-height);
-  color: #EA5757;
-  letter-spacing: -0.14px;
-  margin-top: 4px;
+/* ============================================== */
+/* Responsive Design */
+/* ============================================== */
+
+/* max-width보다 작아질 때 조건부 패딩 적용 */
+@media (max-width: 1208px) {
+  .container {
+    padding: 0 20px;
+  }
+}
+
+@media (max-width: 768px) {
+  .container {
+    padding: 0 16px;
+  }
+}
+
+@media (max-width: 480px) {
+  .container {
+    padding: 0 12px;
+  }
 }
 
