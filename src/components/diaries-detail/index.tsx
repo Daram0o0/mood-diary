@@ -220,7 +220,7 @@ export default function DiariesDetail({ diaryId }: DiariesDetailProps) {
           <div className={styles.editButtonSection}>
             <Button
               variant="secondary"
-              size="large"
+              size="medium"
               theme="light"
               type="button"
               onClick={cancelEdit}
@@ -229,7 +229,7 @@ export default function DiariesDetail({ diaryId }: DiariesDetailProps) {
             </Button>
             <Button
               variant="primary"
-              size="large"
+              size="medium"
               theme="light"
               type="submit"
               disabled={!isUpdateFormValid || isUpdateSubmitting}

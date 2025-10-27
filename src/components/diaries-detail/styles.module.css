@@ -387,6 +387,7 @@
   padding: 4px 8px;
   border-radius: 8px;
   transition: background-color 0.2s ease;
+  accent-color: var(--color-text-primary);
 }
 
 .emotionOption:hover {
@@ -439,7 +440,7 @@
   line-height: var(--typo-body01-line-height);
   color: var(--color-text-primary);
   letter-spacing: -0.16px;
-  resize: vertical;
+  resize: none;
   background-color: var(--color-background-default);
 }
 
@@ -456,7 +457,7 @@
 .editButtonSection {
   width: 100%;
   display: flex;
-  justify-content: flex-end;
+  justify-content: center;
   gap: 16px;
   margin-top: 16px;
 }

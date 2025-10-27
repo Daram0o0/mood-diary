@@ -64,7 +64,7 @@
   height: 24px;
   margin: 0;
   cursor: pointer;
-  accent-color: var(--color-primary-main);
+  accent-color: var(--color-text-primary);
 }
 
 .radioLabel {
